@@ -482,64 +482,68 @@ function shuffle(array) {
 
 function getAllQuestions() {
 
+  // First use the new Master Question Bank
   if (
-    !window.AM_CHAPTERS
+    window.AM_MASTER_BANK &&
+    Array.isArray(window.AM_MASTER_BANK.mcqs) &&
+    window.AM_MASTER_BANK.mcqs.length > 0
   ) {
 
-    return [];
+    return window.AM_MASTER_BANK.mcqs.map((q) => ({
+      id: `master-${q.id}`,
+      chapter: q.chapter,
+      chapterTitle:
+        q.chapter === 1
+          ? "Anatomy & Physiology"
+          : q.chapter === 2
+          ? "Basic Chemistry"
+          : q.chapter === 3
+          ? "Cells & Microscopes"
+          : q.chapter === 4
+          ? "Cell Transport"
+          : `Chapter ${q.chapter}`,
+
+      question: q.question,
+      options: q.options,
+      correct: q.correct,
+      explanation: q.explanation || "",
+      level: q.level || "CORE"
+    }));
 
   }
 
 
-  return AM_CHAPTERS
-    .flatMap(
-      (chapter) => {
+  // Fallback to the old chapters.js bank
+  if (!window.AM_CHAPTERS) {
+    return [];
+  }
 
-        return chapter.mcq
-          .map(
-            (
-              question,
-              index
-            ) => {
 
-              return {
+  return AM_CHAPTERS.flatMap((chapter) => {
 
-                id:
-                  `c${chapter.id}-${index + 1}`,
+    return chapter.mcq.map((question, index) => ({
 
-                chapter:
-                  chapter.id,
+      id: `c${chapter.id}-${index + 1}`,
 
-                chapterTitle:
-                  chapter.title,
+      chapter: chapter.id,
 
-                question:
-                  question[0],
+      chapterTitle: chapter.title,
 
-                options:
-                  question[1],
+      question: question[0],
 
-                correct:
-                  question[2],
+      options: question[1],
 
-                explanation:
-                  question[3],
+      correct: question[2],
 
-                level:
-                  question[4]
-                  || "CORE"
+      explanation: question[3],
 
-              };
+      level: question[4] || "CORE"
 
-            }
-          );
+    }));
 
-      }
-    );
+  });
 
 }
-
-
 
 function prepareQuestions(
   questions
