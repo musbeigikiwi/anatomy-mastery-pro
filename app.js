@@ -2665,108 +2665,307 @@ function finishQuiz() {
 ========================================== */
 
 function renderShortAnswers() {
+  const shortAnswers =
+    window.AM_MASTER_BANK &&
+    Array.isArray(window.AM_MASTER_BANK.shortAnswers)
+      ? window.AM_MASTER_BANK.shortAnswers
+      : [];
+
+  const total = shortAnswers.length;
+
+  const chapterTitles = {
+    1: "Anatomy & Physiology",
+    2: "Basic Chemistry",
+    3: "Cells & Microscopes",
+    4: "Cell Transport"
+  };
+
+  const chapterCards = [1, 2, 3, 4]
+    .map((chapterNumber) => {
+      const count = shortAnswers.filter(
+        (item) => Number(item.chapter) === chapterNumber
+      ).length;
+
+      return `
+        <article
+          class="card"
+          style="cursor:pointer"
+          onclick="openShortAnswerChapter(${chapterNumber})"
+        >
+          <small>${count} SHORT ANSWERS</small>
+
+          <h3>Chapter ${chapterNumber}</h3>
+
+          <p>${chapterTitles[chapterNumber]}</p>
+
+          <button
+            class="primary"
+            onclick="event.stopPropagation(); openShortAnswerChapter(${chapterNumber})"
+          >
+            Start Chapter
+          </button>
+        </article>
+      `;
+    })
+    .join("");
 
   app.innerHTML =
-
     heading(
-
       "WRITTEN RECALL",
-
       "Short Answers",
+      "Write your answer first, then reveal the model answer and marking points."
+    ) +
+    `
+      <section class="stats">
+        <div class="stat glass">
+          <small>Total Short Answers</small>
+          <strong>${total}</strong>
+        </div>
 
-      "Write first, then reveal the model answer."
+        <div class="stat glass">
+          <small>Chapters</small>
+          <strong>4</strong>
+        </div>
+      </section>
 
-    )
+      <section class="grid">
+        <article
+          class="card"
+          style="cursor:pointer"
+          onclick="openShortAnswerChapter(0)"
+        >
+          <small>${total} SHORT ANSWERS</small>
 
-    +
+          <h3>All Chapters</h3>
 
-    AM_CHAPTERS
-      .map(
-        (chapter) => `
+          <p>Mixed written-recall practice from Chapters 1–4.</p>
 
-
-        <h3>
-
-          Chapter
-          ${chapter.id}
-          —
-          ${chapter.title}
-
-        </h3>
-
-
-        ${chapter.saq
-          .map(
-            (
-              item,
-              index
-            ) => `
-
-
-          <article
-            class="panel"
+          <button
+            class="primary"
+            onclick="event.stopPropagation(); openShortAnswerChapter(0)"
           >
+            Start All
+          </button>
+        </article>
+
+        ${chapterCards}
+      </section>
+    `;
+}
 
 
-            <p class="eyebrow">
+function openShortAnswerChapter(chapterNumber) {
+  const allShortAnswers =
+    window.AM_MASTER_BANK &&
+    Array.isArray(window.AM_MASTER_BANK.shortAnswers)
+      ? window.AM_MASTER_BANK.shortAnswers
+      : [];
 
-              SAQ
-              ${index + 1}
+  const questions =
+    Number(chapterNumber) === 0
+      ? [...allShortAnswers]
+      : allShortAnswers.filter(
+          (item) => Number(item.chapter) === Number(chapterNumber)
+        );
 
-            </p>
-
-
-            <h4>
-
-              ${item[0]}
-
-            </h4>
-
-
-            <textarea
-              placeholder="
-                Write your answer before revealing the model answer...
-              "
-            ></textarea>
-
-
-            <div class="actions">
-
-
-              <button
-                class="secondary"
-                onclick="
-                  revealModel(this)
-                "
-              >
-
-                Reveal Model Answer
-
-              </button>
-
-
-            </div>
-
-
-            <div class="model">
-
-              ${item[1]}
-
-            </div>
-
-
-          </article>
-
-
-        `
-          )
-          .join("")}
-
-
+  if (!questions.length) {
+    app.innerHTML =
+      heading(
+        "WRITTEN RECALL",
+        "No Short Answers Yet",
+        "There are no short-answer questions loaded for this chapter."
+      ) +
       `
-      )
-      .join("");
+        <button class="primary" onclick="renderShortAnswers()">
+          Back to Short Answers
+        </button>
+      `;
+    return;
+  }
 
+  let currentIndex = 0;
+
+  function showQuestion() {
+    const item = questions[currentIndex];
+
+    const markingPoints = Array.isArray(item.markingPoints)
+      ? item.markingPoints
+          .map((point) => `<li>${escapeHTML(String(point))}</li>`)
+          .join("")
+      : "";
+
+    app.innerHTML = `
+      <section class="page-head">
+        <div>
+          <p class="eyebrow">
+            SHORT ANSWER ${currentIndex + 1} OF ${questions.length}
+          </p>
+
+          <h1>
+            ${
+              Number(chapterNumber) === 0
+                ? "All Chapters"
+                : `Chapter ${chapterNumber}`
+            }
+          </h1>
+
+          <p>
+            Write your own answer before revealing the model answer.
+          </p>
+        </div>
+      </section>
+
+      <article class="card">
+        <small>
+          SA${item.id}
+          • Chapter ${item.chapter}
+          ${item.marks ? `• ${item.marks} marks` : ""}
+        </small>
+
+        <h2 style="margin-top:18px;">
+          ${escapeHTML(String(item.question || ""))}
+        </h2>
+
+        <div style="margin-top:24px;">
+          <label>
+            <strong>Your Answer</strong>
+          </label>
+
+          <textarea
+            id="studentShortAnswer"
+            rows="8"
+            placeholder="Write your answer here before revealing the model answer..."
+            style="
+              width:100%;
+              margin-top:12px;
+              padding:16px;
+              border-radius:16px;
+              box-sizing:border-box;
+              resize:vertical;
+              font:inherit;
+            "
+          ></textarea>
+        </div>
+
+        <div style="margin-top:20px;">
+          <button
+            class="primary"
+            id="revealShortAnswerBtn"
+          >
+            Reveal Model Answer
+          </button>
+        </div>
+
+        <div
+          id="shortAnswerModel"
+          style="display:none; margin-top:24px;"
+        >
+          <div class="card">
+            <small>MODEL ANSWER</small>
+
+            <p style="margin-top:12px; line-height:1.7;">
+              ${escapeHTML(String(item.modelAnswer || ""))}
+            </p>
+          </div>
+
+          ${
+            markingPoints
+              ? `
+                <div class="card" style="margin-top:16px;">
+                  <small>MARKING POINTS</small>
+
+                  <ul style="line-height:1.8; margin-top:12px;">
+                    ${markingPoints}
+                  </ul>
+                </div>
+              `
+              : ""
+          }
+        </div>
+      </article>
+
+      <div
+        style="
+          display:flex;
+          gap:12px;
+          justify-content:space-between;
+          flex-wrap:wrap;
+          margin-top:20px;
+        "
+      >
+        <button
+          class="secondary"
+          id="backShortAnswersBtn"
+        >
+          Back
+        </button>
+
+        <div style="display:flex; gap:12px;">
+          <button
+            class="secondary"
+            id="previousShortAnswerBtn"
+            ${currentIndex === 0 ? "disabled" : ""}
+          >
+            Previous
+          </button>
+
+          <button
+            class="primary"
+            id="nextShortAnswerBtn"
+          >
+            ${
+              currentIndex === questions.length - 1
+                ? "Finish"
+                : "Next Question"
+            }
+          </button>
+        </div>
+      </div>
+    `;
+
+    document
+      .getElementById("revealShortAnswerBtn")
+      .addEventListener("click", () => {
+        const model = document.getElementById("shortAnswerModel");
+        const button = document.getElementById("revealShortAnswerBtn");
+
+        model.style.display = "block";
+        button.textContent = "Model Answer Revealed";
+        button.disabled = true;
+      });
+
+    document
+      .getElementById("backShortAnswersBtn")
+      .addEventListener("click", () => {
+        renderShortAnswers();
+      });
+
+    const previousButton = document.getElementById(
+      "previousShortAnswerBtn"
+    );
+
+    if (previousButton) {
+      previousButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          showQuestion();
+        }
+      });
+    }
+
+    document
+      .getElementById("nextShortAnswerBtn")
+      .addEventListener("click", () => {
+        if (currentIndex < questions.length - 1) {
+          currentIndex++;
+          showQuestion();
+        } else {
+          renderShortAnswers();
+        }
+      });
+  }
+
+  showQuestion();
 }
 
 
