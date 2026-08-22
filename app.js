@@ -4041,43 +4041,152 @@ function renderMistakes() {
 
 function retryMistakes() {
 
-  const ids =
-    new Set(
-      state.mistakes
-        .map(
-          (mistake) =>
-            mistake.id
-        )
+  if (
+    !Array.isArray(state.mistakes) ||
+    state.mistakes.length === 0
+  ) {
+
+    alert(
+      "There are no mistakes to retry."
     );
 
+    return;
 
-  const questions =
-    getAllQuestions()
-      .filter(
-        (question) =>
-          ids.has(
-            question.id
+  }
+
+
+  const masterQuestions =
+    getAllQuestions();
+
+
+  const retryQuestions =
+    state.mistakes
+      .map((mistake) => {
+
+        /* =====================================
+           NORMAL QUESTION BANK / QUIZ MISTAKE
+        ===================================== */
+
+        const normalQuestion =
+          masterQuestions.find(
+            (question) =>
+              question.id === mistake.id
+          );
+
+
+        if (normalQuestion) {
+
+          return {
+
+            id:
+              normalQuestion.id,
+
+            chapter:
+              normalQuestion.chapter,
+
+            chapterTitle:
+              normalQuestion.chapterTitle,
+
+            question:
+              normalQuestion.question,
+
+            options:
+              [...normalQuestion.options],
+
+            correct:
+              Number(
+                normalQuestion.correct
+              ),
+
+            explanation:
+              normalQuestion.explanation || "",
+
+            level:
+              normalQuestion.level || "REVIEW"
+
+          };
+
+        }
+
+
+        /* =====================================
+           MOCK EXAM MISTAKE
+        ===================================== */
+
+        if (
+          mistake.source === "Mock Exam" &&
+          Array.isArray(mistake.options) &&
+          mistake.options.length > 1 &&
+          Number.isInteger(
+            Number(mistake.correctIndex)
           )
-      );
+        ) {
+
+          return {
+
+            id:
+              mistake.id,
+
+            chapter:
+              mistake.chapter || "1–4",
+
+            chapterTitle:
+              mistake.title || "Mock Exam",
+
+            question:
+              mistake.question,
+
+            options:
+              [...mistake.options],
+
+            correct:
+              Number(
+                mistake.correctIndex
+              ),
+
+            explanation:
+              mistake.explanation || "",
+
+            level:
+              mistake.level ||
+              "MOCK MISTAKE REVIEW"
+
+          };
+
+        }
+
+
+        return null;
+
+      })
+
+      .filter(Boolean);
 
 
   if (
-    questions.length
+    retryQuestions.length === 0
   ) {
 
-    startQuiz(
-
-      questions,
-
-      "Mistake Vault Retry",
-
-      true,
-
-      "bank"
-
+    alert(
+      "These saved mistakes are from an older version and cannot be retried yet. Clear the vault, complete a new mock exam, then retry the mistakes."
     );
 
+    return;
+
   }
+
+
+  startQuiz(
+
+    retryQuestions,
+
+    "Retry All Mistakes",
+
+    true,
+
+    "mistakes"
+
+  );
 
 }
 
