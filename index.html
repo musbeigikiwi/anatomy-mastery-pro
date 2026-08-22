@@ -24,343 +24,332 @@
 
 <body>
 
-  <!-- =========================
-       TOP HEADER
-  ========================== -->
+<header class="topbar glass">
 
-  <header class="topbar glass">
+  <div class="brand">
 
-    <div class="brand">
+    <div class="logo">
+      AM
+    </div>
 
-      <div class="logo">
-        AM
-      </div>
+    <div>
 
-      <div>
-        <b>Anatomy Mastery Pro</b>
+      <b>
+        Anatomy Mastery Pro
+      </b>
 
-        <small>
-          GEDU404B • Stream C • Study OS
-        </small>
-      </div>
+      <small>
+        GEDU404B • Stream C • Study OS
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <div class="live">
+
+    <span class="pulse"></span>
+
+    <span id="dateTop">
+      Loading date…
+    </span>
+
+    <span class="top-divider">•</span>
+
+    <span id="locationTop">
+      Detecting location…
+    </span>
+
+    <span class="top-divider">•</span>
+
+    <span id="weatherTop">
+      --°C
+    </span>
+
+    <span class="top-divider">•</span>
+
+    <strong id="globalTimer">
+      00:00
+    </strong>
+
+  </div>
+
+</header>
+
+
+
+<main class="shell">
+
+
+  <!-- HERO -->
+
+  <section class="hero glass">
+
+    <div>
+
+      <p
+        class="eyebrow"
+        id="weekLabel"
+      >
+        STREAM C
+      </p>
+
+
+      <h1>
+
+        Learn deeply.
+
+        <br>
+
+        <span>
+          Remember longer.
+        </span>
+
+      </h1>
+
+
+      <p class="hero-copy">
+
+        Notes, flashcards, MCQs,
+        short answers, quizzes,
+        mock exams, mistake review,
+        schedule and progress —
+        one modular learning system.
+
+      </p>
 
     </div>
 
 
-    <div class="live">
 
-      <span class="pulse"></span>
+    <aside class="priority">
 
-      <span id="dateTop"></span>
+      <small>
+        NEXT PRIORITY
+      </small>
 
-      <strong id="globalTimer">
-        00:00
+
+      <h3 id="priorityTitle">
+        Loading…
+      </h3>
+
+
+      <p id="priorityMeta"></p>
+
+
+      <button
+        class="primary"
+        data-route="schedule"
+      >
+        Open Schedule
+      </button>
+
+    </aside>
+
+  </section>
+
+
+
+  <!-- DASHBOARD -->
+
+  <section class="stats">
+
+
+    <div class="stat glass">
+
+      <small>
+        Study Today
+      </small>
+
+      <strong id="stToday">
+        0m
       </strong>
 
     </div>
 
-  </header>
 
 
+    <div class="stat glass">
 
-  <!-- =========================
-       MAIN WEBSITE
-  ========================== -->
+      <small>
+        Total Study
+      </small>
 
-  <main class="shell">
+      <strong id="stTotal">
+        0m
+      </strong>
 
+    </div>
 
-    <!-- HERO -->
 
-    <section class="hero glass">
 
-      <div>
+    <div class="stat glass">
 
-        <p
-          class="eyebrow"
-          id="weekLabel"
-        >
-          STREAM C
-        </p>
+      <small>
+        Questions
+      </small>
 
+      <strong id="stQ">
+        0
+      </strong>
 
-        <h1>
-          Learn deeply.
-          <br>
+    </div>
 
-          <span>
-            Remember longer.
-          </span>
-        </h1>
 
 
-        <p class="hero-copy">
+    <div class="stat glass">
 
-          Notes, flashcards, MCQs, short answers,
-          quizzes, mock exams, mistake review,
-          schedule and progress — one modular
-          learning system.
+      <small>
+        Accuracy
+      </small>
 
-        </p>
+      <strong id="stAcc">
+        0%
+      </strong>
 
-      </div>
+    </div>
 
 
 
-      <!-- NEXT PRIORITY -->
+    <div class="stat glass">
 
-      <aside class="priority">
-
-        <small>
-          NEXT PRIORITY
-        </small>
-
-
-        <h3 id="priorityTitle">
-          Loading…
-        </h3>
-
-
-        <p id="priorityMeta"></p>
-
-
-        <button
-          class="primary"
-          data-route="schedule"
-        >
-          Open Schedule
-        </button>
-
-      </aside>
-
-    </section>
-
-
-
-    <!-- =========================
-         DASHBOARD STATS
-    ========================== -->
-
-    <section class="stats">
-
-
-      <div class="stat glass">
-
-        <small>
-          Study Today
-        </small>
-
-        <strong id="stToday">
-          0m
-        </strong>
-
-      </div>
-
-
-
-      <div class="stat glass">
-
-        <small>
-          Total Study
-        </small>
-
-        <strong id="stTotal">
-          0m
-        </strong>
-
-      </div>
-
-
-
-      <div class="stat glass">
-
-        <small>
-          Questions
-        </small>
-
-        <strong id="stQ">
-          0
-        </strong>
-
-      </div>
-
-
-
-      <div class="stat glass">
-
-        <small>
-          Accuracy
-        </small>
-
-        <strong id="stAcc">
-          0%
-        </strong>
-
-      </div>
-
-
-
-      <div class="stat glass">
-
-        <small>
-          Mistakes
-        </small>
-
-        <strong id="stMist">
-          0
-        </strong>
-
-      </div>
-
-
-
-      <div class="stat glass">
-
-        <small>
-          Visits
-        </small>
-
-        <strong id="stVisits">
-          0
-        </strong>
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
-
-    <nav class="nav glass">
-
-
-      <button
-        class="active"
-        data-route="home"
-      >
-        Home
-      </button>
-
-
-      <button data-route="notes">
-        Notes
-      </button>
-
-
-      <button data-route="flash">
-        Flashcards
-      </button>
-
-
-      <button data-route="bank">
-        Question Bank
-      </button>
-
-
-      <button data-route="short">
-        Short Answers
-      </button>
-
-
-      <button data-route="quizzes">
-        Quizzes
-      </button>
-
-
-      <button data-route="mocks">
-        Mock Exams
-      </button>
-
-
-      <button data-route="mistakes">
+      <small>
         Mistakes
-      </button>
+      </small>
 
+      <strong id="stMist">
+        0
+      </strong>
 
-      <button data-route="schedule">
-        Schedule
-      </button>
-
-
-      <button data-route="progress">
-        Progress
-      </button>
-
-
-    </nav>
+    </div>
 
 
 
-    <!-- =========================
-         DYNAMIC CONTENT
-    ========================== -->
+    <div class="stat glass weather-stat">
 
-    <section
-      id="app"
-      class="view"
+      <small>
+        Local Weather
+      </small>
+
+      <strong id="stWeather">
+        --°C
+      </strong>
+
+      <span id="stLocation">
+        Detecting…
+      </span>
+
+      <span id="stCondition">
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="nav glass">
+
+    <button
+      class="active"
+      data-route="home"
     >
-    </section>
+      Home
+    </button>
+
+    <button data-route="notes">
+      Notes
+    </button>
+
+    <button data-route="flash">
+      Flashcards
+    </button>
+
+    <button data-route="bank">
+      Question Bank
+    </button>
+
+    <button data-route="short">
+      Short Answers
+    </button>
+
+    <button data-route="quizzes">
+      Quizzes
+    </button>
+
+    <button data-route="mocks">
+      Mock Exams
+    </button>
+
+    <button data-route="mistakes">
+      Mistakes
+    </button>
+
+    <button data-route="schedule">
+      Schedule
+    </button>
+
+    <button data-route="progress">
+      Progress
+    </button>
+
+  </nav>
 
 
-  </main>
+
+  <section
+    id="app"
+    class="view"
+  >
+  </section>
+
+
+</main>
 
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+<footer>
 
-  <footer>
+  © 2026 Anatomy Mastery Pro
 
-    © 2026 Anatomy Mastery Pro
+  <br>
 
-    <br>
+  Created by
+  <strong>
+    Mustafa Beigi
+  </strong>
 
-    Created by
-    <strong>
-      Mustafa Beigi
-    </strong>
+  <br>
 
-    <br>
+  Contact:
 
-    Contact:
+  <a href="mailto:mustafabeigi9@gmail.com">
+    mustafabeigi9@gmail.com
+  </a>
 
-    <a href="mailto:mustafabeigi9@gmail.com">
-      mustafabeigi9@gmail.com
-    </a>
-
-  </footer>
+</footer>
 
 
 
-  <!-- =========================
-       WEBSITE DATA
-       
-       IMPORTANT:
-       These files are currently
-       in the ROOT of your GitHub
-       repository.
-  ========================== -->
+<!-- DATA FILES IN ROOT -->
+
+<script src="chapters.js"></script>
+
+<script src="quizzes.js"></script>
+
+<script src="mocks.js"></script>
+
+<script src="schedule.js"></script>
 
 
-  <script src="chapters.js"></script>
+<!-- MAIN APP -->
 
-  <script src="quizzes.js"></script>
-
-  <script src="mocks.js"></script>
-
-  <script src="schedule.js"></script>
-
-
-  <!-- Main application -->
-
-  <script src="app.js"></script>
+<script src="app.js"></script>
 
 
 </body>
-
 </html>
