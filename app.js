@@ -3296,6 +3296,15 @@ function launchMock(index) {
 
 let fullMockState = null;
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function startFullMockExam(mock) {
 
   fullMockState = {
