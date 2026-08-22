@@ -2191,6 +2191,9 @@ window.AM_MASTER_BANK = {
     },
 
     {
+
+    
+
       id: 150,
       chapter: 3,
       level: "REVERSE/BEST",
@@ -2203,7 +2206,559 @@ window.AM_MASTER_BANK = {
       ],
       correct: 0,
       explanation: "Microscope lens tissue is used to avoid scratching lenses and leaving fibres."
-    }
+    },
+
+
+
+
+
+    
+{
+  id: 151,
+  chapter: 3,
+  level: "CORE",
+  question: "With a 10× eyepiece and 10× objective, total magnification is",
+  options: ["10×", "20×", "100×", "1000×"],
+  correct: 2,
+  explanation: "Total magnification = eyepiece × objective. 10× × 10× = 100×."
+},
+{
+  id: 152,
+  chapter: 3,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches the microscope magnification rule?",
+  options: ["40×", "100×", "400×", "1000×"],
+  correct: 1,
+  explanation: "A 10× eyepiece with a 10× objective gives 100× total magnification."
+},
+{
+  id: 153,
+  chapter: 4,
+  level: "CORE",
+  question: "Which statement correctly compares passive and active transport?",
+  options: [
+    "Both always require ATP",
+    "Passive needs no ATP; active requires energy",
+    "Passive always moves low to high",
+    "Active always moves high to low"
+  ],
+  correct: 1,
+  explanation: "Passive transport does not require ATP, while active transport requires energy."
+},
+{
+  id: 154,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches the rule for passive versus active transport?",
+  options: [
+    "Passive needs no ATP; active requires energy",
+    "Both always require ATP",
+    "Active never requires energy",
+    "Passive always moves against the gradient"
+  ],
+  correct: 0,
+  explanation: "Passive transport needs no ATP, whereas active transport requires energy."
+},
+{
+  id: 155,
+  chapter: 4,
+  level: "CORE",
+  question: "Movement from low concentration to high concentration using ATP is",
+  options: ["active transport", "osmosis", "simple diffusion", "facilitated diffusion"],
+  correct: 0,
+  explanation: "Active transport uses energy to move substances against their concentration gradient."
+},
+{
+  id: 156,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which process BEST matches movement from low to high concentration using ATP?",
+  options: ["simple diffusion", "osmosis", "active transport", "facilitated diffusion"],
+  correct: 2,
+  explanation: "Movement against a concentration gradient using ATP is active transport."
+},
+{
+  id: 157,
+  chapter: 4,
+  level: "CORE",
+  question: "Which process is passive despite using a membrane protein?",
+  options: ["facilitated diffusion", "active pump", "endocytosis", "exocytosis"],
+  correct: 0,
+  explanation: "Facilitated diffusion uses membrane proteins but does not require ATP."
+},
+{
+  id: 158,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: Passive transport, no ATP, usually high to low?",
+  options: ["exocytosis", "facilitated diffusion", "active pump", "endocytosis"],
+  correct: 1,
+  explanation: "Facilitated diffusion is passive and moves substances down their gradient using a membrane protein."
+},
+{
+  id: 159,
+  chapter: 4,
+  level: "CORE",
+  question: "Which statement is FALSE?",
+  options: [
+    "Passive transport can move down a gradient",
+    "Active transport can move against a gradient",
+    "Facilitated diffusion requires ATP",
+    "Osmosis is passive"
+  ],
+  correct: 2,
+  explanation: "Facilitated diffusion does not require ATP."
+},
+{
+  id: 160,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: Passive transport requires no ATP and usually moves high to low?",
+  options: [
+    "Active transport can move against a gradient",
+    "Facilitated diffusion requires ATP",
+    "Osmosis is passive",
+    "Passive transport can move down a gradient"
+  ],
+  correct: 3,
+  explanation: "Passive transport can move substances down their concentration gradient without ATP."
+},
+{
+  id: 161,
+  chapter: 4,
+  level: "CORE",
+  question: "Oxygen commonly crosses the cell membrane by",
+  options: ["simple diffusion", "endocytosis", "active pumping", "exocytosis"],
+  correct: 0,
+  explanation: "Oxygen is a small lipid-soluble molecule and commonly crosses the membrane by simple diffusion."
+},
+{
+  id: 162,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which process BEST matches small lipid-soluble molecules such as O2 and CO2 moving directly through the bilayer from high to low concentration without ATP?",
+  options: ["exocytosis", "simple diffusion", "active pumping", "endocytosis"],
+  correct: 1,
+  explanation: "Small lipid-soluble molecules such as oxygen and carbon dioxide can cross directly by simple diffusion."
+},
+{
+  id: 163,
+  chapter: 4,
+  level: "CORE",
+  question: "In working tissue, carbon dioxide generally moves",
+  options: [
+    "from cells toward blood down its gradient",
+    "from blood into cells using ATP",
+    "only by osmosis",
+    "into the nucleus by endocytosis"
+  ],
+  correct: 0,
+  explanation: "Carbon dioxide produced by working cells moves down its concentration gradient toward the blood."
+},
+{
+  id: 164,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches simple diffusion of carbon dioxide in working tissue?",
+  options: [
+    "only by osmosis",
+    "from blood into cells using ATP",
+    "from cells toward blood down its gradient",
+    "into the nucleus by endocytosis"
+  ],
+  correct: 2,
+  explanation: "Carbon dioxide moves from cells toward blood down its concentration gradient."
+},
+{
+  id: 165,
+  chapter: 4,
+  level: "CORE",
+  question: "Simple diffusion requires",
+  options: [
+    "a concentration gradient but no ATP",
+    "ATP and a pump",
+    "a vesicle",
+    "water only"
+  ],
+  correct: 0,
+  explanation: "Simple diffusion depends on a concentration gradient and does not require ATP."
+},
+{
+  id: 166,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches simple diffusion?",
+  options: [
+    "ATP and a pump",
+    "water only",
+    "a vesicle",
+    "a concentration gradient but no ATP"
+  ],
+  correct: 3,
+  explanation: "Simple diffusion requires a concentration gradient but no ATP."
+},
+{
+  id: 167,
+  chapter: 4,
+  level: "CORE",
+  question: "Which molecule is the key course example of simple diffusion?",
+  options: ["oxygen", "glucose", "large protein", "bacterium"],
+  correct: 0,
+  explanation: "Oxygen is a key example of a molecule that crosses by simple diffusion."
+},
+{
+  id: 168,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches simple diffusion of a small lipid-soluble molecule?",
+  options: ["large protein", "bacterium", "oxygen", "glucose"],
+  correct: 2,
+  explanation: "Oxygen can move directly through the phospholipid bilayer by simple diffusion."
+},
+{
+  id: 169,
+  chapter: 4,
+  level: "CORE",
+  question: "Glucose commonly enters cells in the lesson example by",
+  options: [
+    "facilitated diffusion",
+    "simple diffusion through lipid core",
+    "phagocytosis",
+    "exocytosis"
+  ],
+  correct: 0,
+  explanation: "Glucose is the key lesson example of facilitated diffusion."
+},
+{
+  id: 170,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: High to low, no ATP, uses a channel or carrier protein?",
+  options: ["exocytosis", "phagocytosis", "facilitated diffusion", "simple diffusion through lipid core"],
+  correct: 2,
+  explanation: "Facilitated diffusion moves substances down their gradient using a membrane protein without ATP."
+},
+{
+  id: 171,
+  chapter: 4,
+  level: "CORE",
+  question: "Facilitated diffusion differs from simple diffusion because it",
+  options: ["uses a membrane protein", "always uses ATP", "moves low to high", "moves only water"],
+  correct: 0,
+  explanation: "Facilitated diffusion requires a channel or carrier protein."
+},
+{
+  id: 172,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches facilitated diffusion?",
+  options: ["always uses ATP", "uses a membrane protein", "moves only water", "moves low to high"],
+  correct: 1,
+  explanation: "Facilitated diffusion uses a membrane protein while remaining passive."
+},
+{
+  id: 173,
+  chapter: 4,
+  level: "CORE",
+  question: "Which combination describes facilitated diffusion?",
+  options: [
+    "high to low + protein + no ATP",
+    "low to high + ATP",
+    "water only + vesicle",
+    "solid particle + phagosome"
+  ],
+  correct: 0,
+  explanation: "Facilitated diffusion moves high to low using a membrane protein and no ATP."
+},
+{
+  id: 174,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches facilitated diffusion?",
+  options: [
+    "solid particle + phagosome",
+    "water only + vesicle",
+    "low to high + ATP",
+    "high to low + protein + no ATP"
+  ],
+  correct: 3,
+  explanation: "High to low movement using a protein without ATP describes facilitated diffusion."
+},
+{
+  id: 175,
+  chapter: 4,
+  level: "CORE",
+  question: "A carrier protein moving solute down its gradient is",
+  options: ["passive transport", "necessarily active transport", "mitosis", "neutralisation"],
+  correct: 0,
+  explanation: "Moving down a gradient without ATP is passive transport even when a carrier protein is used."
+},
+{
+  id: 176,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches high-to-low movement using a channel or carrier protein without ATP?",
+  options: ["mitosis", "necessarily active transport", "neutralisation", "passive transport"],
+  correct: 3,
+  explanation: "This is passive transport, specifically facilitated diffusion."
+},
+{
+  id: 177,
+  chapter: 4,
+  level: "CORE",
+  question: "Osmosis is the movement of",
+  options: ["water", "glucose only", "proteins only", "ATP"],
+  correct: 0,
+  explanation: "Osmosis is the movement of water across a selectively permeable membrane."
+},
+{
+  id: 178,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: Osmosis is water movement across a semipermeable membrane toward higher solute concentration?",
+  options: ["glucose only", "ATP", "water", "proteins only"],
+  correct: 2,
+  explanation: "Osmosis specifically describes the movement of water."
+},
+{
+  id: 179,
+  chapter: 4,
+  level: "CORE",
+  question: "Water tends to move toward the side with",
+  options: ["higher solute concentration", "lower solute concentration only", "no membrane", "more ATP"],
+  correct: 0,
+  explanation: "In osmosis, water tends to move toward the side with the higher solute concentration."
+},
+{
+  id: 180,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches the direction of water movement in osmosis?",
+  options: ["more ATP", "no membrane", "lower solute concentration only", "higher solute concentration"],
+  correct: 3,
+  explanation: "Water moves toward the side with the higher solute concentration."
+},
+{
+  id: 181,
+  chapter: 4,
+  level: "CORE",
+  question: "A red blood cell in a hypertonic solution tends to",
+  options: ["lose water and shrink", "gain water and burst", "show no net water movement", "divide by mitosis"],
+  correct: 0,
+  explanation: "In a hypertonic solution, water moves out of the red blood cell and the cell shrinks."
+},
+{
+  id: 182,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST describes a red blood cell in a hypertonic solution?",
+  options: ["divide by mitosis", "show no net water movement", "gain water and burst", "lose water and shrink"],
+  correct: 3,
+  explanation: "A hypertonic external solution draws water out of the cell, causing it to shrink."
+},
+{
+  id: 183,
+  chapter: 4,
+  level: "CORE",
+  question: "A red blood cell in a hypotonic solution may",
+  options: ["gain water and swell", "lose water and shrink", "remain unchanged by definition", "pump all water out with ATP"],
+  correct: 0,
+  explanation: "In a hypotonic solution, water enters the red blood cell and it swells."
+},
+{
+  id: 184,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST describes a red blood cell in a hypotonic solution?",
+  options: ["lose water and shrink", "remain unchanged by definition", "pump all water out with ATP", "gain water and swell"],
+  correct: 3,
+  explanation: "A hypotonic solution causes net water movement into the cell, so it swells."
+},
+{
+  id: 185,
+  chapter: 4,
+  level: "CORE",
+  question: "A membrane pump moving ions against their gradient requires",
+  options: ["ATP", "no energy", "osmosis", "a microscope"],
+  correct: 0,
+  explanation: "Active membrane pumps require ATP to move substances against their concentration gradient."
+},
+{
+  id: 186,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: Active pumps use ATP against a gradient?",
+  options: ["ATP", "no energy", "a microscope", "osmosis"],
+  correct: 0,
+  explanation: "ATP supplies the energy required for active transport against a gradient."
+},
+{
+  id: 187,
+  chapter: 4,
+  level: "CORE",
+  question: "Endocytosis moves material",
+  options: [
+    "into the cell using vesicles",
+    "out of the cell only",
+    "through the bilayer by simple diffusion",
+    "from high to low without membrane change"
+  ],
+  correct: 0,
+  explanation: "Endocytosis brings material into the cell using vesicles."
+},
+{
+  id: 188,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches endocytosis?",
+  options: [
+    "into the cell using vesicles",
+    "through the bilayer by simple diffusion",
+    "out of the cell only",
+    "from high to low without membrane change"
+  ],
+  correct: 0,
+  explanation: "Endocytosis brings substances into the cell using vesicles."
+},
+{
+  id: 189,
+  chapter: 4,
+  level: "CORE",
+  question: "Phagocytosis is associated with uptake of",
+  options: ["solid particles such as bacteria", "water only", "oxygen", "carbon dioxide"],
+  correct: 0,
+  explanation: "Phagocytosis is a form of endocytosis used to take in solid particles such as bacteria."
+},
+{
+  id: 190,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches phagocytosis?",
+  options: ["solid particles such as bacteria", "water only", "carbon dioxide", "oxygen"],
+  correct: 0,
+  explanation: "Phagocytosis involves engulfing solid particles such as bacteria."
+},
+{
+  id: 191,
+  chapter: 4,
+  level: "CORE",
+  question: "Exocytosis is used to",
+  options: ["release material from a cell", "bring bacteria into a cell", "move water by osmosis", "replicate DNA"],
+  correct: 0,
+  explanation: "Exocytosis releases material from the cell when vesicles fuse with the cell membrane."
+},
+{
+  id: 192,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches exocytosis?",
+  options: ["replicate DNA", "release material from a cell", "move water by osmosis", "bring bacteria into a cell"],
+  correct: 1,
+  explanation: "Exocytosis releases material from a cell."
+},
+{
+  id: 193,
+  chapter: 4,
+  level: "CORE",
+  question: "An egg gains mass in water because",
+  options: ["water enters by osmosis", "glucose leaves by active transport", "ATP enters by diffusion", "the egg performs mitosis"],
+  correct: 0,
+  explanation: "Water enters the egg by osmosis, increasing its mass."
+},
+{
+  id: 194,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches this rule: Eggs in water gain mass; eggs in golden syrup lose mass due to osmosis?",
+  options: ["ATP enters by diffusion", "water enters by osmosis", "glucose leaves by active transport", "the egg performs mitosis"],
+  correct: 1,
+  explanation: "An egg in water gains mass because water enters by osmosis."
+},
+{
+  id: 195,
+  chapter: 4,
+  level: "CORE",
+  question: "An egg loses mass in concentrated golden syrup because",
+  options: [
+    "water moves out toward the higher external solute concentration",
+    "water is actively pumped in",
+    "protein synthesis stops",
+    "the nucleus dissolves"
+  ],
+  correct: 0,
+  explanation: "Water moves out of the egg by osmosis toward the higher solute concentration outside."
+},
+{
+  id: 196,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST explains why an egg loses mass in concentrated golden syrup?",
+  options: [
+    "protein synthesis stops",
+    "the nucleus dissolves",
+    "water moves out toward the higher external solute concentration",
+    "water is actively pumped in"
+  ],
+  correct: 2,
+  explanation: "The concentrated syrup has a higher solute concentration, so water moves out of the egg by osmosis."
+},
+{
+  id: 197,
+  chapter: 4,
+  level: "CORE",
+  question: "Methylene blue is used in cheek-cell work mainly to",
+  options: [
+    "increase contrast and make structures such as the nucleus easier to see",
+    "increase magnification",
+    "produce ATP",
+    "measure mass"
+  ],
+  correct: 0,
+  explanation: "Methylene blue increases contrast, making structures such as the nucleus easier to see."
+},
+{
+  id: 198,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST describes the purpose of methylene blue in cheek-cell work?",
+  options: [
+    "increase magnification",
+    "produce ATP",
+    "measure mass",
+    "increase contrast and make structures such as the nucleus easier to see"
+  ],
+  correct: 3,
+  explanation: "Methylene blue increases contrast so cell structures such as the nucleus can be seen more clearly."
+},
+{
+  id: 199,
+  chapter: 4,
+  level: "CORE",
+  question: "In an osmosis graph, the best explanation should include",
+  options: [
+    "observation + relative concentrations + water direction + osmosis",
+    "only the final mass",
+    "only the colour of the line",
+    "mitosis stages"
+  ],
+  correct: 0,
+  explanation: "A complete explanation links the observation to relative concentrations, the direction of water movement and osmosis."
+},
+{
+  id: 200,
+  chapter: 4,
+  level: "REVERSE/BEST",
+  question: "Which option BEST matches a complete explanation of an osmosis graph?",
+  options: [
+    "only the colour of the line",
+    "only the final mass",
+    "observation + relative concentrations + water direction + osmosis",
+    "mitosis stages"
+  ],
+  correct: 2,
+  explanation: "A strong osmosis explanation includes the observation, relative concentrations, water direction and osmosis."
+}
+
 
   ],
 
