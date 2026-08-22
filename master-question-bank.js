@@ -3622,7 +3622,7 @@ window.AM_MASTER_BANK = {
     "Synthesis/movement"
   ]
 },
-    ,
+    
 {
   id: 61,
   chapter: 3,
