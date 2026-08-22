@@ -1030,5 +1030,349 @@ window.AM_MOCKS = [
 
   ]
 }
+  ,
+{
+  id: "m4",
+  title: "GEDU404B Test 1 — Mock Exam Version 4: Hard Mode",
+  minutes: 30,
+
+  mcqs: [
+
+    {
+      id: 1,
+      question: "Which statement is the BEST example of physiology?",
+      options: [
+        "The kidneys are posterior to the peritoneum.",
+        "The heart lies in the mediastinal region.",
+        "The kidneys regulate the composition of body fluids.",
+        "The lungs occupy the thoracic cavity."
+      ],
+      correct: 2,
+      explanation: "Function = physiology. Regulating the composition of body fluids describes what the kidneys do."
+    },
+
+    {
+      id: 2,
+      question: "Which statement is FALSE when the body is in anatomical position?",
+      options: [
+        "The thumb is lateral to the little finger.",
+        "The palms face anteriorly.",
+        "The sternum is posterior to the heart.",
+        "The head is superior to the thorax."
+      ],
+      correct: 2,
+      explanation: "The sternum is anterior to the heart, not posterior."
+    },
+
+    {
+      id: 3,
+      question: "If structure X is distal to structure Y, which statement MUST be true?",
+      options: [
+        "Y is proximal to X.",
+        "Y is distal to X.",
+        "X is medial to Y.",
+        "X is superficial to Y."
+      ],
+      correct: 0,
+      explanation: "Proximal and distal are reciprocal relationships. If X is distal to Y, Y is proximal to X."
+    },
+
+    {
+      id: 4,
+      question: "Which sequence contains ONLY correctly ordered levels of organisation?",
+      options: [
+        "organelle → cell → tissue → organ",
+        "chemical → tissue → organelle → cell",
+        "cell → chemical → tissue → organ",
+        "organ → tissue → organ system → organism"
+      ],
+      correct: 0,
+      explanation: "Organelle → cell → tissue → organ is correctly ordered from simpler to more complex."
+    },
+
+    {
+      id: 5,
+      question: "Which statement about body planes is NOT accurate?",
+      options: [
+        "A midsagittal section creates equal left and right halves.",
+        "A frontal section separates anterior from posterior.",
+        "A transverse section separates superior from inferior.",
+        "Any sagittal section must create equal left and right halves."
+      ],
+      correct: 3,
+      explanation: "Only a midsagittal plane creates equal left and right halves. Other sagittal planes do not have to."
+    },
+
+    {
+      id: 6,
+      question: "A structure lies inferior to the lungs but superior to most abdominal organs and separates two major ventral-cavity regions. Which structure is described?",
+      options: [
+        "Diaphragm",
+        "Sternum",
+        "Spinal cord",
+        "Pelvis"
+      ],
+      correct: 0,
+      explanation: "The diaphragm separates the thoracic and abdominopelvic regions."
+    },
+
+    {
+      id: 7,
+      question: "Which pairing is MOST accurate?",
+      options: [
+        "Endocrine — rapid electrical impulses",
+        "Nervous — hormone secretion into blood as its defining mechanism",
+        "Lymphatic/immune — defence and return of tissue fluid",
+        "Respiratory — transport of nutrients to all tissues"
+      ],
+      correct: 2,
+      explanation: "The lymphatic/immune system contributes to defence and returns tissue fluid."
+    },
+
+    {
+      id: 8,
+      question: "An atom has 8 protons and 10 electrons. Based only on these numbers, it is BEST described as:",
+      options: [
+        "a +2 cation",
+        "a -2 anion",
+        "neutral",
+        "a molecule"
+      ],
+      correct: 1,
+      explanation: "There are two more electrons than protons, giving the atom a net -2 charge, so it is an anion."
+    },
+
+    {
+      id: 9,
+      question: "Which statement distinguishes ionic from covalent bonding MOST accurately?",
+      options: [
+        "Ionic bonding involves electron transfer; covalent bonding involves electron sharing.",
+        "Ionic bonding shares electrons; covalent bonding transfers protons.",
+        "Both are defined by neutron transfer.",
+        "Covalent bonding always forms charged ions."
+      ],
+      correct: 0,
+      explanation: "Ionic bonding involves electron transfer, while covalent bonding involves sharing electrons."
+    },
+
+    {
+      id: 10,
+      question: "Which option is the ODD ONE OUT based on biomolecule classification?",
+      options: [
+        "Glucose",
+        "Monosaccharide",
+        "Carbohydrate",
+        "Amino acid"
+      ],
+      correct: 3,
+      explanation: "Glucose is a monosaccharide carbohydrate. An amino acid is a protein building block."
+    },
+
+    {
+      id: 11,
+      question: "A sample at pH 6 changes to pH 7 after treatment. Which interpretation is BEST?",
+      options: [
+        "It became more acidic.",
+        "It moved toward neutrality.",
+        "It became strongly alkaline.",
+        "Its proteins must have denatured."
+      ],
+      correct: 1,
+      explanation: "pH 7 is neutral, so moving from pH 6 to pH 7 means moving toward neutrality."
+    },
+
+    {
+      id: 12,
+      question: "A cell contains abundant rough ER and Golgi apparatus. Which activity is MOST consistent with this combination?",
+      options: [
+        "Producing and processing proteins for transport/secretion",
+        "Generating all ATP without mitochondria",
+        "Digesting bacteria without lysosomes",
+        "Storing the chromosome in the cytoplasm"
+      ],
+      correct: 0,
+      explanation: "Rough ER and Golgi apparatus are strongly associated with protein production, processing and secretion."
+    },
+
+    {
+      id: 13,
+      question: "Which statement about the plasma membrane is NOT correct?",
+      options: [
+        "It is based on a phospholipid bilayer.",
+        "It is selectively permeable.",
+        "Membrane proteins can participate in transport and communication.",
+        "Its hydrophobic phospholipid tails normally face the watery extracellular fluid."
+      ],
+      correct: 3,
+      explanation: "Hydrophilic heads face watery environments, while hydrophobic tails face inward away from water."
+    },
+
+    {
+      id: 14,
+      question: "A student sees a specimen at 100× total magnification and then changes only the objective so total magnification becomes 400×. With a 10× eyepiece, which change occurred?",
+      options: [
+        "4× to 10×",
+        "10× to 40×",
+        "40× to 100×",
+        "10× to 100×"
+      ],
+      correct: 1,
+      explanation: "10× eyepiece × 10× objective = 100× total. Changing to the 40× objective gives 400× total."
+    },
+
+    {
+      id: 15,
+      question: "Which statement about mitosis is FALSE?",
+      options: [
+        "It contributes to growth and tissue repair.",
+        "DNA replication occurs before cell division.",
+        "It normally produces two genetically identical daughter cells.",
+        "Its normal purpose in body cells is to halve chromosome number."
+      ],
+      correct: 3,
+      explanation: "Mitosis maintains chromosome number; it does not normally halve chromosome number."
+    },
+
+    {
+      id: 16,
+      question: "Which scenario represents simple diffusion rather than facilitated diffusion?",
+      options: [
+        "Oxygen passes directly through the membrane from high to low concentration.",
+        "Glucose moves down its gradient through a carrier.",
+        "An ion is pumped against its gradient using ATP.",
+        "A bacterium is engulfed in a vesicle."
+      ],
+      correct: 0,
+      explanation: "Oxygen moving directly through the membrane from high to low concentration is simple diffusion."
+    },
+
+    {
+      id: 17,
+      question: "Which statement is NOT true of facilitated diffusion?",
+      options: [
+        "It is passive.",
+        "It moves substances down a concentration gradient.",
+        "It may require a channel or carrier protein.",
+        "It requires ATP because a protein is involved."
+      ],
+      correct: 3,
+      explanation: "Facilitated diffusion is passive and does not require ATP even though a membrane protein is involved."
+    },
+
+    {
+      id: 18,
+      question: "A red blood cell is placed in solution X and shows no net change in volume. Which conclusion is MOST accurate?",
+      options: [
+        "No water molecules cross the membrane.",
+        "Solution X is effectively isotonic to the cell.",
+        "Solution X must contain no solute.",
+        "The cell is actively pumping all water back out."
+      ],
+      correct: 1,
+      explanation: "An isotonic solution produces no NET water movement, although water molecules can still move in both directions."
+    },
+
+    {
+      id: 19,
+      question: "A membrane pump continues moving an ion into a cell even though the ion concentration is already higher inside. Which evidence BEST identifies active transport?",
+      options: [
+        "Movement is into the cell.",
+        "A membrane protein is involved.",
+        "Movement is against the concentration gradient and requires ATP.",
+        "The ion is dissolved in water."
+      ],
+      correct: 2,
+      explanation: "Movement against the concentration gradient combined with ATP use identifies active transport."
+    },
+
+    {
+      id: 20,
+      question: "Which process-description pairing is FALSE?",
+      options: [
+        "Phagocytosis — uptake of large solid material",
+        "Pinocytosis — uptake of extracellular fluid",
+        "Exocytosis — vesicle fusion releases material outside",
+        "Endocytosis — passive movement directly through the phospholipid bilayer"
+      ],
+      correct: 3,
+      explanation: "Endocytosis is active vesicular uptake, not passive movement directly through the phospholipid bilayer."
+    }
+
+  ],
+
+  shortAnswers: [
+
+    {
+      id: 21,
+      marks: 4,
+      question: "A student writes: “The lungs are in the thoracic cavity and exchange gases.” Separate this into anatomy and physiology, then explain the distinction.",
+      modelAnswer: "Anatomy: the lungs are in the thoracic cavity because this describes location/structure. Physiology: the lungs exchange gases because this describes function."
+    },
+
+    {
+      id: 22,
+      marks: 4,
+      question: "Use directional terminology to complete and justify BOTH relationships: (a) the elbow relative to the wrist; (b) the heart relative to the lungs.",
+      modelAnswer: "The elbow is proximal to the wrist because it is nearer the trunk or point of attachment. The heart is medial to the lungs because it is nearer the body's midline."
+    },
+
+    {
+      id: 23,
+      marks: 7,
+      question: "A body image is cut once into equal left/right halves, once into front/back portions, and once into upper/lower portions. Name the three planes in that order and distinguish midsagittal from a general sagittal plane.",
+      modelAnswer: "Equal left/right = midsagittal; front/back = frontal/coronal; upper/lower = transverse. A sagittal plane divides left/right, but only midsagittal passes through the midline to create equal halves."
+    },
+
+    {
+      id: 24,
+      marks: 5,
+      question: "Atom A gains two electrons while Atom B loses one electron. Identify the type and charge of each ion and explain using electron charge.",
+      modelAnswer: "Atom A becomes a 2- anion because it gains two negatively charged electrons. Atom B becomes a 1+ cation because it loses one negatively charged electron."
+    },
+
+    {
+      id: 25,
+      marks: 6,
+      question: "A protein sample changes shape after heating, while an acidic solution moves from pH 4 toward pH 7 after treatment. Name and explain the TWO different chemical processes.",
+      modelAnswer: "Protein shape change due to heat is denaturation. Movement of an acidic solution toward pH 7 is neutralisation."
+    },
+
+    {
+      id: 26,
+      marks: 8,
+      question: "A cell is specialised for producing and exporting large amounts of protein. Explain why ribosomes, rough ER, Golgi apparatus and mitochondria would all be important.",
+      modelAnswer: "Ribosomes synthesise proteins; rough ER supports processing and transport of newly made proteins; Golgi apparatus modifies, sorts and packages products for transport or secretion; mitochondria supply ATP for cellular activities."
+    },
+
+    {
+      id: 27,
+      marks: 7,
+      question: "A student begins microscopy using the 40× objective and cannot easily locate the specimen. Explain the better sequence and calculate total magnification for 4×, 10× and 40× objectives with a 10× eyepiece.",
+      modelAnswer: "Start with the 4× objective to locate and focus the specimen, then progress to 10× and 40× while refining focus. Total magnifications are 40×, 100× and 400×."
+    },
+
+    {
+      id: 28,
+      marks: 9,
+      question: "Three substances cross a membrane: oxygen moves directly high → low; glucose moves high → low through a carrier; an ion moves low → high through a pump using ATP. Name each transport mechanism and compare them.",
+      modelAnswer: "Oxygen: simple diffusion, passive, directly through the membrane, high to low, no ATP. Glucose: facilitated diffusion, passive, high to low through a carrier or channel, no ATP. Ion: active transport, low to high or against its gradient through a pump, ATP required."
+    },
+
+    {
+      id: 29,
+      marks: 9,
+      question: "A red blood cell is placed in three solutions. In A it shrinks, in B it remains approximately the same size, and in C it swells. Identify the tonicity of A, B and C and explain water movement in each.",
+      modelAnswer: "A is hypertonic: water moves out and the cell shrinks. B is isotonic: water moves both directions with no net movement and cell size stays stable. C is hypotonic: water moves in and the cell swells and may lyse."
+    },
+
+    {
+      id: 30,
+      marks: 8,
+      question: "An egg experiment shows one egg increasing in mass in water and another decreasing in mass in concentrated golden syrup. A student says, “The solute crossed the membrane and pushed the water.” Correct this explanation using selective permeability, relative concentrations and osmosis.",
+      modelAnswer: "The key movement measured is water across a selectively permeable membrane. In water, the outside has relatively higher water and lower solute concentration, so water moves into the egg by osmosis and its mass rises. In concentrated syrup, the outside has lower water and higher solute concentration, so water moves out by osmosis and its mass falls. The result does not require the large solute to cross the membrane."
+    }
+
+  ]
+}
 
 ];
