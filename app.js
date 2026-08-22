@@ -3518,6 +3518,7 @@ state.mcqs.forEach((q) => {
   }
 
 });
+saveState();
 
 /* ==========================================
    MISTAKE VAULT
