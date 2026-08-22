@@ -1,0 +1,1 @@
+window.AM_MOCKS=[{"id": "m1", "title": "Mock 1 — Objective Based", "minutes": 30}, {"id": "m2", "title": "Mock 2 — Tricky Wording", "minutes": 30}, {"id": "m3", "title": "Mock 3 — Application & Scenarios", "minutes": 30}, {"id": "m4", "title": "Mock 4 — Hard Mode", "minutes": 30}, {"id": "m5", "title": "Mock 5 — Final Simulation", "minutes": 30}];
