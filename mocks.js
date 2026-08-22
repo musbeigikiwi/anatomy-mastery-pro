@@ -342,6 +342,349 @@ window.AM_MOCKS = [
       }
 
     ]
-  }
+  },
+{
+  id: "m2",
+  title: "GEDU404B Test 1 — Mock Exam Version 2: Tricky Wording",
+  minutes: 30,
+
+  mcqs: [
+
+    {
+      id: 1,
+      question: "Which statement is NOT an example of anatomy?",
+      options: [
+        "The kidneys are posterior to the abdominal organs.",
+        "The heart contains four chambers.",
+        "The lungs exchange oxygen and carbon dioxide.",
+        "The brain lies in the cranial cavity."
+      ],
+      correct: 2,
+      explanation: "Physiology = function; the other options describe structure or location."
+    },
+
+    {
+      id: 2,
+      question: "All of the following correctly describe anatomical position EXCEPT:",
+      options: [
+        "The body is upright.",
+        "The face is forward.",
+        "The palms face anteriorly.",
+        "The arms are raised above the head."
+      ],
+      correct: 3,
+      explanation: "EXCEPT reverses the task. In anatomical position, the arms should be at the sides."
+    },
+
+    {
+      id: 3,
+      question: "Which statement is FALSE?",
+      options: [
+        "The wrist is distal to the elbow.",
+        "The heart is medial to the lungs.",
+        "The skin is deep to skeletal muscle.",
+        "The head is superior to the abdomen."
+      ],
+      correct: 2,
+      explanation: "Skin is superficial, not deep, to skeletal muscle."
+    },
+
+    {
+      id: 4,
+      question: "Which option is the BEST example of an organ?",
+      options: [
+        "Cardiac muscle cell",
+        "Cardiac muscle tissue",
+        "Heart",
+        "Cardiovascular system"
+      ],
+      correct: 2,
+      explanation: "The heart contains multiple tissues working together, so it is an organ."
+    },
+
+    {
+      id: 5,
+      question: "Which statement about body planes is NOT correct?",
+      options: [
+        "Sagittal divides left and right.",
+        "Frontal divides anterior and posterior.",
+        "Transverse divides superior and inferior.",
+        "Frontal divides equal left and right halves."
+      ],
+      correct: 3,
+      explanation: "Frontal divides anterior and posterior. Equal left/right halves are produced by a midsagittal plane."
+    },
+
+    {
+      id: 6,
+      question: "Which cavity pairing is INCORRECT?",
+      options: [
+        "Cranial — brain",
+        "Vertebral/spinal — spinal cord",
+        "Thoracic — lungs",
+        "Abdominal — urinary bladder"
+      ],
+      correct: 3,
+      explanation: "The urinary bladder is located in the pelvic cavity."
+    },
+
+    {
+      id: 7,
+      question: "Which system-function pairing is the LEAST accurate?",
+      options: [
+        "Respiratory — gas exchange",
+        "Cardiovascular — transport",
+        "Digestive — nutrient breakdown and absorption",
+        "Endocrine — rapid electrical nerve impulses"
+      ],
+      correct: 3,
+      explanation: "Rapid electrical signalling is primarily a nervous-system function, not an endocrine-system function."
+    },
+
+    {
+      id: 8,
+      question: "An atom loses an electron. Which outcome is MOST accurate?",
+      options: [
+        "It becomes a negatively charged anion.",
+        "It becomes a positively charged cation.",
+        "It becomes a neutron.",
+        "Its atomic number must become zero."
+      ],
+      correct: 1,
+      explanation: "Losing a negatively charged electron leaves a net positive ion: a cation."
+    },
+
+    {
+      id: 9,
+      question: "Which statement about bonds is FALSE?",
+      options: [
+        "Covalent bonding involves sharing electrons.",
+        "Ionic bonding involves electron transfer.",
+        "Loss or gain of electrons can form ions.",
+        "Covalent bonding is defined by transfer of electrons."
+      ],
+      correct: 3,
+      explanation: "Covalent bonding involves sharing electrons, not transfer."
+    },
+
+    {
+      id: 10,
+      question: "Which option does NOT belong with the other three?",
+      options: [
+        "Monosaccharide",
+        "Disaccharide",
+        "Polysaccharide",
+        "Amino acid"
+      ],
+      correct: 3,
+      explanation: "Amino acids are protein building blocks; the other three are carbohydrate categories."
+    },
+
+    {
+      id: 11,
+      question: "Which statement about pH is MOST accurate?",
+      options: [
+        "pH 3 is more basic than pH 8.",
+        "pH 7 is neutral.",
+        "Normal blood pH is approximately 5.",
+        "All solutions above pH 7 are acidic."
+      ],
+      correct: 1,
+      explanation: "pH 7 is neutral."
+    },
+
+    {
+      id: 12,
+      question: "Which organelle-function pairing is FALSE?",
+      options: [
+        "Mitochondrion — ATP production",
+        "Lysosome — intracellular digestion",
+        "Golgi apparatus — modifies and packages products",
+        "Ribosome — lipid storage"
+      ],
+      correct: 3,
+      explanation: "Ribosomes synthesise proteins; they are not lipid-storage organelles."
+    },
+
+    {
+      id: 13,
+      question: "Which structure is NOT a normal component of the cytoplasm as framed in the course material?",
+      options: [
+        "Cytosol",
+        "Organelles",
+        "Inclusions",
+        "Extracellular fluid"
+      ],
+      correct: 3,
+      explanation: "Extracellular fluid is outside the cell and is not part of cytoplasm."
+    },
+
+    {
+      id: 14,
+      question: "A microscope uses a 10× eyepiece. Which objective produces 100× total magnification?",
+      options: [
+        "4×",
+        "10×",
+        "40×",
+        "100×"
+      ],
+      correct: 1,
+      explanation: "10× eyepiece × 10× objective = 100× total magnification."
+    },
+
+    {
+      id: 15,
+      question: "Which statement about mitosis is NOT correct?",
+      options: [
+        "It supports growth and repair.",
+        "DNA is replicated before division.",
+        "It produces two genetically identical daughter cells.",
+        "It normally produces four genetically different body cells."
+      ],
+      correct: 3,
+      explanation: "Mitosis produces two genetically identical daughter cells."
+    },
+
+    {
+      id: 16,
+      question: "A substance crosses directly through the membrane from high to low concentration. No ATP and no carrier are used. Which answer is BEST?",
+      options: [
+        "Simple diffusion",
+        "Facilitated diffusion",
+        "Active transport",
+        "Exocytosis"
+      ],
+      correct: 0,
+      explanation: "Direct movement from high to low concentration without ATP or a carrier is simple diffusion."
+    },
+
+    {
+      id: 17,
+      question: "Which feature does NOT distinguish facilitated diffusion from simple diffusion?",
+      options: [
+        "Facilitated diffusion uses membrane proteins.",
+        "Simple diffusion can occur directly through the lipid bilayer.",
+        "Facilitated diffusion requires ATP.",
+        "Both can move substances down a concentration gradient."
+      ],
+      correct: 2,
+      explanation: "Facilitated diffusion does NOT require ATP."
+    },
+
+    {
+      id: 18,
+      question: "Which statement about osmosis is FALSE?",
+      options: [
+        "It involves water.",
+        "It is passive.",
+        "It occurs across a selectively permeable membrane.",
+        "It is the movement of solute from low to high concentration using ATP."
+      ],
+      correct: 3,
+      explanation: "Osmosis is passive movement of water across a selectively permeable membrane."
+    },
+
+    {
+      id: 19,
+      question: "A red blood cell shrinks after being placed in a solution. Which explanation is BEST?",
+      options: [
+        "The solution was hypotonic and water entered the cell.",
+        "The solution was hypertonic and water left the cell.",
+        "The solution was isotonic and water stopped moving completely.",
+        "The cell used phagocytosis to remove water."
+      ],
+      correct: 1,
+      explanation: "A hypertonic external solution causes water to leave the cell by osmosis, so the cell shrinks."
+    },
+
+    {
+      id: 20,
+      question: "Which process is NOT correctly matched with its example?",
+      options: [
+        "Phagocytosis — white blood cell engulfing a bacterium",
+        "Pinocytosis — uptake of extracellular fluid",
+        "Exocytosis — release of a secreted product",
+        "Osmosis — glucose crossing through a carrier protein"
+      ],
+      correct: 3,
+      explanation: "Glucose moving through a carrier protein is facilitated diffusion, not osmosis."
+    }
+
+  ],
+
+  shortAnswers: [
+
+    {
+      id: 21,
+      marks: 4,
+      question: "A student says: “Anatomy tells us how an organ works.” Correct the statement and give one anatomy and one physiology example.",
+      modelAnswer: "Anatomy studies structure, location and relationships; physiology studies function/how body parts work. Example anatomy: the heart has four chambers. Example physiology: the heart contracts to pump blood."
+    },
+
+    {
+      id: 22,
+      marks: 6,
+      question: "Without drawing, describe anatomical position and explain why a standard anatomical position is useful.",
+      modelAnswer: "Upright, facing forward, head and eyes forward, arms at sides, palms forward and feet forward. A standard anatomical position provides a consistent reference for describing locations and directional relationships."
+    },
+
+    {
+      id: 23,
+      marks: 5,
+      question: "A scan divides the body into superior and inferior portions. Name the plane. Then distinguish it from sagittal and frontal planes.",
+      modelAnswer: "The transverse plane divides superior and inferior portions. Sagittal divides left and right. Frontal or coronal divides anterior and posterior."
+    },
+
+    {
+      id: 24,
+      marks: 4,
+      question: "Explain how an anion and a cation form. Your answer must include electron movement and resulting charge.",
+      modelAnswer: "An anion forms when an atom gains electron(s), giving it a negative charge. A cation forms when an atom loses electron(s), giving it a positive charge."
+    },
+
+    {
+      id: 25,
+      marks: 4,
+      question: "A sample has pH 5 and another has pH 9. Classify both and state the approximate normal blood pH range from the course material.",
+      modelAnswer: "pH 5 is acidic; pH 9 is basic or alkaline; normal blood pH is approximately 7.35–7.45."
+    },
+
+    {
+      id: 26,
+      marks: 6,
+      question: "A cell is producing a protein for export. Name the key structures involved in making and packaging the protein and state their roles.",
+      modelAnswer: "Ribosomes synthesise protein; rough ER is involved in protein processing and transport; Golgi apparatus modifies, sorts and packages products into vesicles for transport or export."
+    },
+
+    {
+      id: 27,
+      marks: 4,
+      question: "A student uses a 10× eyepiece and changes from a 4× objective to a 40× objective. Calculate both total magnifications and state which objective should normally be used first to locate the specimen.",
+      modelAnswer: "10× × 4× = 40× total; 10× × 40× = 400× total. The 4× objective should normally be used first."
+    },
+
+    {
+      id: 28,
+      marks: 6,
+      question: "Compare simple diffusion, facilitated diffusion and active transport using direction, membrane protein involvement and ATP.",
+      modelAnswer: "Simple diffusion moves high to low directly through the membrane and requires no ATP. Facilitated diffusion moves high to low through a channel or carrier protein and requires no ATP. Active transport can move against the concentration gradient or from low to high using a carrier or pump and ATP."
+    },
+
+    {
+      id: 29,
+      marks: 6,
+      question: "A red blood cell is first placed in a hypertonic solution and then in a hypotonic solution. Predict what happens in each and explain the direction of water movement.",
+      modelAnswer: "Hypertonic: the outside has higher solute and lower water concentration, so water leaves by osmosis and the cell shrinks or crenates. Hypotonic: the outside has lower solute and higher water concentration, so water enters by osmosis and the cell swells and may haemolyse."
+    },
+
+    {
+      id: 30,
+      marks: 8,
+      question: "In the egg osmosis experiment, one egg increases in mass in water while another decreases in mass in concentrated golden syrup. Explain BOTH results using relative solute/water concentration, membrane permeability and osmosis.",
+      modelAnswer: "In water, the outside has relatively lower solute and higher water concentration, so water crosses the selectively permeable membrane into the egg by osmosis and its mass increases. In concentrated golden syrup, the outside has higher solute and lower water concentration, so water moves out of the egg through the membrane by osmosis and its mass decreases."
+    }
+
+  ]
+}
 
 ];
