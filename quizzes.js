@@ -597,6 +597,224 @@ window.AM_QUIZZES = [
     }
 
   ]
+},
+  ,
+{
+  id: "q5",
+  title: "Practice MCQ Quiz 1 — Mixed Chapters 1–4",
+  chapter: 0,
+  mode: "practice",
+  questions: [
+
+    {
+      id: 1,
+      question: "An example of the tissue level of organisation is",
+      options: [
+        "the heart",
+        "a red blood cell",
+        "heart muscle",
+        "the cardiovascular system"
+      ],
+      correct: 2,
+      explanation: "Heart muscle is cardiac muscle tissue. A red blood cell is a cell, the heart is an organ, and the cardiovascular system is an organ system."
+    },
+
+    {
+      id: 2,
+      question: "The organ system that returns fluid from the tissues to the blood and defends the body from pathogens is the",
+      options: [
+        "lymphatic system",
+        "cardiovascular system",
+        "urinary system",
+        "endocrine system"
+      ],
+      correct: 0,
+      explanation: "The lymphatic system returns excess tissue fluid to the blood and supports immune defence."
+    },
+
+    {
+      id: 3,
+      question: "The body is divided into left and right by the",
+      options: [
+        "frontal plane",
+        "sagittal plane",
+        "transverse plane",
+        "coronal plane"
+      ],
+      correct: 1,
+      explanation: "A sagittal plane divides the body into left and right portions."
+    },
+
+    {
+      id: 4,
+      question: "In the anatomical position, your wrists are __________ to your heart.",
+      options: [
+        "medial and inferior",
+        "lateral and superior",
+        "medial and superior",
+        "lateral and inferior"
+      ],
+      correct: 3,
+      explanation: "The wrists are lateral to the heart because they are farther from the midline, and inferior because they are below the heart."
+    },
+
+    {
+      id: 5,
+      question: "Complex carbohydrates with many glucose molecules joined together are called",
+      options: [
+        "disaccharides",
+        "monosaccharides",
+        "polysaccharides",
+        "trisaccharides"
+      ],
+      correct: 2,
+      explanation: "Polysaccharides are long chains of many monosaccharides, such as starch and glycogen."
+    },
+
+    {
+      id: 6,
+      question: "An ion with a negative charge such as Cl⁻ is known as a/an",
+      options: [
+        "anion",
+        "neutron",
+        "cation",
+        "negatron"
+      ],
+      correct: 0,
+      explanation: "A negatively charged ion is called an anion."
+    },
+
+    {
+      id: 7,
+      question: "When electrons are transferred from one atom to another, this forms a/an",
+      options: [
+        "covalent bond",
+        "hydrogen bond",
+        "electron bond",
+        "ionic bond"
+      ],
+      correct: 3,
+      explanation: "Ionic bonding involves transfer of electrons. Covalent bonding involves sharing electrons."
+    },
+
+    {
+      id: 8,
+      question: "The normal pH range of blood is 7.35–7.45, which means that blood is",
+      options: [
+        "neutral",
+        "slightly basic (alkaline)",
+        "a very good buffer",
+        "slightly acidic"
+      ],
+      correct: 1,
+      explanation: "Blood pH is slightly above 7, so it is slightly basic or alkaline."
+    },
+
+    {
+      id: 9,
+      question: "The best description of the function of mitochondria is that they",
+      options: [
+        "separate chromosomes during mitosis",
+        "package proteins for export from the cell",
+        "make ATP for cellular energy needs",
+        "manufacture proteins from amino acids"
+      ],
+      correct: 2,
+      explanation: "Mitochondria produce ATP, which provides immediately usable cellular energy."
+    },
+
+    {
+      id: 10,
+      question: "The organelles involved in chromosome separation during mitosis are the",
+      options: [
+        "lysosomes",
+        "Golgi bodies",
+        "ribosomes",
+        "centrioles"
+      ],
+      correct: 3,
+      explanation: "Centrioles help organise the mitotic spindle involved in chromosome separation."
+    },
+
+    {
+      id: 11,
+      question: "The cell membrane is mainly composed of",
+      options: [
+        "phospholipids",
+        "cholesterol",
+        "carbohydrates",
+        "proteins"
+      ],
+      correct: 0,
+      explanation: "The basic structural framework of the cell membrane is a phospholipid bilayer."
+    },
+
+    {
+      id: 12,
+      question: "The part of the cell responsible for packaging and modifying proteins for export from the cell is the",
+      options: [
+        "rough ER",
+        "Golgi apparatus",
+        "smooth ER",
+        "centrioles"
+      ],
+      correct: 1,
+      explanation: "The Golgi apparatus modifies, sorts and packages proteins into vesicles."
+    },
+
+    {
+      id: 13,
+      question: "Which of the following is NOT found in the nucleus of a cell?",
+      options: [
+        "chromosomes",
+        "DNA",
+        "genetic information",
+        "centrioles"
+      ],
+      correct: 3,
+      explanation: "Centrioles are located in the cytoplasm, usually near the nucleus."
+    },
+
+    {
+      id: 14,
+      question: "The movement of water from an area of high water concentration to an area of low water concentration across a semipermeable membrane is called",
+      options: [
+        "diffusion",
+        "equilibrium",
+        "osmosis",
+        "filtration"
+      ],
+      correct: 2,
+      explanation: "Osmosis is the passive movement of water across a selectively permeable membrane."
+    },
+
+    {
+      id: 15,
+      question: "The movement of oxygen across a cell membrane from an area of high oxygen concentration to an area of lower oxygen concentration is an example of",
+      options: [
+        "active transport",
+        "osmosis",
+        "simple diffusion",
+        "endocytosis"
+      ],
+      correct: 2,
+      explanation: "Oxygen moves down its concentration gradient without ATP by simple diffusion."
+    },
+
+    {
+      id: 16,
+      question: "Which of the following cell transport processes is NOT considered to be a form of active transport?",
+      options: [
+        "endocytosis",
+        "facilitated diffusion",
+        "exocytosis",
+        "membrane pumps that use ATP"
+      ],
+      correct: 1,
+      explanation: "Facilitated diffusion is passive. It uses membrane proteins but moves substances down the concentration gradient without ATP."
+    }
+
+  ]
 }
 
 ];
