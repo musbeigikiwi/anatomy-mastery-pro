@@ -3482,158 +3482,42 @@ function saveMockShortAnswer(questionId, value) {
 }
 
 
-function submitFullMockExam() {
+state.mcqs.forEach((q) => {
 
-  const state = fullMockState;
+  const selected = Number(state.mcqAnswers[q.id]);
+  const correct = Number(q.correct);
 
-  if (!state) return;
+  if (selected === correct) {
 
-  let mcqCorrect = 0;
+    mcqCorrect++;
 
-  state.mcqs.forEach((q) => {
+  } else {
 
-    if (
-      Number(state.mcqAnswers[q.id])
-      ===
-      Number(q.correct)
-    ) {
-      mcqCorrect++;
+    if (typeof saveMistake === "function") {
+
+      saveMistake({
+        id: `mock-${state.mock.id}-${q.id}`,
+        source: "Mock Exam",
+        mockTitle: state.mock.title,
+        question: q.question,
+        options: q.options,
+        selectedAnswer:
+          Number.isInteger(selected) && q.options[selected]
+            ? q.options[selected]
+            : "Not answered",
+        correctAnswer:
+          q.options[correct] || "",
+        explanation:
+          q.explanation || "",
+        chapter:
+          q.chapter || null
+      });
+
     }
 
-  });
+  }
 
-  const mcqPercent =
-    Math.round(
-      (mcqCorrect / state.mcqs.length) * 100
-    );
-
-  app.innerHTML =
-    heading(
-      "MOCK COMPLETE",
-      state.mock.title,
-      "Review your answers and model answers below."
-    )
-    +
-    `
-    <article class="panel">
-
-      <h2>
-        MCQ Score: ${mcqCorrect} / 20
-        (${mcqPercent}%)
-      </h2>
-
-      <p>
-        Short Answers are shown with model answers
-        so you can compare and self-mark.
-      </p>
-
-    </article>
-
-
-    <h2 style="margin-top:30px;">
-      PART A — MCQ Review
-    </h2>
-
-    ${state.mcqs.map((q, index) => {
-
-      const selected =
-        Number(state.mcqAnswers[q.id]);
-
-      const correct =
-        Number(q.correct);
-
-      const isCorrect =
-        selected === correct;
-
-      return `
-
-        <article class="card" style="margin-bottom:18px;">
-
-          <small>
-            QUESTION ${index + 1}
-            • ${isCorrect ? "✓ CORRECT" : "✗ INCORRECT"}
-          </small>
-
-          <h3>
-            ${escapeHtml(q.question)}
-          </h3>
-
-          <p>
-            <strong>Your answer:</strong>
-            ${
-              Number.isInteger(selected)
-                ? escapeHtml(q.options[selected])
-                : "Not answered"
-            }
-          </p>
-
-          <p>
-            <strong>Correct answer:</strong>
-            ${escapeHtml(q.options[correct])}
-          </p>
-
-          <p>
-            <strong>Explanation:</strong>
-            ${escapeHtml(q.explanation || "")}
-          </p>
-
-        </article>
-
-      `;
-
-    }).join("")}
-
-
-    <h2 style="margin-top:35px;">
-      PART B — Short Answer Review
-    </h2>
-
-    ${state.shortAnswers.map((q, index) => `
-
-      <article class="card" style="margin-bottom:18px;">
-
-        <small>
-          QUESTION ${index + 21}
-          • ${q.marks || ""} MARKS
-        </small>
-
-        <h3>
-          ${escapeHtml(q.question)}
-        </h3>
-
-        <p>
-          <strong>Your answer:</strong><br>
-          ${escapeHtml(
-            state.shortResponses[q.id] ||
-            "Not answered"
-          )}
-        </p>
-
-        <p>
-          <strong>Model answer:</strong><br>
-          ${escapeHtml(q.modelAnswer)}
-        </p>
-
-      </article>
-
-    `).join("")}
-
-
-    <button
-      class="primary"
-      onclick="renderMocks()"
-      style="
-        width:100%;
-        margin-top:25px;
-        padding:18px;
-      "
-    >
-      Back to Mock Exams
-    </button>
-    `;
-}
-
-
+});
 
 /* ==========================================
    MISTAKE VAULT
