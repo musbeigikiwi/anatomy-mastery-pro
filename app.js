@@ -3100,41 +3100,57 @@ function renderQuizzes() {
 
 
 
-function launchQuiz(
-  index
-) {
+function launchQuiz(index) {
 
-  const quiz =
-    AM_QUIZZES[index];
+  const quiz = AM_QUIZZES[index];
+
+  let questions;
+
+  // If the quiz has its own teacher questions, use them.
+  if (
+    Array.isArray(quiz.questions) &&
+    quiz.questions.length > 0
+  ) {
+
+    questions = quiz.questions.map((q) => ({
+      ...q,
+      chapter: quiz.chapter || 0
+    }));
+
+  }
+
+  // Otherwise use questions from the master question bank.
+  else if (quiz.chapter) {
+
+    questions = getAllQuestions().filter(
+      (question) =>
+        Number(question.chapter) === Number(quiz.chapter)
+    );
+
+  }
+
+  // Mixed revision quiz.
+  else {
+
+    questions = getAllQuestions();
+
+  }
 
 
-  let questions =
+  if (!questions.length) {
 
-    quiz.chapter
+    alert("No questions are available for this quiz yet.");
 
-      ?
-      getAllQuestions()
-        .filter(
-          (question) =>
-            question.chapter
-            ===
-            quiz.chapter
-        )
+    return;
 
-      :
-      getAllQuestions();
+  }
 
 
   startQuiz(
-
     questions,
-
     quiz.title,
-
     true,
-
     "quizzes"
-
   );
 
 }
