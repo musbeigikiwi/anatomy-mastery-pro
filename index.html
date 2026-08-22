@@ -1,36 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111d"><meta name="description" content="Anatomy Mastery Pro — modular GEDU404B study platform">
-<title>Anatomy Mastery Pro</title><link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#07111d">
+
+  <meta
+    name="description"
+    content="Anatomy Mastery Pro — GEDU404B Anatomy & Physiology Study Platform"
+  >
+
+  <title>Anatomy Mastery Pro</title>
+
+  <link rel="stylesheet" href="styles.css">
 </head>
+
+
 <body>
-<header class="topbar glass">
-  <div class="brand"><div class="logo">AM</div><div><b>Anatomy Mastery Pro</b><small>GEDU404B • Stream C • Study OS</small></div></div>
-  <div class="live"><span class="pulse"></span><span id="dateTop"></span><strong id="globalTimer">00:00</strong></div>
-</header>
-<main class="shell">
-<section class="hero glass">
- <div><p class="eyebrow" id="weekLabel">STREAM C</p><h1>Learn deeply.<br><span>Remember longer.</span></h1>
- <p class="hero-copy">Notes, flashcards, MCQs, short answers, quizzes, mock exams, mistake review, schedule and progress — one modular learning system.</p></div>
- <aside class="priority"><small>NEXT PRIORITY</small><h3 id="priorityTitle">Loading…</h3><p id="priorityMeta"></p><button class="primary" data-route="schedule">Open Schedule</button></aside>
-</section>
-<section class="stats">
- <div class="stat glass"><small>Study Today</small><strong id="stToday">0m</strong></div>
- <div class="stat glass"><small>Total Study</small><strong id="stTotal">0m</strong></div>
- <div class="stat glass"><small>Questions</small><strong id="stQ">0</strong></div>
- <div class="stat glass"><small>Accuracy</small><strong id="stAcc">0%</strong></div>
- <div class="stat glass"><small>Mistakes</small><strong id="stMist">0</strong></div>
- <div class="stat glass"><small>Visits</small><strong id="stVisits">0</strong></div>
-</section>
-<nav class="nav glass">
- <button class="active" data-route="home">Home</button><button data-route="notes">Notes</button><button data-route="flash">Flashcards</button>
- <button data-route="bank">Question Bank</button><button data-route="short">Short Answers</button><button data-route="quizzes">Quizzes</button>
- <button data-route="mocks">Mock Exams</button><button data-route="mistakes">Mistakes</button><button data-route="schedule">Schedule</button><button data-route="progress">Progress</button>
-</nav>
-<section id="app" class="view"></section>
-</main>
-<footer>© 2026 Anatomy Mastery Pro • Created by <strong>Mustafa Beigi</strong><br>Contact: <a href="mailto:mustafabeigi9@gmail.com">mustafabeigi9@gmail.com</a></footer>
-<script src="data/chapters.js"></script><script src="data/quizzes.js"></script><script src="data/mocks.js"></script><script src="data/schedule.js"></script><script src="app.js"></script>
-</body></html>
+
+  <!-- =========================
+       TOP HEADER
+  ========================== -->
+
+  <header class="topbar glass">
+
+    <div class="brand">
+
+      <div class="logo">
+        AM
+      </div>
+
+      <div>
+        <b>Anatomy Mastery Pro</b>
+
+        <small>
+          GEDU404B • Stream C • Study OS
+        </small>
+      </div>
+
+    </div>
+
+
+    <div class="live">
+
+      <span class="pulse"></span>
+
+      <span id="dateTop"></span>
+
+      <strong id="globalTimer">
+        00:00
+      </strong>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================
+       MAIN WEBSITE
+  ========================== -->
+
+  <main class="shell">
+
+
+    <!-- HERO -->
+
+    <section class="hero glass">
+
+      <div>
+
+        <p
+          class="eyebrow"
+          id="weekLabel"
+        >
+          STREAM C
+        </p>
+
+
+        <h1>
+          Learn deeply.
+          <br>
+
+          <span>
+            Remember longer.
+          </span>
+        </h1>
+
+
+        <p class="hero-copy">
+
+          Notes, flashcards, MCQs, short answers,
+          quizzes, mock exams, mistake review,
+          schedule and progress — one modular
+          learning system.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- NEXT PRIORITY -->
+
+      <aside class="priority">
+
+        <small>
+          NEXT PRIORITY
+        </small>
+
+
+        <h3 id="priorityTitle">
+          Loading…
+        </h3>
+
+
+        <p id="priorityMeta"></p>
+
+
+        <button
+          class="primary"
+          data-route="schedule"
+        >
+          Open Schedule
+        </button>
+
+      </aside>
+
+    </section>
+
+
+
+    <!-- =========================
+         DASHBOARD STATS
+    ========================== -->
+
+    <section class="stats">
+
+
+      <div class="stat glass">
+
+        <small>
+          Study Today
+        </small>
+
+        <strong id="stToday">
+          0m
+        </strong>
+
+      </div>
+
+
+
+      <div class="stat glass">
+
+        <small>
+          Total Study
+        </small>
+
+        <strong id="stTotal">
+          0m
+        </strong>
+
+      </div>
+
+
+
+      <div class="stat glass">
+
+        <small>
+          Questions
+        </small>
+
+        <strong id="stQ">
+          0
+        </strong>
+
+      </div>
+
+
+
+      <div class="stat glass">
+
+        <small>
+          Accuracy
+        </small>
+
+        <strong id="stAcc">
+          0%
+        </strong>
+
+      </div>
+
+
+
+      <div class="stat glass">
+
+        <small>
+          Mistakes
+        </small>
+
+        <strong id="stMist">
+          0
+        </strong>
+
+      </div>
+
+
+
+      <div class="stat glass">
+
+        <small>
+          Visits
+        </small>
+
+        <strong id="stVisits">
+          0
+        </strong>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="nav glass">
+
+
+      <button
+        class="active"
+        data-route="home"
+      >
+        Home
+      </button>
+
+
+      <button data-route="notes">
+        Notes
+      </button>
+
+
+      <button data-route="flash">
+        Flashcards
+      </button>
+
+
+      <button data-route="bank">
+        Question Bank
+      </button>
+
+
+      <button data-route="short">
+        Short Answers
+      </button>
+
+
+      <button data-route="quizzes">
+        Quizzes
+      </button>
+
+
+      <button data-route="mocks">
+        Mock Exams
+      </button>
+
+
+      <button data-route="mistakes">
+        Mistakes
+      </button>
+
+
+      <button data-route="schedule">
+        Schedule
+      </button>
+
+
+      <button data-route="progress">
+        Progress
+      </button>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         DYNAMIC CONTENT
+    ========================== -->
+
+    <section
+      id="app"
+      class="view"
+    >
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    © 2026 Anatomy Mastery Pro
+
+    <br>
+
+    Created by
+    <strong>
+      Mustafa Beigi
+    </strong>
+
+    <br>
+
+    Contact:
+
+    <a href="mailto:mustafabeigi9@gmail.com">
+      mustafabeigi9@gmail.com
+    </a>
+
+  </footer>
+
+
+
+  <!-- =========================
+       WEBSITE DATA
+       
+       IMPORTANT:
+       These files are currently
+       in the ROOT of your GitHub
+       repository.
+  ========================== -->
+
+
+  <script src="chapters.js"></script>
+
+  <script src="quizzes.js"></script>
+
+  <script src="mocks.js"></script>
+
+  <script src="schedule.js"></script>
+
+
+  <!-- Main application -->
+
+  <script src="app.js"></script>
+
+
+</body>
+
+</html>
