@@ -1420,26 +1420,45 @@ function finishFlash() {
 
 function renderQuestionBank() {
 
-  const questions =
-    getAllQuestions();
+  const questions = getAllQuestions();
+
+
+  const chapterInfo = [
+
+    {
+      id: 1,
+      title: "Anatomy & Physiology"
+    },
+
+    {
+      id: 2,
+      title: "Basic Chemistry"
+    },
+
+    {
+      id: 3,
+      title: "Cells & Microscopes"
+    },
+
+    {
+      id: 4,
+      title: "Cell Transport"
+    }
+
+  ];
 
 
   app.innerHTML =
 
     heading(
-
       "MASTER QUESTION BANK",
-
       "Question Bank",
-
       "Question order and answer positions shuffle every new attempt."
-
     )
 
     +
 
     `
-
 
     <div class="grid">
 
@@ -1449,79 +1468,64 @@ function renderQuestionBank() {
         onclick="
           startQuiz(
             getAllQuestions(),
-            'Mixed Master Bank',
+            'Master Question Bank — All Chapters',
             true,
             'bank'
           )
         "
       >
 
-
         <small>
-
-          ${questions.length}
-          QUESTIONS
-
+          ${questions.length} QUESTIONS
         </small>
-
 
         <h3>
           All Chapters
         </h3>
 
-
         <p>
-          Mixed Chapter 1–4 practice.
+          Complete mixed Chapter 1–4 practice.
         </p>
-
 
       </article>
 
 
-      ${AM_CHAPTERS
-        .map(
-          (chapter) => `
+      ${chapterInfo.map((chapter) => {
+
+        const count =
+          questions.filter(
+            q => q.chapter === chapter.id
+          ).length;
 
 
-        <article
-          class="card"
-          onclick="
-            startChapterBank(
-              ${chapter.id}
-            )
-          "
-        >
+        return `
 
+          <article
+            class="card"
+            onclick="
+              startChapterBank(
+                ${chapter.id}
+              )
+            "
+          >
 
-          <small>
+            <small>
+              ${count} QUESTIONS
+            </small>
 
-            ${chapter.mcq.length}
-            QUESTIONS
+            <h3>
+              Chapter ${chapter.id}
+            </h3>
 
-          </small>
+            <p>
+              ${chapter.title}
+            </p>
 
+          </article>
 
-          <h3>
+        `;
 
-            Chapter
-            ${chapter.id}
-
-          </h3>
-
-
-          <p>
-
-            ${chapter.title}
-
-          </p>
-
-
-        </article>
-
-
-      `
-        )
-        .join("")}
+      }).join("")}
 
 
     </div>
@@ -1529,7 +1533,6 @@ function renderQuestionBank() {
     `;
 
 }
-
 
 
 function startChapterBank(
