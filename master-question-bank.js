@@ -3883,7 +3883,7 @@ window.AM_MASTER_BANK = {
     "Higher power followed by fine focus"
   ]
 },
-    ,
+    
 {
   id: 81,
   chapter: 4,
