@@ -405,6 +405,198 @@ window.AM_QUIZZES = [
       }
 
     ]
-  }
+  },
+  ,
+{
+  id: "q4",
+  title: "Wintec Practice Test — Q1–Q14",
+  chapter: 0,
+  mode: "teacher",
+  questions: [
+
+    {
+      id: 1,
+      question: "Which of the following statements describes the anatomy of the body?",
+      options: [
+        "The kidneys excrete waste products",
+        "The skin manufactures vitamin D",
+        "The thigh bone is called the femur",
+        "The lungs add oxygen to the blood"
+      ],
+      correct: 2,
+      explanation: "Anatomy studies body structure. Identifying the thigh bone as the femur describes structure, not function."
+    },
+
+    {
+      id: 2,
+      question: "When a person is standing in the anatomical position their:",
+      options: [
+        "hands are medial to their shoulders",
+        "palms are facing backwards",
+        "right heel is touching their left toes",
+        "thumbs are pointing outwards"
+      ],
+      correct: 3,
+      explanation: "In anatomical position the body faces forward, palms face forward, and the thumbs point laterally."
+    },
+
+    {
+      id: 3,
+      question: "The correct order from smallest and simplest to largest and most complex is:",
+      options: [
+        "atom → molecule → cell → organelle → tissue → organ → organ system",
+        "atom → molecule → cell → tissue → organelle → organ → organ system",
+        "atom → molecule → organelle → cell → tissue → organ → organ system",
+        "atom → molecule → cell → tissue → organ → organelle → organ system"
+      ],
+      correct: 2,
+      explanation: "The correct sequence is atom → molecule → organelle → cell → tissue → organ → organ system."
+    },
+
+    {
+      id: 4,
+      question: "The body is divided into superior and inferior parts by the:",
+      options: [
+        "mid-sagittal plane",
+        "cleaver section",
+        "transverse plane",
+        "frontal plane"
+      ],
+      correct: 2,
+      explanation: "The transverse plane divides the body horizontally into superior and inferior portions."
+    },
+
+    {
+      id: 5,
+      question: "How many saccharide units are bonded together to form a polysaccharide?",
+      options: [
+        "3",
+        "1",
+        "many",
+        "2"
+      ],
+      correct: 2,
+      explanation: "Poly means many. A polysaccharide contains many monosaccharide units."
+    },
+
+    {
+      id: 6,
+      question: "I am found in the nucleus of an atom and I have a positive charge. What am I?",
+      options: [
+        "a neutron",
+        "an electron",
+        "a proton",
+        "a cation"
+      ],
+      correct: 2,
+      explanation: "A proton is located in the atomic nucleus and carries a positive electrical charge."
+    },
+
+    {
+      id: 7,
+      question: "How many hydrogen atoms are there in a molecule of glucose: C₆H₁₂O₆?",
+      options: [
+        "24",
+        "12",
+        "6",
+        "18"
+      ],
+      correct: 1,
+      explanation: "The subscript 12 after H means one glucose molecule contains 12 hydrogen atoms."
+    },
+
+    {
+      id: 8,
+      question: "When two atoms share electrons between them, this is known as a:",
+      options: [
+        "ionic bond",
+        "electron bond",
+        "hydrogen bond",
+        "covalent bond"
+      ],
+      correct: 3,
+      explanation: "A covalent bond forms when atoms share electrons. Ionic bonding involves electron transfer."
+    },
+
+    {
+      id: 9,
+      question: "An ion with a positive charge such as Mg²⁺ is known as a/an:",
+      options: [
+        "proton",
+        "anion",
+        "cation",
+        "positron"
+      ],
+      correct: 2,
+      explanation: "A positively charged ion is called a cation."
+    },
+
+    {
+      id: 10,
+      question: "Which of the following statements about pH is correct?",
+      options: [
+        "There is less acid and more base at lower pH values",
+        "pH 8.7 is a lot more acidic than pH 2.2",
+        "pH values below 7 are known as basic or alkaline",
+        "Pancreatic fluid (pH 8.2) is basic or alkaline"
+      ],
+      correct: 3,
+      explanation: "A pH above 7 is basic or alkaline. A pH below 7 is acidic."
+    },
+
+    {
+      id: 11,
+      question: "Which of the statements about the cytoplasm is FALSE? The cytoplasm:",
+      options: [
+        "is partly made up of water",
+        "is surrounded by the cell membrane",
+        "contains mitochondria",
+        "is extracellular"
+      ],
+      correct: 3,
+      explanation: "Cytoplasm is intracellular. It is located inside the cell, not in the extracellular environment."
+    },
+
+    {
+      id: 12,
+      question: "Which option correctly gives FOUR features of the anatomical position?",
+      options: [
+        "Standing upright, facing forward, arms at sides with palms forward, thumbs pointing laterally",
+        "Sitting upright, palms backward, thumbs medial, feet crossed",
+        "Standing upright, facing backward, palms medial, thumbs forward",
+        "Lying down, arms above head, palms backward, thumbs medial"
+      ],
+      correct: 0,
+      explanation: "Anatomical position includes standing upright, facing forward, arms at the sides with palms forward, and thumbs pointing laterally."
+    },
+
+    {
+      id: 13,
+      question: "In the cell image from the practice test, what structure does the arrow point to?",
+      options: [
+        "Cell membrane",
+        "Cytoplasm",
+        "Nucleus",
+        "Mitochondrion"
+      ],
+      correct: 2,
+      explanation: "The arrow points to the nucleus. The nucleus contains DNA and helps control cell activities."
+    },
+
+    {
+      id: 14,
+      question: "Which option correctly describes TWO functions of the semi-permeable cell membrane?",
+      options: [
+        "It stores DNA and produces ATP",
+        "It separates intracellular contents from extracellular fluid and regulates substances entering and leaving the cell",
+        "It produces proteins and digests bacteria",
+        "It forms ribosomes and stores glucose"
+      ],
+      correct: 1,
+      explanation: "The cell membrane separates intracellular contents from extracellular fluid and selectively regulates movement into and out of the cell."
+    }
+
+  ]
+}
 
 ];
