@@ -1454,6 +1454,755 @@ window.AM_MASTER_BANK = {
       ],
       correct: 1,
       explanation: "A solution with pH 5 is acidic because it is below 7."
+    },
+        {
+      id: 101,
+      chapter: 2,
+      level: "CORE",
+      question: "Neutralisation generally moves pH",
+      options: [
+        "toward neutral",
+        "always to 14",
+        "always to 0",
+        "away from 7"
+      ],
+      correct: 0,
+      explanation: "Neutralisation generally moves pH toward neutral."
+    },
+
+    {
+      id: 102,
+      chapter: 2,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: pH <7 acidic, 7 neutral, >7 basic; normal blood pH 7?",
+      options: [
+        "toward neutral",
+        "away from 7",
+        "always to 0",
+        "always to 14"
+      ],
+      correct: 0,
+      explanation: "Neutralisation moves pH toward neutral rather than toward either extreme."
+    },
+
+    {
+      id: 103,
+      chapter: 2,
+      level: "CORE",
+      question: "Heat can affect a protein by",
+      options: [
+        "denaturing/changing its shape",
+        "turning it into an atom",
+        "making it a carbohydrate",
+        "creating protons"
+      ],
+      correct: 0,
+      explanation: "Heat can denature a protein by changing its shape and therefore its function."
+    },
+
+    {
+      id: 104,
+      chapter: 2,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: pH <7 acidic, 7 neutral, >7 basic; normal blood pH 7?",
+      options: [
+        "creating protons",
+        "turning it into an atom",
+        "making it a carbohydrate",
+        "denaturing/changing its shape"
+      ],
+      correct: 3,
+      explanation: "Heat can denature proteins by changing their shape."
+    },
+
+    {
+      id: 105,
+      chapter: 3,
+      level: "CORE",
+      question: "The cell membrane is located",
+      options: [
+        "around the outside of the cell",
+        "inside the nucleus only",
+        "inside mitochondria",
+        "outside the organism"
+      ],
+      correct: 0,
+      explanation: "The cell membrane surrounds the outside of the cell and separates the internal environment from the external environment."
+    },
+
+    {
+      id: 106,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cell is basic structural/functional unit?",
+      options: [
+        "around the outside of the cell",
+        "inside the nucleus only",
+        "inside mitochondria",
+        "outside the organism"
+      ],
+      correct: 0,
+      explanation: "The cell membrane forms the outer boundary of the cell."
+    },
+
+    {
+      id: 107,
+      chapter: 3,
+      level: "CORE",
+      question: "Cytoplasm is mainly found",
+      options: [
+        "between cell membrane and nucleus",
+        "only outside cells",
+        "inside chromosomes",
+        "inside the microscope"
+      ],
+      correct: 0,
+      explanation: "Cytoplasm occupies the region between the cell membrane and nucleus."
+    },
+
+    {
+      id: 108,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cell is basic structural/functional unit?",
+      options: [
+        "only outside cells",
+        "between cell membrane and nucleus",
+        "inside chromosomes",
+        "inside the microscope"
+      ],
+      correct: 1,
+      explanation: "Cytoplasm is located mainly between the cell membrane and nucleus."
+    },
+
+    {
+      id: 109,
+      chapter: 3,
+      level: "CORE",
+      question: "Which structure stores DNA and controls cell activities?",
+      options: [
+        "nucleus",
+        "Golgi apparatus",
+        "lysosome",
+        "cell membrane"
+      ],
+      correct: 0,
+      explanation: "The nucleus contains DNA and helps control the activities of the cell."
+    },
+
+    {
+      id: 110,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cell is basic structural/functional unit?",
+      options: [
+        "lysosome",
+        "nucleus",
+        "Golgi apparatus",
+        "cell membrane"
+      ],
+      correct: 1,
+      explanation: "The nucleus stores DNA and controls cell activities."
+    },
+
+    {
+      id: 111,
+      chapter: 3,
+      level: "CORE",
+      question: "The nuclear membrane primarily",
+      options: [
+        "surrounds the nucleus and regulates movement through pores",
+        "produces ATP",
+        "digests bacteria",
+        "forms the whole cell wall"
+      ],
+      correct: 0,
+      explanation: "The nuclear membrane surrounds the nucleus and regulates movement through nuclear pores."
+    },
+
+    {
+      id: 112,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cell is basic structural/functional unit?",
+      options: [
+        "produces ATP",
+        "forms the whole cell wall",
+        "digests bacteria",
+        "surrounds the nucleus and regulates movement through pores"
+      ],
+      correct: 3,
+      explanation: "The nuclear membrane encloses the nucleus and regulates exchange through pores."
+    },
+
+    {
+      id: 113,
+      chapter: 3,
+      level: "CORE",
+      question: "Ribosomes primarily",
+      options: [
+        "synthesise proteins",
+        "produce urine",
+        "store blood",
+        "digest all cells"
+      ],
+      correct: 0,
+      explanation: "Ribosomes are the sites of protein synthesis."
+    },
+
+    {
+      id: 114,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cytoplasm includes cytosol, organelles and inclusions?",
+      options: [
+        "produce urine",
+        "synthesise proteins",
+        "store blood",
+        "digest all cells"
+      ],
+      correct: 1,
+      explanation: "Ribosomes synthesise proteins."
+    },
+
+    {
+      id: 115,
+      chapter: 3,
+      level: "CORE",
+      question: "Which organelle is most associated with ATP production?",
+      options: [
+        "mitochondrion",
+        "lysosome",
+        "Golgi apparatus",
+        "centriole"
+      ],
+      correct: 0,
+      explanation: "Mitochondria are the major sites of ATP production."
+    },
+
+    {
+      id: 116,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cytoplasm includes cytosol, organelles and inclusions?",
+      options: [
+        "Golgi apparatus",
+        "lysosome",
+        "centriole",
+        "mitochondrion"
+      ],
+      correct: 3,
+      explanation: "The mitochondrion is strongly associated with ATP production."
+    },
+
+    {
+      id: 117,
+      chapter: 3,
+      level: "CORE",
+      question: "The Golgi apparatus mainly",
+      options: [
+        "modifies, sorts and packages products",
+        "stores DNA",
+        "performs osmosis",
+        "forms bones"
+      ],
+      correct: 0,
+      explanation: "The Golgi apparatus modifies, sorts and packages cell products."
+    },
+
+    {
+      id: 118,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cytoplasm includes cytosol, organelles and inclusions?",
+      options: [
+        "modifies, sorts and packages products",
+        "stores DNA",
+        "performs osmosis",
+        "forms bones"
+      ],
+      correct: 0,
+      explanation: "The Golgi apparatus modifies, sorts and packages products."
+    },
+
+    {
+      id: 119,
+      chapter: 3,
+      level: "CORE",
+      question: "Which pairing is FALSE?",
+      options: [
+        "Smooth ER—lipid synthesis",
+        "Lysosome—intracellular digestion",
+        "Mitochondrion—ATP production",
+        "Ribosome—DNA storage"
+      ],
+      correct: 3,
+      explanation: "Ribosomes synthesise proteins; DNA is mainly stored in the nucleus."
+    },
+
+    {
+      id: 120,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Cytoplasm includes cytosol, organelles and inclusions?",
+      options: [
+        "Lysosome—intracellular digestion",
+        "Smooth ER—lipid synthesis",
+        "Mitochondrion—ATP production",
+        "Ribosome—DNA storage"
+      ],
+      correct: 3,
+      explanation: "Ribosome—DNA storage is the incorrect pairing."
+    },
+
+    {
+      id: 121,
+      chapter: 3,
+      level: "CORE",
+      question: "The main structural framework of the cell membrane is the",
+      options: [
+        "phospholipid bilayer",
+        "DNA double helix",
+        "cellulose wall",
+        "bone matrix"
+      ],
+      correct: 0,
+      explanation: "The cell membrane is primarily built from a phospholipid bilayer."
+    },
+
+    {
+      id: 122,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Phospholipid bilayer with hydrophilic heads, hydrophobic tails, proteins and carbohydrates; selectively permeable; communication receptors?",
+      options: [
+        "bone matrix",
+        "cellulose wall",
+        "DNA double helix",
+        "phospholipid bilayer"
+      ],
+      correct: 3,
+      explanation: "The phospholipid bilayer forms the basic structural framework of the membrane."
+    },
+
+    {
+      id: 123,
+      chapter: 3,
+      level: "CORE",
+      question: "Hydrophilic phospholipid heads face",
+      options: [
+        "watery environments",
+        "only the lipid core",
+        "DNA",
+        "centrioles"
+      ],
+      correct: 0,
+      explanation: "Hydrophilic heads interact with the watery environments inside and outside the cell."
+    },
+
+    {
+      id: 124,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Phospholipid bilayer with hydrophilic heads, hydrophobic tails, proteins and carbohydrates; selectively permeable; communication receptors?",
+      options: [
+        "only the lipid core",
+        "centrioles",
+        "DNA",
+        "watery environments"
+      ],
+      correct: 3,
+      explanation: "Hydrophilic heads face watery environments."
+    },
+
+    {
+      id: 125,
+      chapter: 3,
+      level: "CORE",
+      question: "A selectively permeable membrane",
+      options: [
+        "allows some substances through more easily than others",
+        "allows everything freely",
+        "blocks everything",
+        "always requires ATP"
+      ],
+      correct: 0,
+      explanation: "Selective permeability means some substances cross more easily than others."
+    },
+
+    {
+      id: 126,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Phospholipid bilayer with hydrophilic heads, hydrophobic tails, proteins and carbohydrates; selectively permeable; communication receptors?",
+      options: [
+        "always requires ATP",
+        "blocks everything",
+        "allows everything freely",
+        "allows some substances through more easily than others"
+      ],
+      correct: 3,
+      explanation: "Selective permeability means the membrane permits some substances to cross more readily than others."
+    },
+
+    {
+      id: 127,
+      chapter: 3,
+      level: "CORE",
+      question: "Membrane receptors are important for",
+      options: [
+        "cell communication",
+        "bone mineral storage",
+        "chromosome replication only",
+        "making urine"
+      ],
+      correct: 0,
+      explanation: "Membrane receptors allow cells to receive and respond to signals."
+    },
+
+    {
+      id: 128,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Phospholipid bilayer with hydrophilic heads, hydrophobic tails, proteins and carbohydrates; selectively permeable; communication receptors?",
+      options: [
+        "cell communication",
+        "chromosome replication only",
+        "bone mineral storage",
+        "making urine"
+      ],
+      correct: 0,
+      explanation: "Membrane receptors are important in cell communication."
+    },
+
+    {
+      id: 129,
+      chapter: 3,
+      level: "CORE",
+      question: "The flattened shape of a red blood cell helps it",
+      options: [
+        "move through small blood vessels",
+        "produce insulin",
+        "form bone",
+        "digest bacteria with lysosomes only"
+      ],
+      correct: 0,
+      explanation: "Red blood cell structure supports movement through narrow blood vessels."
+    },
+
+    {
+      id: 130,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Structure relates to function?",
+      options: [
+        "form bone",
+        "produce insulin",
+        "digest bacteria with lysosomes only",
+        "move through small blood vessels"
+      ],
+      correct: 3,
+      explanation: "The flattened red blood cell shape helps it move through small blood vessels."
+    },
+
+    {
+      id: 131,
+      chapter: 3,
+      level: "CORE",
+      question: "A macrophage's pseudopods help it",
+      options: [
+        "move through tissues",
+        "produce hormones",
+        "carry oxygen",
+        "form myelin only"
+      ],
+      correct: 0,
+      explanation: "Macrophage pseudopods help the cell move through tissues."
+    },
+
+    {
+      id: 132,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Structure relates to function?",
+      options: [
+        "produce hormones",
+        "move through tissues",
+        "carry oxygen",
+        "form myelin only"
+      ],
+      correct: 1,
+      explanation: "Pseudopods help macrophages move through tissues."
+    },
+
+    {
+      id: 133,
+      chapter: 3,
+      level: "CORE",
+      question: "Which statement best illustrates structure determines function?",
+      options: [
+        "A nerve cell can be long to transmit signals over distance",
+        "All cells have identical shapes",
+        "Cell shape never affects function",
+        "Only organs have functions"
+      ],
+      correct: 0,
+      explanation: "A nerve cell's long structure supports transmission of signals over distance."
+    },
+
+    {
+      id: 134,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Structure relates to function?",
+      options: [
+        "Cell shape never affects function",
+        "Only organs have functions",
+        "All cells have identical shapes",
+        "A nerve cell can be long to transmit signals over distance"
+      ],
+      correct: 3,
+      explanation: "The long shape of a nerve cell supports its signalling function."
+    },
+
+    {
+      id: 135,
+      chapter: 3,
+      level: "CORE",
+      question: "Pancreatic cells may be specialised to",
+      options: [
+        "produce insulin",
+        "carry oxygen",
+        "form hair shafts only",
+        "make bone minerals"
+      ],
+      correct: 0,
+      explanation: "Some pancreatic cells are specialised for insulin production."
+    },
+
+    {
+      id: 136,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Structure relates to function?",
+      options: [
+        "make bone minerals",
+        "form hair shafts only",
+        "carry oxygen",
+        "produce insulin"
+      ],
+      correct: 3,
+      explanation: "Pancreatic cells can be specialised to produce insulin."
+    },
+
+    {
+      id: 137,
+      chapter: 3,
+      level: "CORE",
+      question: "Why is mitosis needed?",
+      options: [
+        "growth, repair and replacement",
+        "to reduce all cells to atoms",
+        "to make glucose by diffusion",
+        "to change pH"
+      ],
+      correct: 0,
+      explanation: "Mitosis is needed for growth, repair and replacement of cells."
+    },
+
+    {
+      id: 138,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Needed for growth, repair and replacement?",
+      options: [
+        "to make glucose by diffusion",
+        "to reduce all cells to atoms",
+        "growth, repair and replacement",
+        "to change pH"
+      ],
+      correct: 2,
+      explanation: "Mitosis supports growth, repair and replacement."
+    },
+
+    {
+      id: 139,
+      chapter: 3,
+      level: "CORE",
+      question: "Before mitosis begins, the cell",
+      options: [
+        "replicates its DNA",
+        "loses all chromosomes",
+        "stops all growth permanently",
+        "becomes a tissue"
+      ],
+      correct: 0,
+      explanation: "Before mitosis, the cell grows and replicates its DNA."
+    },
+
+    {
+      id: 140,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Needed for growth, repair and replacement?",
+      options: [
+        "loses all chromosomes",
+        "replicates its DNA",
+        "stops all growth permanently",
+        "becomes a tissue"
+      ],
+      correct: 1,
+      explanation: "DNA is replicated before mitosis."
+    },
+
+    {
+      id: 141,
+      chapter: 3,
+      level: "CORE",
+      question: "Mitosis produces",
+      options: [
+        "two genetically identical daughter cells",
+        "four unrelated organs",
+        "one molecule",
+        "two different organ systems"
+      ],
+      correct: 0,
+      explanation: "Mitosis produces two genetically identical daughter cells."
+    },
+
+    {
+      id: 142,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Needed for growth, repair and replacement?",
+      options: [
+        "one molecule",
+        "four unrelated organs",
+        "two different organ systems",
+        "two genetically identical daughter cells"
+      ],
+      correct: 3,
+      explanation: "The result of mitosis is two genetically identical daughter cells."
+    },
+
+    {
+      id: 143,
+      chapter: 3,
+      level: "CORE",
+      question: "Most human body cells produced by mitosis retain",
+      options: [
+        "the same chromosome number as the parent cell",
+        "half the chromosome number",
+        "no DNA",
+        "twice the organ systems"
+      ],
+      correct: 0,
+      explanation: "Mitosis maintains the same chromosome number as the parent cell."
+    },
+
+    {
+      id: 144,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Needed for growth, repair and replacement?",
+      options: [
+        "no DNA",
+        "half the chromosome number",
+        "twice the organ systems",
+        "the same chromosome number as the parent cell"
+      ],
+      correct: 3,
+      explanation: "Daughter cells produced by mitosis retain the same chromosome number as the parent cell."
+    },
+
+    {
+      id: 145,
+      chapter: 3,
+      level: "CORE",
+      question: "With a 10× eyepiece and 40× objective, total magnification is",
+      options: [
+        "40×",
+        "50×",
+        "400×",
+        "4000×"
+      ],
+      correct: 2,
+      explanation: "Total magnification = eyepiece × objective. 10× × 40× = 400×."
+    },
+
+    {
+      id: 146,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Start with 4× objective; eyepiece 10×?",
+      options: [
+        "50×",
+        "40×",
+        "400×",
+        "4000×"
+      ],
+      correct: 2,
+      explanation: "A 10× eyepiece with a 40× objective gives 400× total magnification."
+    },
+
+    {
+      id: 147,
+      chapter: 3,
+      level: "CORE",
+      question: "Which objective should generally be used first to locate/focus the specimen?",
+      options: [
+        "4×",
+        "40×",
+        "100× oil",
+        "none"
+      ],
+      correct: 0,
+      explanation: "Begin with the 4× objective because it provides the widest field of view and makes locating the specimen easier."
+    },
+
+    {
+      id: 148,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Start with 4× objective; eyepiece 10×?",
+      options: [
+        "4×",
+        "100× oil",
+        "none",
+        "40×"
+      ],
+      correct: 0,
+      explanation: "The 4× objective is normally used first for locating and focusing the specimen."
+    },
+
+    {
+      id: 149,
+      chapter: 3,
+      level: "CORE",
+      question: "Why is microscope lens tissue used?",
+      options: [
+        "to avoid scratching lenses and leaving fibres",
+        "to stain cells",
+        "to increase ATP",
+        "to measure pH"
+      ],
+      correct: 0,
+      explanation: "Lens tissue is designed to clean microscope lenses without scratching them or leaving fibres."
+    },
+
+    {
+      id: 150,
+      chapter: 3,
+      level: "REVERSE/BEST",
+      question: "Which option BEST matches this rule: Start with 4× objective; eyepiece 10×?",
+      options: [
+        "to avoid scratching lenses and leaving fibres",
+        "to stain cells",
+        "to measure pH",
+        "to increase ATP"
+      ],
+      correct: 0,
+      explanation: "Microscope lens tissue is used to avoid scratching lenses and leaving fibres."
     }
 
   ],
