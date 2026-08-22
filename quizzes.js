@@ -134,6 +134,142 @@ window.AM_QUIZZES = [
   },
 
   {
+  id: "q2",
+  title: "Week 2 — Chemistry",
+  chapter: 2,
+  mode: "teacher",
+  questions: [
+
+    {
+      id: 1,
+      question: "Bonding which involves atoms sharing electrons is called:",
+      options: [
+        "Ionic",
+        "Covalent"
+      ],
+      correct: 1,
+      explanation: "Covalent bonds share electrons between atoms. Remember: Covalent = Share; Ionic = Transfer."
+    },
+
+    {
+      id: 2,
+      question: "The pH scale:",
+      options: [
+        "ranges from 4 to 8",
+        "measures concentration of Hydrogen ions in a solution",
+        "measures the colour of a solution",
+        "measures the concentration of salt in a solution"
+      ],
+      correct: 1,
+      explanation: "pH relates to the concentration of hydrogen ions (H+) in a solution."
+    },
+
+    {
+      id: 3,
+      question: "Which is MOST acidic?",
+      options: [
+        "pH = 2.4",
+        "pH = 3.6",
+        "pH = 5.1",
+        "pH = 6.2"
+      ],
+      correct: 0,
+      explanation: "The lower the pH, the more acidic the solution. Therefore, pH 2.4 is the most acidic."
+    },
+
+    {
+      id: 4,
+      question: "Disaccharides have:",
+      options: [
+        "2 sugars",
+        "1 sugar",
+        "2 proteins",
+        "3 lipids"
+      ],
+      correct: 0,
+      explanation: "A disaccharide is made from two monosaccharide sugar units. Mono = 1; Di = 2; Poly = many."
+    },
+
+    {
+      id: 5,
+      question: "A positively charged atom is known as:",
+      options: [
+        "iron",
+        "covalent",
+        "anion",
+        "cation"
+      ],
+      correct: 3,
+      explanation: "A cation is a positively charged ion. Remember: Cation = positive; Anion = negative."
+    },
+
+    {
+      id: 6,
+      question: "Acid + base mixed together gives:",
+      options: [
+        "salt + water + sometimes a gas",
+        "salt + vinegar",
+        "only water",
+        "salt + water + always a gas"
+      ],
+      correct: 0,
+      explanation: "Neutralisation generally forms salt and water; some acid-base reactions can also produce a gas."
+    },
+
+    {
+      id: 7,
+      question: "An atom that gains an electron will have what kind of charge?",
+      options: [
+        "Neutral",
+        "Positive",
+        "Negative"
+      ],
+      correct: 2,
+      explanation: "Electrons have a negative charge, so gaining an electron makes the atom negatively charged."
+    },
+
+    {
+      id: 8,
+      question: "pH 7.3 is:",
+      options: [
+        "alkaline/basic",
+        "neutral",
+        "acidic"
+      ],
+      correct: 0,
+      explanation: "A pH above 7 is alkaline/basic. Below 7 = acidic; 7 = neutral; above 7 = basic."
+    },
+
+    {
+      id: 9,
+      question: "In your body, your ____________ is made up of lots of protein.",
+      options: [
+        "muscle",
+        "fat",
+        "carbohydrate",
+        "saccharide"
+      ],
+      correct: 0,
+      explanation: "Muscle contains large amounts of proteins such as actin and myosin."
+    },
+
+    {
+      id: 10,
+      question: "Starch is an example of:",
+      options: [
+        "lipid",
+        "carbohydrate",
+        "protein",
+        "fat"
+      ],
+      correct: 1,
+      explanation: "Starch is a polysaccharide, so it is a carbohydrate."
+    }
+
+  ]
+},
+
+  {
     id: "q3",
     title: "Week 3 — Microscopes",
     chapter: 3,
