@@ -2762,6 +2762,308 @@ window.AM_MASTER_BANK = {
 
   ],
 
-  shortAnswers: []
+  shortAnswers: [
 
+  {
+    id: 1,
+    chapter: 1,
+    marks: 4,
+    question: "Define anatomy and physiology and give one example of each.",
+    modelAnswer: "Anatomy is the study of body structure; for example, the heart has four chambers. Physiology is the study of body function; for example, the heart pumps blood.",
+    markingPoints: [
+      "Define anatomy",
+      "Give an anatomy example",
+      "Define physiology",
+      "Give a physiology example"
+    ]
+  },
+
+  {
+    id: 2,
+    chapter: 1,
+    marks: 7,
+    question: "Write the full levels of organisation from simplest to most complex and give one example of each.",
+    modelAnswer: "Chemical (water) → organelle (mitochondrion) → cell (muscle cell) → tissue (muscle tissue) → organ (heart) → organ system (cardiovascular system) → organism (human).",
+    markingPoints: [
+      "Chemical",
+      "Organelle",
+      "Cell",
+      "Tissue",
+      "Organ",
+      "Organ system",
+      "Organism"
+    ]
+  },
+
+  {
+    id: 3,
+    chapter: 1,
+    marks: 5,
+    question: "State the five features of anatomical position.",
+    modelAnswer: "Standing upright; facing forward; arms at the sides; palms facing forward; feet flat and facing forward.",
+    markingPoints: [
+      "Standing upright",
+      "Facing forward",
+      "Arms at sides",
+      "Palms forward",
+      "Feet flat/facing forward"
+    ]
+  },
+
+  {
+    id: 4,
+    chapter: 1,
+    marks: 6,
+    question: "Define superior, inferior, medial, lateral, proximal and distal.",
+    modelAnswer: "Superior = above; inferior = below; medial = toward the midline; lateral = away from the midline; proximal = nearer the trunk or point of attachment; distal = farther from the trunk or point of attachment.",
+    markingPoints: [
+      "Superior",
+      "Inferior",
+      "Medial",
+      "Lateral",
+      "Proximal",
+      "Distal"
+    ]
+  },
+
+  {
+    id: 5,
+    chapter: 1,
+    marks: 6,
+    question: "Name the three major body planes and state what each divides.",
+    modelAnswer: "Sagittal divides left and right; frontal/coronal divides anterior and posterior; transverse/horizontal divides superior and inferior.",
+    markingPoints: [
+      "Sagittal",
+      "Left/right",
+      "Frontal/coronal",
+      "Anterior/posterior",
+      "Transverse",
+      "Superior/inferior"
+    ]
+  },
+
+  {
+    id: 6,
+    chapter: 1,
+    marks: 6,
+    question: "Describe the dorsal and ventral body cavities and name their major subdivisions.",
+    modelAnswer: "The dorsal cavity consists of the cranial cavity and vertebral/spinal cavity. The ventral cavity consists of the thoracic cavity and the abdominopelvic cavity, which includes the abdominal and pelvic cavities.",
+    markingPoints: [
+      "Dorsal cavity",
+      "Cranial cavity",
+      "Vertebral/spinal cavity",
+      "Ventral cavity",
+      "Thoracic cavity",
+      "Abdominopelvic cavity"
+    ]
+  },
+
+  {
+    id: 7,
+    chapter: 1,
+    marks: 11,
+    question: "List the 11 major organ systems and give the overall function of each.",
+    modelAnswer: "Integumentary—protection; skeletal—support/protection; muscular—movement; nervous—fast control and coordination; endocrine—hormonal regulation; cardiovascular—transport; lymphatic/immune—defence and return of tissue fluid; respiratory—gas exchange; digestive—digestion and absorption; urinary—waste removal and fluid balance; reproductive—reproduction.",
+    markingPoints: [
+      "Integumentary",
+      "Skeletal",
+      "Muscular",
+      "Nervous",
+      "Endocrine",
+      "Cardiovascular",
+      "Lymphatic/immune",
+      "Respiratory",
+      "Digestive",
+      "Urinary",
+      "Reproductive"
+    ]
+  },
+
+  {
+    id: 8,
+    chapter: 1,
+    marks: 4,
+    question: "Define solution, solute, solvent and concentration.",
+    modelAnswer: "A solution is one or more solutes dissolved in a solvent. The solute is the substance dissolved. The solvent is the substance that dissolves the solute. Concentration is the relative amount of solute in a solution.",
+    markingPoints: [
+      "Solution",
+      "Solute",
+      "Solvent",
+      "Concentration"
+    ]
+  },
+
+  {
+    id: 9,
+    chapter: 2,
+    marks: 6,
+    question: "Describe an atom, including the location and charge of proton, neutron and electron.",
+    modelAnswer: "An atom is the basic unit of matter. Protons are positively charged and found in the nucleus. Neutrons have no charge and are found in the nucleus. Electrons are negatively charged and occupy shells around the nucleus.",
+    markingPoints: [
+      "Atom definition",
+      "Proton charge",
+      "Proton location",
+      "Neutron charge/location",
+      "Electron charge",
+      "Electron location"
+    ]
+  },
+
+  {
+    id: 10,
+    chapter: 2,
+    marks: 2,
+    question: "Distinguish element from molecule.",
+    modelAnswer: "An element is a pure substance made of one type of atom. A molecule consists of two or more atoms chemically joined.",
+    markingPoints: [
+      "Element definition",
+      "Molecule definition"
+    ]
+  },
+
+  {
+    id: 11,
+    chapter: 2,
+    marks: 4,
+    question: "Explain ionic and covalent bonding.",
+    modelAnswer: "Ionic bonding involves transfer of electrons and attraction between oppositely charged ions. Covalent bonding involves sharing electrons between atoms.",
+    markingPoints: [
+      "Ionic = electron transfer",
+      "Oppositely charged ions",
+      "Covalent = electron sharing",
+      "Atoms share electrons"
+    ]
+  },
+
+  {
+    id: 12,
+    chapter: 2,
+    marks: 4,
+    question: "Define anion and cation and explain how each forms.",
+    modelAnswer: "An anion is a negatively charged ion formed when an atom gains electron(s). A cation is a positively charged ion formed when an atom loses electron(s).",
+    markingPoints: [
+      "Anion = negative",
+      "Anion gains electrons",
+      "Cation = positive",
+      "Cation loses electrons"
+    ]
+  },
+
+  {
+    id: 13,
+    chapter: 2,
+    marks: 4,
+    question: "State four important roles of water in the body.",
+    modelAnswer: "Water acts as a solvent, transport medium, reaction medium and helps regulate body temperature.",
+    markingPoints: [
+      "Solvent",
+      "Transport medium",
+      "Reaction medium",
+      "Temperature regulation"
+    ]
+  },
+
+  {
+    id: 14,
+    chapter: 2,
+    marks: 4,
+    question: "Describe monosaccharides, disaccharides and polysaccharides and give glucose's category.",
+    modelAnswer: "A monosaccharide contains one sugar unit; a disaccharide contains two sugar units; a polysaccharide contains many sugar units. Glucose is a monosaccharide.",
+    markingPoints: [
+      "Monosaccharide = one",
+      "Disaccharide = two",
+      "Polysaccharide = many",
+      "Glucose = monosaccharide"
+    ]
+  },
+
+  {
+    id: 15,
+    chapter: 2,
+    marks: 6,
+    question: "State major roles of lipids and proteins.",
+    modelAnswer: "Lipids provide long-term energy storage, insulation/protection and contribute to cell membranes. Proteins support growth and repair and can function as enzymes, hormones, antibodies and transport proteins.",
+    markingPoints: [
+      "Lipid energy storage",
+      "Lipid insulation/protection",
+      "Lipids in membranes",
+      "Protein growth/repair",
+      "Protein functional roles",
+      "Examples such as enzymes/antibodies/transport"
+    ]
+  },
+
+  {
+    id: 16,
+    chapter: 2,
+    marks: 4,
+    question: "Explain the pH scale and state normal blood pH.",
+    modelAnswer: "A pH below 7 is acidic, pH 7 is neutral and a pH above 7 is basic/alkaline. Normal blood pH is approximately 7.35–7.45.",
+    markingPoints: [
+      "Below 7 acidic",
+      "7 neutral",
+      "Above 7 basic",
+      "Blood pH 7.35–7.45"
+    ]
+  },
+
+  {
+    id: 17,
+    chapter: 2,
+    marks: 4,
+    question: "Explain neutralisation and protein denaturation as seen in lab.",
+    modelAnswer: "Neutralisation occurs when an acid and base react and the pH moves toward neutral. Protein denaturation is a change in protein structure or shape caused by conditions such as heat or acid, which may change or destroy normal function.",
+    markingPoints: [
+      "Acid/base reaction",
+      "pH moves toward neutral",
+      "Denaturation changes protein shape",
+      "Heat/acid can alter protein function"
+    ]
+  },
+
+  {
+    id: 18,
+    chapter: 3,
+    marks: 3,
+    question: "State where cells fit in the levels of organisation.",
+    modelAnswer: "Cells are formed from organelles and are the basic structural and functional units of the body. Cells combine to form tissues.",
+    markingPoints: [
+      "Organelle before cell",
+      "Cell is basic structural/functional unit",
+      "Cells form tissues"
+    ]
+  },
+
+  {
+    id: 19,
+    chapter: 3,
+    marks: 8,
+    question: "Give location and function of cell membrane, cytoplasm, nucleus and nuclear membrane.",
+    modelAnswer: "The cell membrane surrounds the cell and controls entry and exit of substances. Cytoplasm lies between the cell membrane and nucleus and contains cytosol and organelles where many reactions occur. The nucleus contains DNA and controls cell activities. The nuclear membrane surrounds the nucleus and regulates movement through nuclear pores.",
+    markingPoints: [
+      "Cell membrane location",
+      "Cell membrane function",
+      "Cytoplasm location",
+      "Cytoplasm function",
+      "Nucleus location/content",
+      "Nucleus function",
+      "Nuclear membrane location",
+      "Nuclear membrane function"
+    ]
+  },
+
+  {
+    id: 20,
+    chapter: 3,
+    marks: 3,
+    question: "Describe the composition of cytoplasm.",
+    modelAnswer: "Cytoplasm consists of cytosol, organelles and inclusions or stored materials.",
+    markingPoints: [
+      "Cytosol",
+      "Organelles",
+      "Inclusions/stored materials"
+    ]
+  }
+
+]
 };
