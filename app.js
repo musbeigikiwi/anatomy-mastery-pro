@@ -1,64 +1,3110 @@
+const STORE = "ampro_complete_v1";
+const TASKSTORE = "ampro_tasks_v1";
 
-const STORE="ampro_complete_v1";
-const TASKSTORE="ampro_tasks_v1";
-const FRESH={todayKey:"",todaySec:0,totalSec:0,visits:0,answered:0,correct:0,mistakes:[],attempts:[],flashAttempts:[]};
-let state=(()=>{try{return {...FRESH,...JSON.parse(localStorage.getItem(STORE)||"{}")}}catch{return {...FRESH}}})();
-const save=()=>localStorage.setItem(STORE,JSON.stringify(state));
-const dkey=()=>new Date().toISOString().slice(0,10);
-if(state.todayKey!==dkey()){state.todayKey=dkey();state.todaySec=0}
-state.visits++;save();
+const DEFAULT_STATE = {
+  todayKey: "",
+  todaySec: 0,
+  totalSec: 0,
+  visits: 0,
+  answered: 0,
+  correct: 0,
+  mistakes: [],
+  attempts: [],
+  flashAttempts: []
+};
 
-const app=document.getElementById("app"), $=id=>document.getElementById(id);
-const fmt=s=>{let h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;return h?`${h}h ${m}m`:m?`${m}m ${x}s`:`${x}s`};
-let activeRoute="home", quiz=null, flash=null, examTimer=null;
+let state = (() => {
+  try {
+    return {
+      ...DEFAULT_STATE,
+      ...JSON.parse(localStorage.getItem(STORE) || "{}")
+    };
+  } catch {
+    return { ...DEFAULT_STATE };
+  }
+})();
 
-setInterval(()=>{if(!document.hidden){state.todaySec++;state.totalSec++;if(state.totalSec%5===0)save();stats()}},1000);
-function stats(){$("globalTimer").textContent=fmt(state.todaySec);$("stToday").textContent=fmt(state.todaySec);$("stTotal").textContent=fmt(state.totalSec);$("stQ").textContent=state.answered;$("stAcc").textContent=(state.answered?Math.round(state.correct/state.answered*100):0)+"%";$("stMist").textContent=state.mistakes.length;$("stVisits").textContent=state.visits}
-$("dateTop").textContent=new Date().toLocaleDateString("en-NZ",{weekday:"short",day:"numeric",month:"short"});
-stats();
+const save = () => {
+  localStorage.setItem(STORE, JSON.stringify(state));
+};
 
-function route(name){activeRoute=name;document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.route===name));({home,notes,flashHome,bankHome,shortHome,quizHome,mockHome,mistakes,schedule,progress}[name]||home)();window.scrollTo({top:120,behavior:"smooth"})}
-document.addEventListener("click",e=>{let b=e.target.closest("[data-route]");if(b)route(b.dataset.route)});
-function head(k,t,c=""){return `<div class="head"><div><p class="eyebrow">${k}</p><h2>${t}</h2></div><p>${c}</p></div>`}
-function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function allQuestions(){return AM_CHAPTERS.flatMap(c=>c.mcq.map((q,i)=>({id:`c${c.id}-${i+1}`,chapter:c.id,chapterTitle:c.title,q:q[0],o:q[1],a:q[2],why:q[3],level:q[4]})))}
-function prepare(qs){return shuffle(qs).map(q=>{let ops=shuffle(q.o.map((text,i)=>({text,correct:i===q.a})));return {...q,ops,correctIndex:ops.findIndex(x=>x.correct)}})}
+const todayKey = () => new Date().toISOString().slice(0, 10);
 
-function home(){app.innerHTML=head("STUDY COMMAND CENTER","Everything in one place.","Your course is modular: future chapters, quizzes and assessments can be added without rebuilding the whole site.")+`<div class="grid">${AM_CHAPTERS.map(c=>`<article class="card" onclick="openNote(${c.id})"><small>CHAPTER ${c.id}</small><h3>${c.title}</h3><p>${c.subtitle}</p><p>${c.notes.slice(0,3).map(n=>n[0]).join(" • ")}</p></article>`).join("")}</div>`}
-function notes(){openNote(1,false)}
-function openNote(id,doRoute=true){if(doRoute){activeRoute="notes";document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.route==="notes"))}let c=AM_CHAPTERS.find(x=>x.id===id);app.innerHTML=head("COMPLETE NOTES",`Chapter ${id} — ${c.title}`,"Source-aligned high-yield notes and exam keys.")+`<div class="chips">${AM_CHAPTERS.map(x=>`<button class="chip ${x.id===id?"active":""}" onclick="openNote(${x.id},false)">Chapter ${x.id}</button>`).join("")}</div><article class="panel note">${c.notes.map(n=>`<h3>${n[0]}</h3><p>${n[1]}</p><div class="exam-key"><b>EXAM KEY:</b> ${n[2]}</div>`).join("")}</article>`}
+if (state.todayKey !== todayKey()) {
+  state.todayKey = todayKey();
+  state.todaySec = 0;
+}
 
-function flashHome(){app.innerHTML=head("ACTIVE RECALL","Flashcard Decks","Every deck is shuffled, timed and has a completion report plus resit.")+`<div class="grid">${AM_CHAPTERS.map(c=>`<article class="card" onclick="startFlash(${c.id})"><small>${c.flash.length} CARDS</small><h3>Chapter ${c.id}</h3><p>${c.title}</p></article>`).join("")}</div>`}
-function startFlash(id){let c=AM_CHAPTERS.find(x=>x.id===id);flash={id,title:`Chapter ${id} — ${c.title}`,cards:shuffle(c.flash),i:0,start:Date.now(),cardStart:Date.now(),ratings:{again:0,learning:0,mastered:0}};drawFlash()}
-function drawFlash(){let c=flash.cards[flash.i],colors=[["#162a48","#6386ff"],["#14352e","#55e1bb"],["#3a2818","#ffb45e"],["#311d3e","#c27cff"],["#15333e","#55c8ff"],["#361d27","#ff7ca2"]],p=colors[flash.i%colors.length];app.innerHTML=head("FLASHCARD SESSION",flash.title,"Rate each card honestly. Timer continues for the whole deck.")+`<div class="timerbar"><span>Card ${flash.i+1}/${flash.cards.length}</span><strong>${fmt(Math.round((Date.now()-flash.start)/1000))}</strong></div><div class="progress"><span style="width:${((flash.i+1)/flash.cards.length)*100}%"></span></div><div class="flash" style="background:linear-gradient(145deg,${p[0]},#07111d);border-color:${p[1]}66"><p class="eyebrow">CARD ${flash.i+1}</p><h3>${c[0]}</h3><div class="flashAnswer" id="fa">${c[1]}</div><div class="flashExplain" id="fe">${c[2]}</div></div><div class="actions"><button class="primary" onclick="fa.style.display='block';fe.style.display='block'">Reveal Answer</button><button class="danger" onclick="rateFlash('again')">Again</button><button class="secondary" onclick="rateFlash('learning')">Learning</button><button class="primary" onclick="rateFlash('mastered')">Mastered</button></div>`}
-function rateFlash(r){flash.ratings[r]++;if(flash.i<flash.cards.length-1){flash.i++;flash.cardStart=Date.now();drawFlash()}else flashDone()}
-function flashDone(){let sec=Math.round((Date.now()-flash.start)/1000),rec={title:flash.title,date:new Date().toISOString(),seconds:sec,total:flash.cards.length,...flash.ratings};state.flashAttempts.push(rec);save();app.innerHTML=head("DECK COMPLETE","Flashcard Result","This result is saved in Progress.")+`<article class="result glass"><div class="resultScore">${fmt(sec)}</div><div class="resultGrid"><div>Total<br><b>${flash.cards.length}</b></div><div>Mastered<br><b>${flash.ratings.mastered}</b></div><div>Learning<br><b>${flash.ratings.learning}</b></div><div>Again<br><b>${flash.ratings.again}</b></div><div>Avg/Card<br><b>${Math.round(sec/flash.cards.length)}s</b></div></div><div class="actions"><button class="primary" onclick="startFlash(${flash.id})">Resit Full Deck</button><button class="secondary" onclick="flashHome()">Back to Decks</button></div></article>`}
+state.visits += 1;
+save();
 
-function bankHome(){app.innerHTML=head("MASTER QUESTION BANK","Question Bank","Every attempt shuffles question order and A/B/C/D options. No repeats inside the same attempt.")+`<div class="grid"><article class="card" onclick="startQuiz(allQuestions(),'Mixed Master Bank',true,'bank')"><small>${allQuestions().length} QUESTIONS</small><h3>All Chapters</h3><p>Combined practice.</p></article>${AM_CHAPTERS.map(c=>`<article class="card" onclick="startQuiz(allQuestions().filter(q=>q.chapter===${c.id}),'Chapter ${c.id} Bank',true,'bank')"><small>${c.mcq.length} QUESTIONS</small><h3>Chapter ${c.id}</h3><p>${c.title}</p></article>`).join("")}</div>`}
-function startQuiz(qs,title,instant=true,source="bank",minutes=null){quiz={title,source,instant,qs:prepare(qs),i:0,start:Date.now(),qStart:Date.now(),answers:[],deadline:minutes?Date.now()+minutes*60000:null,minutes};drawQuiz();if(minutes){clearInterval(examTimer);examTimer=setInterval(()=>{if(quiz&&quiz.deadline&&Date.now()>=quiz.deadline){clearInterval(examTimer);finishQuiz()}else updateQuizTimer()},1000)}}
-function updateQuizTimer(){let e=$("sessionTimer");if(!e||!quiz)return;e.textContent=quiz.deadline?fmt(Math.max(0,Math.round((quiz.deadline-Date.now())/1000))):fmt(Math.round((Date.now()-quiz.start)/1000))}
-function drawQuiz(){let q=quiz.qs[quiz.i],a=quiz.answers[quiz.i];app.innerHTML=head(quiz.instant?"LIVE PRACTICE":"TIMED MOCK",quiz.title,quiz.instant?"Correct answer and explanation appear immediately.":"No answer feedback until Submit.")+`<div class="timerbar"><span>Question ${quiz.i+1}/${quiz.qs.length}</span><strong id="sessionTimer">${quiz.deadline?fmt(Math.max(0,Math.round((quiz.deadline-Date.now())/1000))):fmt(Math.round((Date.now()-quiz.start)/1000))}</strong></div><div class="progress"><span style="width:${((quiz.i+1)/quiz.qs.length)*100}%"></span></div><article class="panel quiz"><p class="eyebrow">CHAPTER ${q.chapter} • ${q.level||"CORE"}</p><h3>${q.q}</h3>${q.ops.map((o,i)=>`<button class="option ${a&&a.choice===i?"selected":""}" onclick="choose(${i},this)">${String.fromCharCode(65+i)}. ${o.text}</button>`).join("")}<div class="feedback" id="feedback"></div><div class="actions"><button class="primary" id="next" style="display:${a?"inline-block":"none"}" onclick="nextQuiz()">${quiz.i===quiz.qs.length-1?"Submit":"Next Question"}</button></div></article>`}
-function choose(i,b){if(quiz.answers[quiz.i])return;let q=quiz.qs[quiz.i],sec=Math.round((Date.now()-quiz.qStart)/1000),ok=i===q.correctIndex;quiz.answers[quiz.i]={choice:i,correct:ok,seconds:sec};state.answered++;if(ok)state.correct++;if(!ok&&!state.mistakes.some(m=>m.id===q.id))state.mistakes.push({id:q.id,chapter:q.chapter,q:q.q,correct:q.ops[q.correctIndex].text,why:q.why,wrongCount:1});if(quiz.instant){document.querySelectorAll(".option").forEach((x,j)=>{if(j===q.correctIndex)x.classList.add("correct");else if(j===i)x.classList.add("wrong")});feedback.style.display="block";feedback.innerHTML=`<b>${ok?"✓ Correct":"✕ Review this concept"}</b><br>${q.why}<br><small>Time: ${sec}s</small>`}save();stats();$("next").style.display="inline-block"}
-function nextQuiz(){if(quiz.i<quiz.qs.length-1){quiz.i++;quiz.qStart=Date.now();drawQuiz()}else finishQuiz()}
-function finishQuiz(){if(!quiz)return;clearInterval(examTimer);let sec=Math.round((Date.now()-quiz.start)/1000),correct=quiz.answers.filter(a=>a?.correct).length,answered=quiz.answers.filter(Boolean).length,total=quiz.qs.length,score=Math.round(correct/total*100),rec={title:quiz.title,source:quiz.source,date:new Date().toISOString(),seconds:sec,correct,total,answered,score};state.attempts.push(rec);save();let original=quiz;app.innerHTML=head("ATTEMPT COMPLETE",original.title,"All answers are now unlocked below.")+`<article class="result glass"><div class="resultScore">${score}%</div><div class="resultGrid"><div>Correct<br><b>${correct}</b></div><div>Incorrect<br><b>${answered-correct}</b></div><div>Unanswered<br><b>${total-answered}</b></div><div>Total Time<br><b>${fmt(sec)}</b></div><div>Avg/Q<br><b>${answered?Math.round(sec/answered):0}s</b></div></div><div class="actions"><button class="primary" id="resit">Resit Full Set</button><button class="secondary" id="retry">Retry Mistakes</button><button class="secondary" data-route="${original.source==="mocks"?"mocks":original.source==="quizzes"?"quizzes":"bank"}">Back</button></div><h3>Full Answer Review</h3>${original.qs.map((q,i)=>{let a=original.answers[i];return `<div class="review ${a?.correct?"ok":"bad"}"><b>Q${i+1}. ${q.q}</b><p>Your answer: ${a?q.ops[a.choice].text:"Unanswered"}<br>Correct answer: ${q.ops[q.correctIndex].text}<br>${q.why}<br><small>${a?.seconds||0}s</small></p></div>`}).join("")}</article>`;$("resit").onclick=()=>startQuiz(original.qs.map(q=>({...q,o:q.ops.map(x=>x.text),a:q.correctIndex})),original.title,original.instant,original.source,original.minutes);$("retry").onclick=()=>{let missed=original.qs.filter((q,i)=>!original.answers[i]?.correct).map(q=>({...q,o:q.ops.map(x=>x.text),a:q.correctIndex}));if(missed.length)startQuiz(missed,"Retry Missed Questions",true,original.source)}}
+const app = document.getElementById("app");
 
-function shortHome(){app.innerHTML=head("WRITTEN RECALL","Short Answers","Write from memory first, then reveal the model answer.")+AM_CHAPTERS.map(c=>`<h3>Chapter ${c.id} — ${c.title}</h3>${c.saq.map((s,i)=>`<article class="panel"><p class="eyebrow">SAQ ${i+1}</p><h4>${s[0]}</h4><textarea placeholder="Write your answer here before revealing the model answer..."></textarea><div class="actions"><button class="secondary" onclick="this.parentElement.nextElementSibling.style.display='block'">Reveal Model Answer</button></div><div class="model">${s[1]}</div></article>`).join("")}`).join("")}
+const $ = (id) => document.getElementById(id);
 
-function quizHome(){app.innerHTML=head("COURSE PRACTICE","6 Quiz Sets","Teacher/revision-style sets stay separate from the master bank.")+`<div class="grid">${AM_QUIZZES.map((q,i)=>`<article class="card" onclick="launchQuiz(${i})"><small>${q.mode.toUpperCase()}</small><h3>${q.title}</h3><p>${q.chapter?`Chapter ${q.chapter}`:"Mixed Chapters 1–4"}</p></article>`).join("")}</div>`}
-function launchQuiz(i){let q=AM_QUIZZES[i],qs=q.chapter?allQuestions().filter(x=>x.chapter===q.chapter):allQuestions();if(q.mode==="tricky")qs=qs.filter(x=>x.level==="REVERSE/BEST").concat(allQuestions().filter(x=>x.level!=="REVERSE/BEST").slice(0,8));startQuiz(qs,q.title,true,"quizzes")}
+const formatTime = (seconds) => {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
 
-function mockHome(){app.innerHTML=head("EXAM CENTRE","5 Mock Exams","Timed simulation. No instant correctness feedback; full review appears after Submit.")+`<div class="grid">${AM_MOCKS.map((m,i)=>`<article class="card" onclick="launchMock(${i})"><small>${m.minutes} MIN</small><h3>${m.title}</h3><p>20-question simulation sampled from Chapters 1–4.</p></article>`).join("")}</div>`}
-function launchMock(i){let m=AM_MOCKS[i],pool=allQuestions();let qs=shuffle(pool).slice(0,Math.min(20,pool.length));startQuiz(qs,m.title,false,"mocks",m.minutes)}
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return `${m}m ${s}s`;
 
-function mistakes(){app.innerHTML=head("TARGETED RECOVERY","Mistake Vault","Wrong practice answers are stored automatically. Correct them by retrying.")+(state.mistakes.length?`<div class="actions"><button class="primary" onclick="retryVault()">Retry All Mistakes</button><button class="danger" onclick="clearVault()">Clear Vault</button></div>`+state.mistakes.map(m=>`<article class="mistake"><small>CHAPTER ${m.chapter}</small><h4>${m.q}</h4><p>Correct: ${m.correct}</p><p class="muted">${m.why}</p></article>`).join(""):`<article class="panel">No mistakes waiting 🎯</article>`)}
-function retryVault(){let ids=new Set(state.mistakes.map(m=>m.id));let qs=allQuestions().filter(q=>ids.has(q.id));if(qs.length)startQuiz(qs,"Mistake Vault Retry",true,"bank")}
-function clearVault(){if(confirm("Clear saved mistakes on this device?")){state.mistakes=[];save();stats();mistakes()}}
+  return `${s}s`;
+};
 
-function taskMap(){try{return JSON.parse(localStorage.getItem(TASKSTORE)||"{}")}catch{return {}}}
-function schedule(){let done=taskMap(),today=dkey();app.innerHTML=head("STREAM C","Schedule & Tasks","Upcoming work automatically rises to the top. Mark tasks complete as you finish them.")+AM_SCHEDULE.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(t=>`<article class="task ${done[t.id]?"done":""} glass"><div><small>${new Date(t.date+"T12:00:00").toLocaleDateString("en-NZ",{weekday:"short",day:"numeric",month:"short"})} • Week ${t.week}</small><h4>${t.title}</h4><p class="muted">${t.stream==="C"?"Stream C relevant":"All streams"}</p></div><button class="${done[t.id]?"secondary":"primary"}" onclick="toggleTask('${t.id}')">${done[t.id]?"Completed ✓":"Mark Done"}</button></article>`).join("")}
-function toggleTask(id){let d=taskMap();d[id]=!d[id];localStorage.setItem(TASKSTORE,JSON.stringify(d));schedule();priority()}
-function priority(){let d=taskMap(),today=dkey(),next=AM_SCHEDULE.filter(t=>t.date>=today&&!d[t.id]).sort((a,b)=>a.date.localeCompare(b.date))[0];if(next){$("weekLabel").textContent=`WEEK ${next.week} • STREAM C`;$("priorityTitle").textContent=next.title;let days=Math.ceil((new Date(next.date+"T12:00:00")-new Date())/86400000);$("priorityMeta").textContent=`${new Date(next.date+"T12:00:00").toLocaleDateString("en-NZ",{weekday:"long",day:"numeric",month:"long"})} • ${days<=0?"Today":days===1?"Tomorrow":days+" days"}`}else{$("priorityTitle").textContent="No upcoming tasks";$("priorityMeta").textContent=""}}
+let currentQuiz = null;
+let currentFlash = null;
+let examInterval = null;
 
-function progress(){let ats=[...state.attempts].reverse(),fs=[...state.flashAttempts].reverse();app.innerHTML=head("LEARNING ANALYTICS","Progress History","Scores and times stay saved on this browser/device.")+`<div class="stats"><div class="stat glass"><small>Attempts</small><strong>${state.attempts.length}</strong></div><div class="stat glass"><small>Flash Decks</small><strong>${state.flashAttempts.length}</strong></div><div class="stat glass"><small>Best Score</small><strong>${state.attempts.length?Math.max(...state.attempts.map(a=>a.score))+"%":"0%"}</strong></div><div class="stat glass"><small>Total Study</small><strong>${fmt(state.totalSec)}</strong></div><div class="stat glass"><small>Questions</small><strong>${state.answered}</strong></div><div class="stat glass"><small>Visits</small><strong>${state.visits}</strong></div></div><h3>Quiz / Exam Attempts</h3>${ats.length?ats.map(a=>`<article class="panel"><b>${a.title}</b><p class="muted">${new Date(a.date).toLocaleString("en-NZ")} • ${a.score}% • ${a.correct}/${a.total} • ${fmt(a.seconds)}</p></article>`).join(""):`<article class="panel">No completed attempts yet.</article>`}<h3>Flashcard Attempts</h3>${fs.length?fs.map(a=>`<article class="panel"><b>${a.title}</b><p class="muted">${new Date(a.date).toLocaleString("en-NZ")} • ${fmt(a.seconds)} • Mastered ${a.mastered}/${a.total}</p></article>`).join(""):`<article class="panel">No completed decks yet.</article>`}}
 
-priority();home();
+/* =====================================================
+   GLOBAL STUDY TIMER
+===================================================== */
+
+setInterval(() => {
+  if (!document.hidden) {
+    state.todaySec += 1;
+    state.totalSec += 1;
+
+    if (state.totalSec % 5 === 0) {
+      save();
+    }
+
+    renderStats();
+  }
+}, 1000);
+
+
+function renderStats() {
+
+  if ($("globalTimer")) {
+    $("globalTimer").textContent = formatTime(state.todaySec);
+  }
+
+  if ($("stToday")) {
+    $("stToday").textContent = formatTime(state.todaySec);
+  }
+
+  if ($("stTotal")) {
+    $("stTotal").textContent = formatTime(state.totalSec);
+  }
+
+  if ($("stQ")) {
+    $("stQ").textContent = state.answered;
+  }
+
+  if ($("stAcc")) {
+
+    const accuracy =
+      state.answered > 0
+        ? Math.round((state.correct / state.answered) * 100)
+        : 0;
+
+    $("stAcc").textContent = `${accuracy}%`;
+  }
+
+  if ($("stMist")) {
+    $("stMist").textContent = state.mistakes.length;
+  }
+
+  if ($("stVisits")) {
+    $("stVisits").textContent = state.visits;
+  }
+}
+
+
+if ($("dateTop")) {
+  $("dateTop").textContent =
+    new Date().toLocaleDateString("en-NZ", {
+      weekday: "short",
+      day: "numeric",
+      month: "short"
+    });
+}
+
+renderStats();
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document.addEventListener("click", (event) => {
+
+  const button = event.target.closest("[data-route]");
+
+  if (!button) return;
+
+  route(button.dataset.route);
+});
+
+
+function route(name) {
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach((button) => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.route === name
+      );
+
+    });
+
+
+  const routes = {
+
+    home: renderHome,
+
+    notes: renderNotesHome,
+
+    flash: renderFlashHome,
+
+    bank: renderQuestionBank,
+
+    short: renderShortAnswers,
+
+    quizzes: renderQuizzes,
+
+    mocks: renderMocks,
+
+    mistakes: renderMistakes,
+
+    schedule: renderSchedule,
+
+    progress: renderProgress
+
+  };
+
+
+  const pageFunction = routes[name] || renderHome;
+
+  pageFunction();
+
+
+  window.scrollTo({
+    top: 120,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =====================================================
+   UTILITY FUNCTIONS
+===================================================== */
+
+function heading(kicker, title, description = "") {
+
+  return `
+
+    <div class="head">
+
+      <div>
+
+        <p class="eyebrow">
+          ${kicker}
+        </p>
+
+        <h2>
+          ${title}
+        </h2>
+
+      </div>
+
+      <p>
+        ${description}
+      </p>
+
+    </div>
+
+  `;
+}
+
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (
+    let i = copy.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
+    [
+      copy[i],
+      copy[j]
+    ] = [
+      copy[j],
+      copy[i]
+    ];
+
+  }
+
+  return copy;
+
+}
+
+
+/* =====================================================
+   QUESTION DATA
+===================================================== */
+
+function getAllQuestions() {
+
+  if (!window.AM_CHAPTERS) return [];
+
+  return AM_CHAPTERS.flatMap((chapter) => {
+
+    return chapter.mcq.map((question, index) => {
+
+      return {
+
+        id:
+          `c${chapter.id}-${index + 1}`,
+
+        chapter:
+          chapter.id,
+
+        chapterTitle:
+          chapter.title,
+
+        question:
+          question[0],
+
+        options:
+          question[1],
+
+        correct:
+          question[2],
+
+        explanation:
+          question[3],
+
+        level:
+          question[4] || "CORE"
+
+      };
+
+    });
+
+  });
+
+}
+
+
+function prepareQuestions(questions) {
+
+  return shuffle(questions).map((question) => {
+
+    const options =
+      question.options.map(
+        (text, index) => ({
+          text,
+          correct:
+            index === question.correct
+        })
+      );
+
+    const shuffledOptions =
+      shuffle(options);
+
+    return {
+
+      ...question,
+
+      shuffledOptions,
+
+      correctIndex:
+        shuffledOptions.findIndex(
+          (option) => option.correct
+        )
+
+    };
+
+  });
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function renderHome() {
+
+  if (!window.AM_CHAPTERS) {
+
+    app.innerHTML = `
+      <div class="panel">
+        Chapter data failed to load.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  app.innerHTML =
+
+    heading(
+      "STUDY COMMAND CENTER",
+      "Choose your next study session",
+      "All learning tools are connected to the same progress system."
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+      ${AM_CHAPTERS.map((chapter) => `
+
+        <article
+          class="card"
+          onclick="openNote(${chapter.id})"
+        >
+
+          <small>
+            CHAPTER ${chapter.id}
+          </small>
+
+          <h3>
+            ${chapter.title}
+          </h3>
+
+          <p>
+            ${chapter.subtitle}
+          </p>
+
+          <p>
+            ${chapter.notes
+              .slice(0, 3)
+              .map((note) => note[0])
+              .join(" • ")
+            }
+          </p>
+
+        </article>
+
+      `).join("")}
+
+    </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+function renderNotesHome() {
+  openNote(1);
+}
+
+
+function openNote(id) {
+
+  const chapter =
+    AM_CHAPTERS.find(
+      (chapter) =>
+        chapter.id === id
+    );
+
+  if (!chapter) return;
+
+
+  app.innerHTML =
+
+    heading(
+      "COMPLETE NOTES",
+      `Chapter ${id} — ${chapter.title}`,
+      "High-yield notes with exam keys."
+    )
+
+    +
+
+    `
+
+    <div class="chips">
+
+      ${AM_CHAPTERS.map((chapterItem) => `
+
+        <button
+          class="chip ${
+            chapterItem.id === id
+              ? "active"
+              : ""
+          }"
+          onclick="openNote(${chapterItem.id})"
+        >
+
+          Chapter ${chapterItem.id}
+
+        </button>
+
+      `).join("")}
+
+    </div>
+
+
+    <article class="panel note">
+
+      ${chapter.notes.map((note) => `
+
+        <h3>
+          ${note[0]}
+        </h3>
+
+        <p>
+          ${note[1]}
+        </p>
+
+        <div class="exam-key">
+
+          <b>
+            EXAM KEY:
+          </b>
+
+          ${note[2]}
+
+        </div>
+
+      `).join("")}
+
+    </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   FLASHCARDS
+===================================================== */
+
+function renderFlashHome() {
+
+  app.innerHTML =
+
+    heading(
+      "ACTIVE RECALL",
+      "Flashcard Decks",
+      "Every deck is shuffled and timed."
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+      ${AM_CHAPTERS.map((chapter) => `
+
+        <article
+          class="card"
+          onclick="startFlash(${chapter.id})"
+        >
+
+          <small>
+            ${chapter.flash.length} CARDS
+          </small>
+
+          <h3>
+            Chapter ${chapter.id}
+          </h3>
+
+          <p>
+            ${chapter.title}
+          </p>
+
+        </article>
+
+      `).join("")}
+
+    </div>
+
+    `;
+
+}
+
+
+function startFlash(id) {
+
+  const chapter =
+    AM_CHAPTERS.find(
+      (chapter) =>
+        chapter.id === id
+    );
+
+  if (!chapter) return;
+
+
+  currentFlash = {
+
+    id,
+
+    title:
+      `Chapter ${id} — ${chapter.title}`,
+
+    cards:
+      shuffle(chapter.flash),
+
+    index: 0,
+
+    startedAt:
+      Date.now(),
+
+    cardStartedAt:
+      Date.now(),
+
+    ratings: {
+      again: 0,
+      learning: 0,
+      mastered: 0
+    }
+
+  };
+
+
+  renderFlashCard();
+
+}
+
+
+function renderFlashCard() {
+
+  const flash =
+    currentFlash;
+
+  const card =
+    flash.cards[
+      flash.index
+    ];
+
+
+  const colours = [
+
+    ["#162a48", "#6386ff"],
+
+    ["#14352e", "#55e1bb"],
+
+    ["#3a2818", "#ffb45e"],
+
+    ["#311d3e", "#c27cff"],
+
+    ["#15333e", "#55c8ff"],
+
+    ["#361d27", "#ff7ca2"]
+
+  ];
+
+
+  const colour =
+    colours[
+      flash.index %
+      colours.length
+    ];
+
+
+  const elapsed =
+    Math.round(
+      (
+        Date.now() -
+        flash.startedAt
+      ) / 1000
+    );
+
+
+  app.innerHTML =
+
+    heading(
+      "FLASHCARD SESSION",
+      flash.title,
+      "Reveal the answer before rating yourself."
+    )
+
+    +
+
+    `
+
+    <div class="timerbar">
+
+      <span>
+        Card ${flash.index + 1}
+        /
+        ${flash.cards.length}
+      </span>
+
+      <strong>
+        ${formatTime(elapsed)}
+      </strong>
+
+    </div>
+
+
+    <div class="progress">
+
+      <span
+        style="
+          width:
+          ${
+            (
+              (flash.index + 1) /
+              flash.cards.length
+            ) * 100
+          }%
+        "
+      >
+      </span>
+
+    </div>
+
+
+    <div
+      class="flash"
+      style="
+        background:
+        linear-gradient(
+          145deg,
+          ${colour[0]},
+          #07111d
+        );
+
+        border-color:
+        ${colour[1]}66;
+      "
+    >
+
+      <p class="eyebrow">
+        CARD ${flash.index + 1}
+      </p>
+
+
+      <h3>
+        ${card[0]}
+      </h3>
+
+
+      <div
+        id="flashAnswer"
+        class="flashAnswer"
+      >
+
+        ${card[1]}
+
+      </div>
+
+
+      <div
+        id="flashExplain"
+        class="flashExplain"
+      >
+
+        ${card[2]}
+
+      </div>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        onclick="revealFlash()"
+      >
+        Reveal Answer
+      </button>
+
+
+      <button
+        class="danger"
+        onclick="rateFlash('again')"
+      >
+        Again
+      </button>
+
+
+      <button
+        class="secondary"
+        onclick="rateFlash('learning')"
+      >
+        Learning
+      </button>
+
+
+      <button
+        class="primary"
+        onclick="rateFlash('mastered')"
+      >
+        Mastered
+      </button>
+
+    </div>
+
+    `;
+
+}
+
+
+function revealFlash() {
+
+  $("flashAnswer").style.display =
+    "block";
+
+  $("flashExplain").style.display =
+    "block";
+
+}
+
+
+function rateFlash(rating) {
+
+  currentFlash
+    .ratings[rating] += 1;
+
+
+  if (
+    currentFlash.index <
+    currentFlash.cards.length - 1
+  ) {
+
+    currentFlash.index += 1;
+
+    currentFlash.cardStartedAt =
+      Date.now();
+
+    renderFlashCard();
+
+    return;
+
+  }
+
+
+  finishFlash();
+
+}
+
+
+function finishFlash() {
+
+  const seconds =
+    Math.round(
+      (
+        Date.now() -
+        currentFlash.startedAt
+      ) / 1000
+    );
+
+
+  const record = {
+
+    title:
+      currentFlash.title,
+
+    date:
+      new Date()
+        .toISOString(),
+
+    seconds,
+
+    total:
+      currentFlash.cards.length,
+
+    ...currentFlash.ratings
+
+  };
+
+
+  state.flashAttempts.push(record);
+
+  save();
+
+
+  app.innerHTML =
+
+    heading(
+      "DECK COMPLETE",
+      "Flashcard Result",
+      "This session has been saved."
+    )
+
+    +
+
+    `
+
+    <article class="result glass">
+
+      <div class="resultScore">
+
+        ${formatTime(seconds)}
+
+      </div>
+
+
+      <div class="resultGrid">
+
+        <div>
+          Total
+          <br>
+          <b>
+            ${currentFlash.cards.length}
+          </b>
+        </div>
+
+
+        <div>
+          Mastered
+          <br>
+          <b>
+            ${currentFlash.ratings.mastered}
+          </b>
+        </div>
+
+
+        <div>
+          Learning
+          <br>
+          <b>
+            ${currentFlash.ratings.learning}
+          </b>
+        </div>
+
+
+        <div>
+          Again
+          <br>
+          <b>
+            ${currentFlash.ratings.again}
+          </b>
+        </div>
+
+
+        <div>
+          Avg / Card
+          <br>
+          <b>
+            ${
+              Math.round(
+                seconds /
+                currentFlash.cards.length
+              )
+            }s
+          </b>
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          onclick="
+            startFlash(
+              ${currentFlash.id}
+            )
+          "
+        >
+          Resit Full Deck
+        </button>
+
+
+        <button
+          class="secondary"
+          onclick="renderFlashHome()"
+        >
+          Back to Decks
+        </button>
+
+      </div>
+
+    </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   QUESTION BANK
+===================================================== */
+
+function renderQuestionBank() {
+
+  const allQuestions =
+    getAllQuestions();
+
+
+  app.innerHTML =
+
+    heading(
+      "MASTER QUESTION BANK",
+      "Question Bank",
+      "Questions and answer positions shuffle every new attempt."
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+
+      <article
+        class="card"
+        onclick="
+          startQuiz(
+            getAllQuestions(),
+            'Mixed Master Bank',
+            true,
+            'bank'
+          )
+        "
+      >
+
+        <small>
+          ${allQuestions.length}
+          QUESTIONS
+        </small>
+
+        <h3>
+          All Chapters
+        </h3>
+
+        <p>
+          Mixed Chapter 1–4 practice.
+        </p>
+
+      </article>
+
+
+      ${AM_CHAPTERS.map((chapter) => `
+
+        <article
+          class="card"
+          onclick="
+            startChapterBank(
+              ${chapter.id}
+            )
+          "
+        >
+
+          <small>
+            ${chapter.mcq.length}
+            QUESTIONS
+          </small>
+
+          <h3>
+            Chapter ${chapter.id}
+          </h3>
+
+          <p>
+            ${chapter.title}
+          </p>
+
+        </article>
+
+      `).join("")}
+
+
+    </div>
+
+    `;
+
+}
+
+
+function startChapterBank(id) {
+
+  const questions =
+    getAllQuestions()
+      .filter(
+        (question) =>
+          question.chapter === id
+      );
+
+
+  startQuiz(
+    questions,
+    `Chapter ${id} Question Bank`,
+    true,
+    "bank"
+  );
+
+}
+
+
+/* =====================================================
+   QUIZ ENGINE
+===================================================== */
+
+function startQuiz(
+  questions,
+  title,
+  instantFeedback = true,
+  source = "bank",
+  minutes = null
+) {
+
+  if (!questions.length) {
+
+    app.innerHTML = `
+      <div class="panel">
+        No questions available.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  clearInterval(examInterval);
+
+
+  currentQuiz = {
+
+    title,
+
+    source,
+
+    instantFeedback,
+
+    questions:
+      prepareQuestions(
+        questions
+      ),
+
+    index: 0,
+
+    startedAt:
+      Date.now(),
+
+    questionStartedAt:
+      Date.now(),
+
+    answers: [],
+
+    deadline:
+      minutes
+        ? Date.now() +
+          minutes * 60000
+        : null,
+
+    minutes
+
+  };
+
+
+  renderQuizQuestion();
+
+
+  if (minutes) {
+
+    examInterval =
+      setInterval(() => {
+
+        if (!currentQuiz) return;
+
+
+        if (
+          Date.now() >=
+          currentQuiz.deadline
+        ) {
+
+          clearInterval(
+            examInterval
+          );
+
+          finishQuiz();
+
+        } else {
+
+          updateQuizTimer();
+
+        }
+
+      }, 1000);
+
+  }
+
+}
+
+
+function updateQuizTimer() {
+
+  const timer =
+    $("sessionTimer");
+
+  if (!timer) return;
+
+
+  if (
+    currentQuiz.deadline
+  ) {
+
+    timer.textContent =
+      formatTime(
+        Math.max(
+          0,
+          Math.round(
+            (
+              currentQuiz.deadline -
+              Date.now()
+            ) / 1000
+          )
+        )
+      );
+
+  } else {
+
+    timer.textContent =
+      formatTime(
+        Math.round(
+          (
+            Date.now() -
+            currentQuiz.startedAt
+          ) / 1000
+        )
+      );
+
+  }
+
+}
+
+
+function renderQuizQuestion() {
+
+  const quiz =
+    currentQuiz;
+
+  const question =
+    quiz.questions[
+      quiz.index
+    ];
+
+  const answer =
+    quiz.answers[
+      quiz.index
+    ];
+
+
+  const elapsed =
+    quiz.deadline
+      ? Math.max(
+          0,
+          Math.round(
+            (
+              quiz.deadline -
+              Date.now()
+            ) / 1000
+          )
+        )
+      : Math.round(
+          (
+            Date.now() -
+            quiz.startedAt
+          ) / 1000
+        );
+
+
+  app.innerHTML =
+
+    heading(
+      quiz.instantFeedback
+        ? "LIVE PRACTICE"
+        : "TIMED MOCK EXAM",
+
+      quiz.title,
+
+      quiz.instantFeedback
+        ? "Correct answer and explanation appear immediately."
+        : "Feedback is hidden until Submit."
+    )
+
+    +
+
+    `
+
+    <div class="timerbar">
+
+      <span>
+        Question
+        ${quiz.index + 1}
+        /
+        ${quiz.questions.length}
+      </span>
+
+      <strong id="sessionTimer">
+
+        ${formatTime(elapsed)}
+
+      </strong>
+
+    </div>
+
+
+    <div class="progress">
+
+      <span
+        style="
+          width:
+          ${
+            (
+              (quiz.index + 1) /
+              quiz.questions.length
+            ) * 100
+          }%
+        "
+      >
+      </span>
+
+    </div>
+
+
+    <article class="panel quiz">
+
+
+      <p class="eyebrow">
+
+        CHAPTER
+        ${question.chapter}
+
+        •
+
+        ${
+          question.level ||
+          "CORE"
+        }
+
+      </p>
+
+
+      <h3>
+        ${question.question}
+      </h3>
+
+
+      ${question.shuffledOptions
+        .map(
+          (option, index) => `
+
+        <button
+          class="
+            option
+            ${
+              answer &&
+              answer.choice === index
+                ? "selected"
+                : ""
+            }
+          "
+          onclick="
+            chooseAnswer(
+              ${index},
+              this
+            )
+          "
+        >
+
+          ${
+            String.fromCharCode(
+              65 + index
+            )
+          }.
+
+          ${option.text}
+
+        </button>
+
+      `
+        )
+        .join("")}
+
+
+      <div
+        class="feedback"
+        id="feedback"
+      >
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          id="nextButton"
+          style="
+            display:
+            ${
+              answer
+                ? "inline-block"
+                : "none"
+            }
+          "
+          onclick="nextQuizQuestion()"
+        >
+
+          ${
+            quiz.index ===
+            quiz.questions.length - 1
+
+              ? "Submit"
+
+              : "Next Question"
+          }
+
+        </button>
+
+      </div>
+
+    </article>
+
+    `;
+
+}
+
+
+function chooseAnswer(
+  choice,
+  button
+) {
+
+  const quiz =
+    currentQuiz;
+
+  if (
+    quiz.answers[
+      quiz.index
+    ]
+  ) return;
+
+
+  const question =
+    quiz.questions[
+      quiz.index
+    ];
+
+
+  const seconds =
+    Math.round(
+      (
+        Date.now() -
+        quiz.questionStartedAt
+      ) / 1000
+    );
+
+
+  const correct =
+    choice ===
+    question.correctIndex;
+
+
+  quiz.answers[
+    quiz.index
+  ] = {
+
+    choice,
+
+    correct,
+
+    seconds
+
+  };
+
+
+  state.answered += 1;
+
+
+  if (correct) {
+
+    state.correct += 1;
+
+  } else {
+
+    const exists =
+      state.mistakes.some(
+        (mistake) =>
+          mistake.id ===
+          question.id
+      );
+
+
+    if (!exists) {
+
+      state.mistakes.push({
+
+        id:
+          question.id,
+
+        chapter:
+          question.chapter,
+
+        question:
+          question.question,
+
+        correct:
+          question
+            .shuffledOptions[
+              question.correctIndex
+            ]
+            .text,
+
+        explanation:
+          question.explanation
+
+      });
+
+    }
+
+  }
+
+
+  if (
+    quiz.instantFeedback
+  ) {
+
+    document
+      .querySelectorAll(
+        ".option"
+      )
+      .forEach(
+        (
+          optionButton,
+          index
+        ) => {
+
+          if (
+            index ===
+            question.correctIndex
+          ) {
+
+            optionButton
+              .classList
+              .add("correct");
+
+          } else if (
+            index === choice
+          ) {
+
+            optionButton
+              .classList
+              .add("wrong");
+
+          }
+
+        }
+      );
+
+
+    $("feedback").style.display =
+      "block";
+
+
+    $("feedback").innerHTML = `
+
+      <b>
+
+        ${
+          correct
+            ? "✓ Correct"
+            : "✕ Review this concept"
+        }
+
+      </b>
+
+      <br>
+
+      ${question.explanation}
+
+      <br>
+
+      <small>
+        Time on question:
+        ${seconds}s
+      </small>
+
+    `;
+
+  }
+
+
+  $("nextButton").style.display =
+    "inline-block";
+
+
+  save();
+
+  renderStats();
+
+}
+
+
+function nextQuizQuestion() {
+
+  if (
+    currentQuiz.index <
+    currentQuiz.questions.length - 1
+  ) {
+
+    currentQuiz.index += 1;
+
+    currentQuiz.questionStartedAt =
+      Date.now();
+
+    renderQuizQuestion();
+
+    return;
+
+  }
+
+
+  finishQuiz();
+
+}
+
+
+function finishQuiz() {
+
+  clearInterval(
+    examInterval
+  );
+
+
+  const quiz =
+    currentQuiz;
+
+
+  if (!quiz) return;
+
+
+  const totalSeconds =
+    Math.round(
+      (
+        Date.now() -
+        quiz.startedAt
+      ) / 1000
+    );
+
+
+  const correct =
+    quiz.answers.filter(
+      (answer) =>
+        answer &&
+        answer.correct
+    ).length;
+
+
+  const answered =
+    quiz.answers.filter(
+      Boolean
+    ).length;
+
+
+  const total =
+    quiz.questions.length;
+
+
+  const score =
+    Math.round(
+      (
+        correct /
+        total
+      ) * 100
+    );
+
+
+  const attempt = {
+
+    title:
+      quiz.title,
+
+    source:
+      quiz.source,
+
+    date:
+      new Date()
+        .toISOString(),
+
+    seconds:
+      totalSeconds,
+
+    correct,
+
+    total,
+
+    answered,
+
+    score
+
+  };
+
+
+  state.attempts.push(
+    attempt
+  );
+
+
+  save();
+
+
+  const originalQuiz =
+    quiz;
+
+
+  app.innerHTML =
+
+    heading(
+      "ATTEMPT COMPLETE",
+      originalQuiz.title,
+      "Full answer review is now unlocked."
+    )
+
+    +
+
+    `
+
+    <article class="result glass">
+
+
+      <div class="resultScore">
+
+        ${score}%
+
+      </div>
+
+
+      <div class="resultGrid">
+
+
+        <div>
+
+          Correct
+          <br>
+
+          <b>
+            ${correct}
+          </b>
+
+        </div>
+
+
+        <div>
+
+          Incorrect
+          <br>
+
+          <b>
+            ${
+              answered -
+              correct
+            }
+          </b>
+
+        </div>
+
+
+        <div>
+
+          Unanswered
+          <br>
+
+          <b>
+            ${
+              total -
+              answered
+            }
+          </b>
+
+        </div>
+
+
+        <div>
+
+          Total Time
+          <br>
+
+          <b>
+            ${formatTime(totalSeconds)}
+          </b>
+
+        </div>
+
+
+        <div>
+
+          Avg / Question
+          <br>
+
+          <b>
+
+            ${
+              answered
+                ? Math.round(
+                    totalSeconds /
+                    answered
+                  )
+                : 0
+            }s
+
+          </b>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="actions">
+
+
+        <button
+          class="primary"
+          id="resitButton"
+        >
+          Resit Full Set
+        </button>
+
+
+        <button
+          class="secondary"
+          id="retryMistakesButton"
+        >
+          Retry Mistakes
+        </button>
+
+
+        <button
+          class="secondary"
+          data-route="${
+            originalQuiz.source === "mocks"
+              ? "mocks"
+              : originalQuiz.source === "quizzes"
+              ? "quizzes"
+              : "bank"
+          }"
+        >
+          Back
+        </button>
+
+
+      </div>
+
+
+      <h3>
+        Full Answer Review
+      </h3>
+
+
+      ${originalQuiz.questions
+        .map(
+          (question, index) => {
+
+            const answer =
+              originalQuiz
+                .answers[index];
+
+
+            return `
+
+              <div
+                class="
+                  review
+                  ${
+                    answer &&
+                    answer.correct
+                      ? "ok"
+                      : "bad"
+                  }
+                "
+              >
+
+                <b>
+
+                  Q${index + 1}.
+
+                  ${question.question}
+
+                </b>
+
+
+                <p>
+
+                  Your answer:
+
+                  ${
+                    answer
+                      ? question
+                          .shuffledOptions[
+                            answer.choice
+                          ]
+                          .text
+                      : "Unanswered"
+                  }
+
+                  <br>
+
+
+                  Correct answer:
+
+                  ${
+                    question
+                      .shuffledOptions[
+                        question.correctIndex
+                      ]
+                      .text
+                  }
+
+                  <br>
+
+
+                  ${question.explanation}
+
+                  <br>
+
+
+                  <small>
+
+                    ${
+                      answer
+                        ? answer.seconds
+                        : 0
+                    }s
+
+                  </small>
+
+                </p>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("")}
+
+    </article>
+
+    `;
+
+
+  $("resitButton").onclick =
+    () => {
+
+      const rebuiltQuestions =
+        originalQuiz.questions.map(
+          (question) => {
+
+            return {
+
+              id:
+                question.id,
+
+              chapter:
+                question.chapter,
+
+              chapterTitle:
+                question.chapterTitle,
+
+              question:
+                question.question,
+
+              options:
+                question
+                  .shuffledOptions
+                  .map(
+                    (option) =>
+                      option.text
+                  ),
+
+              correct:
+                question.correctIndex,
+
+              explanation:
+                question.explanation,
+
+              level:
+                question.level
+
+            };
+
+          }
+        );
+
+
+      startQuiz(
+        rebuiltQuestions,
+        originalQuiz.title,
+        originalQuiz.instantFeedback,
+        originalQuiz.source,
+        originalQuiz.minutes
+      );
+
+    };
+
+
+  $("retryMistakesButton").onclick =
+    () => {
+
+      const missedQuestions =
+        originalQuiz.questions
+          .filter(
+            (
+              question,
+              index
+            ) => {
+
+              const answer =
+                originalQuiz
+                  .answers[index];
+
+              return (
+                !answer ||
+                !answer.correct
+              );
+
+            }
+          )
+          .map(
+            (question) => {
+
+              return {
+
+                id:
+                  question.id,
+
+                chapter:
+                  question.chapter,
+
+                chapterTitle:
+                  question.chapterTitle,
+
+                question:
+                  question.question,
+
+                options:
+                  question
+                    .shuffledOptions
+                    .map(
+                      (option) =>
+                        option.text
+                    ),
+
+                correct:
+                  question.correctIndex,
+
+                explanation:
+                  question.explanation,
+
+                level:
+                  question.level
+
+              };
+
+            }
+          );
+
+
+      if (
+        missedQuestions.length
+      ) {
+
+        startQuiz(
+          missedQuestions,
+          "Retry Missed Questions",
+          true,
+          originalQuiz.source
+        );
+
+      }
+
+    };
+
+}
+
+
+/* =====================================================
+   SHORT ANSWERS
+===================================================== */
+
+function renderShortAnswers() {
+
+  app.innerHTML =
+
+    heading(
+      "WRITTEN RECALL",
+      "Short Answers",
+      "Write from memory first, then reveal the model answer."
+    )
+
+    +
+
+    AM_CHAPTERS
+      .map(
+        (chapter) => `
+
+        <h3>
+
+          Chapter
+          ${chapter.id}
+          —
+          ${chapter.title}
+
+        </h3>
+
+
+        ${chapter.saq
+          .map(
+            (
+              item,
+              index
+            ) => `
+
+            <article class="panel">
+
+
+              <p class="eyebrow">
+
+                SAQ
+                ${index + 1}
+
+              </p>
+
+
+              <h4>
+
+                ${item[0]}
+
+              </h4>
+
+
+              <textarea
+                placeholder="
+                  Write your answer here
+                  before revealing
+                  the model answer...
+                "
+              >
+              </textarea>
+
+
+              <div class="actions">
+
+                <button
+                  class="secondary"
+                  onclick="
+                    revealModel(
+                      this
+                    )
+                  "
+                >
+
+                  Reveal Model Answer
+
+                </button>
+
+              </div>
+
+
+              <div class="model">
+
+                ${item[1]}
+
+              </div>
+
+
+            </article>
+
+          `
+          )
+          .join("")}
+
+      `
+      )
+      .join("");
+
+}
+
+
+function revealModel(button) {
+
+  const model =
+    button
+      .parentElement
+      .nextElementSibling;
+
+
+  model.style.display =
+    "block";
+
+}
+
+
+/* =====================================================
+   QUIZZES
+===================================================== */
+
+function renderQuizzes() {
+
+  if (!window.AM_QUIZZES) {
+
+    app.innerHTML = `
+      <div class="panel">
+        Quiz data failed to load.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  app.innerHTML =
+
+    heading(
+      "COURSE PRACTICE",
+      "6 Quiz Sets",
+      "Teacher and revision-style practice stays separate from the master bank."
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+      ${AM_QUIZZES.map(
+        (quizItem, index) => `
+
+        <article
+          class="card"
+          onclick="
+            launchQuiz(
+              ${index}
+            )
+          "
+        >
+
+          <small>
+
+            ${
+              quizItem
+                .mode
+                .toUpperCase()
+            }
+
+          </small>
+
+
+          <h3>
+
+            ${quizItem.title}
+
+          </h3>
+
+
+          <p>
+
+            ${
+              quizItem.chapter
+                ? `Chapter ${quizItem.chapter}`
+                : "Mixed Chapters 1–4"
+            }
+
+          </p>
+
+        </article>
+
+      `
+      ).join("")}
+
+    </div>
+
+    `;
+
+}
+
+
+function launchQuiz(index) {
+
+  const quizItem =
+    AM_QUIZZES[index];
+
+
+  let questions =
+    quizItem.chapter
+      ? getAllQuestions()
+          .filter(
+            (question) =>
+              question.chapter ===
+              quizItem.chapter
+          )
+      : getAllQuestions();
+
+
+  if (
+    quizItem.mode ===
+    "tricky"
+  ) {
+
+    const tricky =
+      questions.filter(
+        (question) =>
+          question.level ===
+          "REVERSE/BEST"
+      );
+
+
+    const others =
+      questions
+        .filter(
+          (question) =>
+            question.level !==
+            "REVERSE/BEST"
+        )
+        .slice(0, 8);
+
+
+    questions = [
+      ...tricky,
+      ...others
+    ];
+
+  }
+
+
+  startQuiz(
+    questions,
+    quizItem.title,
+    true,
+    "quizzes"
+  );
+
+}
+
+
+/* =====================================================
+   MOCK EXAMS
+===================================================== */
+
+function renderMocks() {
+
+  if (!window.AM_MOCKS) {
+
+    app.innerHTML = `
+      <div class="panel">
+        Mock exam data failed to load.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  app.innerHTML =
+
+    heading(
+      "EXAM CENTRE",
+      "5 Mock Exams",
+      "Timed mode with no instant answer feedback."
+    )
+
+    +
+
+    `
+
+    <div class="grid">
+
+      ${AM_MOCKS.map(
+        (mock, index) => `
+
+        <article
+          class="card"
+          onclick="
+            launchMock(
+              ${index}
+            )
+          "
+        >
+
+          <small>
+
+            ${mock.minutes}
+            MIN
+
+          </small>
+
+
+          <h3>
+
+            ${mock.title}
+
+          </h3>
+
+
+          <p>
+
+            Timed Chapter 1–4 simulation.
+
+          </p>
+
+        </article>
+
+      `
+      ).join("")}
+
+    </div>
+
+    `;
+
+}
+
+
+function launchMock(index) {
+
+  const mock =
+    AM_MOCKS[index];
+
+
+  const pool =
+    getAllQuestions();
+
+
+  const questions =
+    shuffle(pool)
+      .slice(
+        0,
+        Math.min(
+          20,
+          pool.length
+        )
+      );
+
+
+  startQuiz(
+    questions,
+    mock.title,
+    false,
+    "mocks",
+    mock.minutes
+  );
+
+}
+
+
+/* =====================================================
+   MISTAKE VAULT
+===================================================== */
+
+function renderMistakes() {
+
+  app.innerHTML =
+
+    heading(
+      "TARGETED RECOVERY",
+      "Mistake Vault",
+      "Wrong practice questions are saved automatically."
+    )
+
+    +
+
+    (
+      state.mistakes.length
+
+        ? `
+
+          <div class="actions">
+
+            <button
+              class="primary"
+              onclick="retryMistakeVault()"
+            >
+              Retry All Mistakes
+            </button>
+
+
+            <button
+              class="danger"
+              onclick="clearMistakeVault()"
+            >
+              Clear Vault
+            </button>
+
+          </div>
+
+
+          ${state.mistakes.map(
+            (mistake) => `
+
+            <article class="mistake">
+
+              <small>
+
+                CHAPTER
+                ${mistake.chapter}
+
+              </small>
+
+
+              <h4>
+
+                ${mistake.question}
+
+              </h4>
+
+
+              <p>
+
+                Correct:
+
+                ${mistake.correct}
+
+              </p>
+
+
+              <p class="muted">
+
+                ${mistake.explanation}
+
+              </p>
+
+            </article>
+
+          `
+          ).join("")}
+
+        `
+
+        : `
+
+          <article class="panel">
+
+            No mistakes waiting 🎯
+
+          </article>
+
+        `
+    );
+
+}
+
+
+function retryMistakeVault() {
+
+  const ids =
+    new Set(
+      state.mistakes.map(
+        (mistake) =>
+          mistake.id
+      )
+    );
+
+
+  const questions =
+    getAllQuestions()
+      .filter(
+        (question) =>
+          ids.has(
+            question.id
+          )
+      );
+
+
+  if (questions.length) {
+
+    startQuiz(
+      questions,
+      "Mistake Vault Retry",
+      true,
+      "bank"
+    );
+
+  }
+
+}
+
+
+function clearMistakeVault() {
+
+  const confirmed =
+    confirm(
+      "Clear all saved mistakes on this device?"
+    );
+
+
+  if (!confirmed) return;
+
+
+  state.mistakes = [];
+
+  save();
+
+  renderStats();
+
+  renderMistakes();
+
+}
+
+
+/* =====================================================
+   SCHEDULE
+===================================================== */
+
+function getTaskMap() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(
+        TASKSTORE
+      ) || "{}"
+    );
+
+  } catch {
+
+    return {};
+
+  }
+
+}
+
+
+function renderSchedule() {
+
+  if (!window.AM_SCHEDULE) {
+
+    app.innerHTML = `
+      <div class="panel">
+        Schedule data failed to load.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const done =
+    getTaskMap();
+
+
+  const tasks =
+    [...AM_SCHEDULE]
+      .sort(
+        (a, b) =>
+          a.date.localeCompare(
+            b.date
+          )
+      );
+
+
+  app.innerHTML =
+
+    heading(
+      "STREAM C",
+      "Schedule & Tasks",
+      "Mark completed work and upcoming items will remain organised."
+    )
+
+    +
+
+    tasks
+      .map(
+        (task) => `
+
+        <article
+          class="
+            task
+            glass
+            ${
+              done[task.id]
+                ? "done"
+                : ""
+            }
+          "
+        >
+
+
+          <div>
+
+
+            <small>
+
+              ${
+                new Date(
+                  task.date +
+                  "T12:00:00"
+                )
+                .toLocaleDateString(
+                  "en-NZ",
+                  {
+                    weekday: "short",
+                    day: "numeric",
+                    month: "short"
+                  }
+                )
+              }
+
+              •
+
+              Week
+              ${task.week}
+
+            </small>
+
+
+            <h4>
+
+              ${task.title}
+
+            </h4>
+
+
+            <p class="muted">
+
+              ${
+                task.stream === "C"
+                  ? "Stream C relevant"
+                  : "All streams"
+              }
+
+            </p>
+
+
+          </div>
+
+
+          <button
+            class="
+              ${
+                done[task.id]
+                  ? "secondary"
+                  : "primary"
+              }
+            "
+            onclick="
+              toggleTask(
+                '${task.id}'
+              )
+            "
+          >
+
+            ${
+              done[task.id]
+                ? "Completed ✓"
+                : "Mark Done"
+            }
+
+          </button>
+
+
+        </article>
+
+      `
+      )
+      .join("");
+
+}
+
+
+function toggleTask(id) {
+
+  const done =
+    getTaskMap();
+
+
+  done[id] =
+    !done[id];
+
+
+  localStorage.setItem(
+    TASKSTORE,
+    JSON.stringify(done)
+  );
+
+
+  renderSchedule();
+
+  renderPriority();
+
+}
+
+
+/* =====================================================
+   NEXT PRIORITY
+===================================================== */
+
+function renderPriority() {
+
+  if (!window.AM_SCHEDULE) {
+
+    $("priorityTitle")
+      .textContent =
+      "Schedule unavailable";
+
+    return;
+
+  }
+
+
+  const done =
+    getTaskMap();
+
+
+  const today =
+    todayKey();
+
+
+  const next =
+    AM_SCHEDULE
+      .filter(
+        (task) =>
+          task.date >= today &&
+          !done[task.id]
+      )
+      .sort(
+        (a, b) =>
+          a.date.localeCompare(
+            b.date
+          )
+      )[0];
+
+
+  if (!next) {
+
+    $("priorityTitle")
+      .textContent =
+      "No upcoming tasks";
+
+
+    $("priorityMeta")
+      .textContent =
+      "";
+
+
+    return;
+
+  }
+
+
+  $("weekLabel")
+    .textContent =
+    `WEEK ${next.week} • STREAM C`;
+
+
+  $("priorityTitle")
+    .textContent =
+    next.title;
+
+
+  const days =
+    Math.ceil(
+      (
+        new Date(
+          next.date +
+          "T12:00:00"
+        ) -
+        new Date()
+      ) /
+      86400000
+    );
+
+
+  $("priorityMeta")
+    .textContent =
+
+    `${
+      new Date(
+        next.date +
+        "T12:00:00"
+      )
+      .toLocaleDateString(
+        "en-NZ",
+        {
+          weekday: "long",
+          day: "numeric",
+          month: "long"
+        }
+      )
+    }
+
+    •
+
+    ${
+      days <= 0
+        ? "Today"
+        : days === 1
+        ? "Tomorrow"
+        : `${days} days`
+    }`;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function renderProgress() {
+
+  const attempts =
+    [...state.attempts]
+      .reverse();
+
+
+  const flashAttempts =
+    [...state.flashAttempts]
+      .reverse();
+
+
+  const bestScore =
+    state.attempts.length
+      ? Math.max(
+          ...state.attempts.map(
+            (attempt) =>
+              attempt.score
+          )
+        )
+      : 0;
+
+
+  app.innerHTML =
+
+    heading(
+      "LEARNING ANALYTICS",
+      "Progress History",
+      "Attempts, study time and flashcard results saved on this browser."
+    )
+
+    +
+
+    `
+
+    <section class="stats">
+
+
+      <div class="stat glass">
+
+        <small>
+          Attempts
+        </small>
+
+        <strong>
+          ${state.attempts.length}
+        </strong>
+
+      </div>
+
+
+      <div class="stat glass">
+
+        <small>
+          Flash Decks
+        </small>
+
+        <strong>
+          ${state.flashAttempts.length}
+        </strong>
+
+      </div>
+
+
+      <div class="stat glass">
+
+        <small>
+          Best Score
+        </small>
+
+        <strong>
+          ${bestScore}%
+        </strong>
+
+      </div>
+
+
+      <div class="stat glass">
+
+        <small>
+          Total Study
+        </small>
+
+        <strong>
+          ${formatTime(state.totalSec)}
+        </strong>
+
+      </div>
+
+
+      <div class="stat glass">
+
+        <small>
+          Questions
+        </small>
+
+        <strong>
+          ${state.answered}
+        </strong>
+
+      </div>
+
+
+      <div class="stat glass">
+
+        <small>
+          Visits
+        </small>
+
+        <strong>
+          ${state.visits}
+        </strong>
+
+      </div>
+
+
+    </section>
+
+
+    <h3>
+      Quiz / Exam Attempts
+    </h3>
+
+
+    ${
+      attempts.length
+
+        ? attempts.map(
+            (attempt) => `
+
+            <article class="panel">
+
+              <b>
+                ${attempt.title}
+              </b>
+
+              <p class="muted">
+
+                ${
+                  new Date(
+                    attempt.date
+                  )
+                  .toLocaleString(
+                    "en-NZ"
+                  )
+                }
+
+                •
+
+                ${attempt.score}%
+
+                •
+
+                ${attempt.correct}
+                /
+                ${attempt.total}
+
+                •
+
+                ${formatTime(
+                  attempt.seconds
+                )}
+
+              </p>
+
+            </article>
+
+          `
+          ).join("")
+
+        : `
+
+          <article class="panel">
+
+            No completed attempts yet.
+
+          </article>
+
+        `
+    }
+
+
+    <h3>
+      Flashcard Attempts
+    </h3>
+
+
+    ${
+      flashAttempts.length
+
+        ? flashAttempts.map(
+            (attempt) => `
+
+            <article class="panel">
+
+              <b>
+                ${attempt.title}
+              </b>
+
+              <p class="muted">
+
+                ${
+                  new Date(
+                    attempt.date
+                  )
+                  .toLocaleString(
+                    "en-NZ"
+                  )
+                }
+
+                •
+
+                ${formatTime(
+                  attempt.seconds
+                )}
+
+                •
+
+                Mastered
+                ${attempt.mastered}
+                /
+                ${attempt.total}
+
+              </p>
+
+            </article>
+
+          `
+          ).join("")
+
+        : `
+
+          <article class="panel">
+
+            No completed flashcard decks yet.
+
+          </article>
+
+        `
+    }
+
+    `;
+
+}
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+renderPriority();
+
+renderHome();
