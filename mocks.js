@@ -686,5 +686,349 @@ window.AM_MOCKS = [
 
   ]
 }
+  ,
+{
+  id: "m3",
+  title: "GEDU404B Test 1 — Mock Exam Version 3: Application & Scenarios",
+  minutes: 30,
+
+  mcqs: [
+
+    {
+      id: 1,
+      question: "During an ultrasound report, a clinician writes: “The liver lies inferior to the diaphragm.” What type of information is this primarily?",
+      options: [
+        "Physiology",
+        "Anatomy",
+        "Cell transport",
+        "Biochemistry"
+      ],
+      correct: 1,
+      explanation: "Location and structural relationships are anatomy."
+    },
+
+    {
+      id: 2,
+      question: "A student is standing upright, facing forward, but has the palms facing backward. Which statement is BEST?",
+      options: [
+        "The student is in full anatomical position.",
+        "Only the hand position is incorrect for anatomical position.",
+        "Only the head position is incorrect.",
+        "The position is correct because palms are irrelevant."
+      ],
+      correct: 1,
+      explanation: "Anatomical position requires the palms to face forward."
+    },
+
+    {
+      id: 3,
+      question: "A cut passes horizontally through the abdomen and separates upper structures from lower structures. Which plane was used?",
+      options: [
+        "Frontal",
+        "Sagittal",
+        "Transverse",
+        "Midsagittal"
+      ],
+      correct: 2,
+      explanation: "A transverse plane divides the body into superior and inferior portions."
+    },
+
+    {
+      id: 4,
+      question: "A patient has an injury to the spinal cord. Which major body cavity subdivision contains the injured structure?",
+      options: [
+        "Cranial",
+        "Vertebral/spinal",
+        "Thoracic",
+        "Pelvic"
+      ],
+      correct: 1,
+      explanation: "The spinal cord lies within the vertebral or spinal cavity."
+    },
+
+    {
+      id: 5,
+      question: "A runner's muscles need oxygen while carbon dioxide produced by the cells must be carried away. Which TWO systems work most directly together for gas exchange and transport?",
+      options: [
+        "Respiratory and cardiovascular",
+        "Digestive and skeletal",
+        "Endocrine and reproductive",
+        "Urinary and integumentary"
+      ],
+      correct: 0,
+      explanation: "The respiratory system exchanges gases and the cardiovascular system transports them."
+    },
+
+    {
+      id: 6,
+      question: "An atom originally has equal numbers of protons and electrons. It loses two electrons. What is the BEST conclusion?",
+      options: [
+        "It becomes a negative anion.",
+        "It becomes a positive cation.",
+        "It remains neutral.",
+        "It becomes a neutron."
+      ],
+      correct: 1,
+      explanation: "Losing negatively charged electrons leaves a net positive charge, forming a cation."
+    },
+
+    {
+      id: 7,
+      question: "Two atoms become chemically joined because they share electrons. Which bond is described?",
+      options: [
+        "Ionic",
+        "Covalent",
+        "Hydrogen transfer",
+        "Osmotic"
+      ],
+      correct: 1,
+      explanation: "Sharing electrons forms a covalent bond."
+    },
+
+    {
+      id: 8,
+      question: "A laboratory solution changes from pH 4 toward pH 7 after another substance is added. Which process BEST describes the change?",
+      options: [
+        "Denaturation",
+        "Neutralisation",
+        "Mitosis",
+        "Diffusion"
+      ],
+      correct: 1,
+      explanation: "Moving an acidic solution toward neutral is neutralisation."
+    },
+
+    {
+      id: 9,
+      question: "A food molecule consists of many linked sugar units. Which category BEST fits it?",
+      options: [
+        "Monosaccharide",
+        "Disaccharide",
+        "Polysaccharide",
+        "Amino acid"
+      ],
+      correct: 2,
+      explanation: "A polysaccharide contains many linked sugar units."
+    },
+
+    {
+      id: 10,
+      question: "A protein loses its normal shape after strong heating. What has most likely occurred?",
+      options: [
+        "Neutralisation",
+        "Denaturation",
+        "Osmosis",
+        "Ion formation"
+      ],
+      correct: 1,
+      explanation: "Heat can alter the shape of a protein, causing denaturation."
+    },
+
+    {
+      id: 11,
+      question: "A cell needs large amounts of usable energy for activity. Which organelle would you expect to be especially important?",
+      options: [
+        "Mitochondria",
+        "Lysosomes",
+        "Centrioles",
+        "Golgi apparatus"
+      ],
+      correct: 0,
+      explanation: "Mitochondria produce ATP for cellular energy."
+    },
+
+    {
+      id: 12,
+      question: "A cell manufactures a protein that will later be exported. After synthesis on ribosomes/RER, which organelle most directly modifies, sorts and packages it?",
+      options: [
+        "Nucleus",
+        "Golgi apparatus",
+        "Lysosome",
+        "Centriole"
+      ],
+      correct: 1,
+      explanation: "The Golgi apparatus modifies, sorts and packages proteins."
+    },
+
+    {
+      id: 13,
+      question: "A cell contains a structure filled with digestive enzymes that breaks down worn-out material. Which organelle is described?",
+      options: [
+        "Lysosome",
+        "Mitochondrion",
+        "Ribosome",
+        "Smooth ER"
+      ],
+      correct: 0,
+      explanation: "Lysosomes contain digestive enzymes for intracellular digestion."
+    },
+
+    {
+      id: 14,
+      question: "A student uses a 10× eyepiece and sees the specimen at 400× total magnification. Which objective is in use?",
+      options: [
+        "4×",
+        "10×",
+        "40×",
+        "400×"
+      ],
+      correct: 2,
+      explanation: "10× eyepiece × 40× objective = 400× total magnification."
+    },
+
+    {
+      id: 15,
+      question: "A cut in the skin heals because body cells produce new genetically identical cells. Which process is MOST directly responsible?",
+      options: [
+        "Mitosis",
+        "Osmosis",
+        "Facilitated diffusion",
+        "Denaturation"
+      ],
+      correct: 0,
+      explanation: "Mitosis produces genetically identical cells for growth, repair and replacement."
+    },
+
+    {
+      id: 16,
+      question: "A working muscle cell consumes oxygen, leaving less oxygen inside than in nearby blood. How does oxygen MOST directly enter the cell?",
+      options: [
+        "Simple diffusion down its concentration gradient",
+        "Active transport against its gradient",
+        "Phagocytosis",
+        "Osmosis"
+      ],
+      correct: 0,
+      explanation: "Oxygen moves from higher to lower concentration by simple diffusion."
+    },
+
+    {
+      id: 17,
+      question: "A solute cannot pass directly through the lipid bilayer, but a membrane carrier moves it from high to low concentration without ATP. Which mechanism is occurring?",
+      options: [
+        "Active transport",
+        "Facilitated diffusion",
+        "Exocytosis",
+        "Osmosis"
+      ],
+      correct: 1,
+      explanation: "High-to-low movement through a carrier without ATP is facilitated diffusion."
+    },
+
+    {
+      id: 18,
+      question: "A cell must move ions from a region of lower concentration to a region of higher concentration. Which combination is MOST likely required?",
+      options: [
+        "ATP and a membrane pump",
+        "Water and no protein",
+        "A concentration gradient only",
+        "A lysosome and no energy"
+      ],
+      correct: 0,
+      explanation: "Movement against the concentration gradient requires active transport using ATP and a membrane pump."
+    },
+
+    {
+      id: 19,
+      question: "A red blood cell placed in an unknown solution becomes swollen. Which conclusion is BEST supported?",
+      options: [
+        "The solution was hypertonic and water left the cell.",
+        "The solution was hypotonic and water entered the cell.",
+        "The solution was isotonic and no water moved at all.",
+        "The cell used exocytosis to gain water."
+      ],
+      correct: 1,
+      explanation: "A hypotonic solution causes net water movement into the cell, causing swelling."
+    },
+
+    {
+      id: 20,
+      question: "A white blood cell surrounds a large solid particle and encloses it in a vesicle. Which process is this?",
+      options: [
+        "Pinocytosis",
+        "Phagocytosis",
+        "Simple diffusion",
+        "Exocytosis"
+      ],
+      correct: 1,
+      explanation: "Phagocytosis is the uptake of large solid particles into vesicles."
+    }
+
+  ],
+
+  shortAnswers: [
+
+    {
+      id: 21,
+      marks: 4,
+      question: "A student writes: “The heart is in the thoracic cavity and pumps blood.” Identify which part is anatomy and which part is physiology, and explain why.",
+      modelAnswer: "“The heart is in the thoracic cavity” is anatomy because it describes location and structure. “Pumps blood” is physiology because it describes function."
+    },
+
+    {
+      id: 22,
+      marks: 4,
+      question: "A clinician says the wrist is distal to the elbow. Rewrite the same relationship using the elbow as the reference point, then define proximal and distal.",
+      modelAnswer: "The elbow is proximal to the wrist. Proximal means nearer the trunk or point of attachment; distal means farther from it."
+    },
+
+    {
+      id: 23,
+      marks: 6,
+      question: "A scan is made in three different planes. Explain what a sagittal, frontal/coronal and transverse plane would show by stating how each divides the body.",
+      modelAnswer: "Sagittal divides left and right; frontal or coronal divides anterior and posterior; transverse divides superior and inferior."
+    },
+
+    {
+      id: 24,
+      marks: 4,
+      question: "An atom gains one electron and another atom loses one electron. State the ion formed by each and explain the charge.",
+      modelAnswer: "The atom gaining an electron becomes an anion with a negative charge. The atom losing an electron becomes a cation with a positive charge."
+    },
+
+    {
+      id: 25,
+      marks: 5,
+      question: "A laboratory sample is pH 3. Another is pH 8. Classify both, state what pH 7 means, and give the normal blood pH range used in the course.",
+      modelAnswer: "pH 3 is acidic; pH 8 is basic or alkaline; pH 7 is neutral; normal blood pH is approximately 7.35–7.45."
+    },
+
+    {
+      id: 26,
+      marks: 6,
+      question: "A cell is making a protein for secretion. Describe the roles of ribosomes, rough ER and Golgi apparatus in this process.",
+      modelAnswer: "Ribosomes synthesise the protein; rough ER supports processing and transport of proteins; Golgi apparatus modifies, sorts and packages products into vesicles for transport or secretion."
+    },
+
+    {
+      id: 27,
+      marks: 4,
+      question: "A microscope has a 10× eyepiece. Calculate total magnification with 4×, 10× and 40× objectives, and state which objective you should normally start with.",
+      modelAnswer: "10× × 4× = 40×; 10× × 10× = 100×; 10× × 40× = 400×. Normally start with the 4× objective."
+    },
+
+    {
+      id: 28,
+      marks: 6,
+      question: "A muscle cell has lower oxygen concentration than the surrounding blood, while glucose enters through a carrier protein from high to low concentration. Name and explain the transport mechanism for EACH substance.",
+      modelAnswer: "Oxygen enters by simple diffusion, moving from high to low concentration directly through the membrane without ATP. Glucose enters by facilitated diffusion, moving from high to low through a carrier or channel protein without ATP."
+    },
+
+    {
+      id: 29,
+      marks: 6,
+      question: "An animal cell is placed first in a hypertonic solution, then in a hypotonic solution. Predict the direction of water movement and the effect on the cell in each case.",
+      modelAnswer: "In a hypertonic solution, water moves out of the cell by osmosis and the cell shrinks or crenates. In a hypotonic solution, water moves into the cell and the cell swells and may lyse."
+    },
+
+    {
+      id: 30,
+      marks: 8,
+      question: "Two de-shelled eggs are weighed. Egg A is placed in water and gains mass. Egg B is placed in concentrated golden syrup and loses mass. Explain both results using the terms selectively permeable membrane, solute concentration, water concentration and osmosis.",
+      modelAnswer: "Egg A: the water outside has relatively higher water concentration and lower solute concentration, so water crosses the selectively permeable membrane into the egg by osmosis and its mass increases. Egg B: concentrated golden syrup has higher solute concentration and lower water concentration, so water moves out of the egg by osmosis and its mass decreases."
+    }
+
+  ]
+}
 
 ];
