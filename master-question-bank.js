@@ -3367,7 +3367,7 @@ window.AM_MASTER_BANK = {
   ]
 },
 
-,
+
 {
   id: 41,
   chapter: 2,
