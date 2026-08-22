@@ -3259,44 +3259,369 @@ function renderMocks() {
 
 
 
-function launchMock(
-  index
-) {
+function launchMock(index) {
 
-  const mock =
-    AM_MOCKS[index];
+  const mock = AM_MOCKS[index];
 
+  if (!mock) {
+    alert("Mock exam could not be loaded.");
+    return;
+  }
 
-  const pool =
-    shuffle(
-      getAllQuestions()
-    );
+  // New full 30-question mock format
+  if (
+    Array.isArray(mock.mcqs) &&
+    Array.isArray(mock.shortAnswers)
+  ) {
+    startFullMockExam(mock);
+    return;
+  }
 
+  // Fallback for old mocks
+  const pool = shuffle(getAllQuestions());
 
-  const questions =
-    pool.slice(
-      0,
-      Math.min(
-        20,
-        pool.length
-      )
-    );
-
-
-  startQuiz(
-
-    questions,
-
-    mock.title,
-
-    false,
-
-    "mocks",
-
-    mock.minutes
-
+  const questions = pool.slice(
+    0,
+    Math.min(20, pool.length)
   );
 
+  startQuiz(
+    questions,
+    mock.title,
+    false,
+    "mocks",
+    mock.minutes
+  );
+}
+
+let fullMockState = null;
+
+function startFullMockExam(mock) {
+
+  fullMockState = {
+    mock: mock,
+    mcqs: shuffle([...mock.mcqs]),
+    shortAnswers: [...mock.shortAnswers],
+    mcqAnswers: {},
+    shortResponses: {},
+    currentSection: "mcq",
+    submitted: false,
+    startedAt: Date.now()
+  };
+
+  renderFullMockExam();
+}
+
+
+function renderFullMockExam() {
+
+  const state = fullMockState;
+
+  if (!state) return;
+
+  const mock = state.mock;
+
+  app.innerHTML =
+    heading(
+      "EXAM CENTRE",
+      mock.title,
+      "30 Questions • 20 MCQ + 10 Short Answers"
+    )
+    +
+    `
+    <article class="panel">
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        gap:15px;
+        flex-wrap:wrap;
+        margin-bottom:24px;
+      ">
+
+        <div>
+          <strong>30 Questions</strong><br>
+          <small>20 MCQ + 10 Short Answers</small>
+        </div>
+
+        <div>
+          <strong>${mock.minutes || 30} Minutes</strong><br>
+          <small>Chapters 1–4</small>
+        </div>
+
+      </div>
+
+
+      <h2>PART A — Multiple Choice</h2>
+
+      ${state.mcqs.map((q, index) => `
+
+        <div class="card" style="margin-bottom:20px;">
+
+          <small>QUESTION ${index + 1} / 30</small>
+
+          <h3>${escapeHtml(q.question)}</h3>
+
+          <div>
+
+            ${q.options.map((option, optionIndex) => `
+
+              <label
+                style="
+                  display:block;
+                  padding:14px;
+                  margin:8px 0;
+                  border:1px solid var(--line);
+                  border-radius:12px;
+                  cursor:pointer;
+                "
+              >
+
+                <input
+                  type="radio"
+                  name="mock_mcq_${q.id}"
+                  value="${optionIndex}"
+                  ${Number(state.mcqAnswers[q.id]) === optionIndex ? "checked" : ""}
+                  onchange="saveMockMCQ(${q.id}, ${optionIndex})"
+                >
+
+                ${String.fromCharCode(65 + optionIndex)}.
+                ${escapeHtml(option)}
+
+              </label>
+
+            `).join("")}
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+
+
+      <h2 style="margin-top:40px;">
+        PART B — Short Answers
+      </h2>
+
+      ${state.shortAnswers.map((q, index) => `
+
+        <div class="card" style="margin-bottom:20px;">
+
+          <small>
+            QUESTION ${index + 21} / 30
+            • ${q.marks || ""} MARKS
+          </small>
+
+          <h3>${escapeHtml(q.question)}</h3>
+
+          <textarea
+            rows="5"
+            placeholder="Write your answer here..."
+            oninput="saveMockShortAnswer(${q.id}, this.value)"
+            style="
+              width:100%;
+              box-sizing:border-box;
+              padding:15px;
+              margin-top:12px;
+              border-radius:12px;
+              border:1px solid var(--line);
+              background:var(--panel);
+              color:inherit;
+              font:inherit;
+            "
+          >${escapeHtml(state.shortResponses[q.id] || "")}</textarea>
+
+        </div>
+
+      `).join("")}
+
+
+      <button
+        class="primary"
+        onclick="submitFullMockExam()"
+        style="
+          width:100%;
+          margin-top:25px;
+          padding:18px;
+          font-size:18px;
+        "
+      >
+        Submit Full Mock Exam
+      </button>
+
+    </article>
+    `;
+}
+
+
+function saveMockMCQ(questionId, answerIndex) {
+
+  if (!fullMockState) return;
+
+  fullMockState.mcqAnswers[questionId] =
+    Number(answerIndex);
+}
+
+
+function saveMockShortAnswer(questionId, value) {
+
+  if (!fullMockState) return;
+
+  fullMockState.shortResponses[questionId] =
+    value;
+}
+
+
+function submitFullMockExam() {
+
+  const state = fullMockState;
+
+  if (!state) return;
+
+  let mcqCorrect = 0;
+
+  state.mcqs.forEach((q) => {
+
+    if (
+      Number(state.mcqAnswers[q.id])
+      ===
+      Number(q.correct)
+    ) {
+      mcqCorrect++;
+    }
+
+  });
+
+  const mcqPercent =
+    Math.round(
+      (mcqCorrect / state.mcqs.length) * 100
+    );
+
+  app.innerHTML =
+    heading(
+      "MOCK COMPLETE",
+      state.mock.title,
+      "Review your answers and model answers below."
+    )
+    +
+    `
+    <article class="panel">
+
+      <h2>
+        MCQ Score: ${mcqCorrect} / 20
+        (${mcqPercent}%)
+      </h2>
+
+      <p>
+        Short Answers are shown with model answers
+        so you can compare and self-mark.
+      </p>
+
+    </article>
+
+
+    <h2 style="margin-top:30px;">
+      PART A — MCQ Review
+    </h2>
+
+    ${state.mcqs.map((q, index) => {
+
+      const selected =
+        Number(state.mcqAnswers[q.id]);
+
+      const correct =
+        Number(q.correct);
+
+      const isCorrect =
+        selected === correct;
+
+      return `
+
+        <article class="card" style="margin-bottom:18px;">
+
+          <small>
+            QUESTION ${index + 1}
+            • ${isCorrect ? "✓ CORRECT" : "✗ INCORRECT"}
+          </small>
+
+          <h3>
+            ${escapeHtml(q.question)}
+          </h3>
+
+          <p>
+            <strong>Your answer:</strong>
+            ${
+              Number.isInteger(selected)
+                ? escapeHtml(q.options[selected])
+                : "Not answered"
+            }
+          </p>
+
+          <p>
+            <strong>Correct answer:</strong>
+            ${escapeHtml(q.options[correct])}
+          </p>
+
+          <p>
+            <strong>Explanation:</strong>
+            ${escapeHtml(q.explanation || "")}
+          </p>
+
+        </article>
+
+      `;
+
+    }).join("")}
+
+
+    <h2 style="margin-top:35px;">
+      PART B — Short Answer Review
+    </h2>
+
+    ${state.shortAnswers.map((q, index) => `
+
+      <article class="card" style="margin-bottom:18px;">
+
+        <small>
+          QUESTION ${index + 21}
+          • ${q.marks || ""} MARKS
+        </small>
+
+        <h3>
+          ${escapeHtml(q.question)}
+        </h3>
+
+        <p>
+          <strong>Your answer:</strong><br>
+          ${escapeHtml(
+            state.shortResponses[q.id] ||
+            "Not answered"
+          )}
+        </p>
+
+        <p>
+          <strong>Model answer:</strong><br>
+          ${escapeHtml(q.modelAnswer)}
+        </p>
+
+      </article>
+
+    `).join("")}
+
+
+    <button
+      class="primary"
+      onclick="renderMocks()"
+      style="
+        width:100%;
+        margin-top:25px;
+        padding:18px;
+      "
+    >
+      Back to Mock Exams
+    </button>
+    `;
 }
 
 
