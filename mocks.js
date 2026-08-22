@@ -1718,5 +1718,146 @@ window.AM_MOCKS = [
 
   ]
 }
+  ,
+{
+  id: "image-label-master",
+  title: "Image & Label Master Review — Chapters 1–4",
+  chapter: "Mixed Chapters 1–4",
+  mode: "revision",
+
+  questions: [
+
+    {
+      id: 1,
+      question: "A vertical plane divides the body into unequal left and right portions. What is the plane?",
+      options: [
+        "Sagittal plane",
+        "Midsagittal plane",
+        "Frontal plane",
+        "Transverse plane"
+      ],
+      correct: 0,
+      explanation: "Sagittal divides the body into left and right portions. Equal left and right halves specifically require a midsagittal plane."
+    },
+
+    {
+      id: 2,
+      question: "An arrow points to the boundary surrounding the nucleus. What structure is it?",
+      options: [
+        "Cell membrane",
+        "Nuclear membrane",
+        "Cytoplasm",
+        "Golgi apparatus"
+      ],
+      correct: 1,
+      explanation: "The nuclear membrane surrounds the nucleus. Do not confuse it with the cell membrane, which surrounds the entire cell."
+    },
+
+    {
+      id: 3,
+      question: "An arrow points to the outer boundary of a human cell. What is its main role?",
+      options: [
+        "Stores genetic information",
+        "Produces ATP",
+        "Selectively controls entry and exit of substances",
+        "Synthesises proteins"
+      ],
+      correct: 2,
+      explanation: "The cell membrane selectively controls movement into and out of the cell and separates intracellular from extracellular environments."
+    },
+
+    {
+      id: 4,
+      question: "A microscope has a 10× eyepiece and a 40× objective. What is the total magnification?",
+      options: [
+        "40×",
+        "100×",
+        "400×",
+        "4000×"
+      ],
+      correct: 2,
+      explanation: "Total magnification = eyepiece × objective. 10 × 40 = 400×."
+    },
+
+    {
+      id: 5,
+      question: "Glucose moves from high concentration to low concentration through a carrier protein without ATP. What process is occurring?",
+      options: [
+        "Simple diffusion",
+        "Facilitated diffusion",
+        "Active transport",
+        "Osmosis"
+      ],
+      correct: 1,
+      explanation: "High → low concentration + transport protein + no ATP = facilitated diffusion."
+    },
+
+    {
+      id: 6,
+      question: "Oxygen crosses directly through the cell membrane from high concentration to low concentration. What process is occurring?",
+      options: [
+        "Simple diffusion",
+        "Facilitated diffusion",
+        "Active transport",
+        "Endocytosis"
+      ],
+      correct: 0,
+      explanation: "Direct movement from high → low concentration without ATP or a transport protein is simple diffusion."
+    },
+
+    {
+      id: 7,
+      question: "A red blood cell loses water and shrinks. What type of solution surrounds it?",
+      options: [
+        "Hypotonic",
+        "Isotonic",
+        "Hypertonic",
+        "Neutral"
+      ],
+      correct: 2,
+      explanation: "In a hypertonic solution, water moves OUT of the red blood cell by osmosis, causing it to shrink or crenate."
+    },
+
+    {
+      id: 8,
+      question: "A red blood cell swells. In which direction is water moving?",
+      options: [
+        "Out of the cell",
+        "Into the cell",
+        "There is no water movement",
+        "Only through active transport"
+      ],
+      correct: 1,
+      explanation: "Water moves INTO the cell by osmosis in a hypotonic environment, causing the cell to swell and possibly lyse."
+    },
+
+    {
+      id: 9,
+      question: "A white blood cell surrounds and engulfs a bacterium. What process is occurring?",
+      options: [
+        "Pinocytosis",
+        "Exocytosis",
+        "Phagocytosis",
+        "Simple diffusion"
+      ],
+      correct: 2,
+      explanation: "Phagocytosis is a type of endocytosis used to engulf large solid particles such as bacteria. PHAGO = eating."
+    },
+
+    {
+      id: 10,
+      question: "A secretory vesicle fuses with the plasma membrane and releases its contents outside the cell. What process is this?",
+      options: [
+        "Endocytosis",
+        "Exocytosis",
+        "Phagocytosis",
+        "Facilitated diffusion"
+      ],
+      correct: 1,
+      explanation: "Exocytosis releases material OUT of the cell when a vesicle fuses with the plasma membrane. EXO = EXIT."
+    }
+
+  ]
+}
 
 ];
