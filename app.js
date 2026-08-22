@@ -3507,18 +3507,10 @@ state.mcqs.forEach((q) => {
       chapter: q.chapter || null
     };
 
-    const alreadyExists = state.mistakes.some(
-      (item) => item.id === mistake.id
-    );
-
-    if (!alreadyExists) {
-      state.mistakes.push(mistake);
-    }
-
+    saveMockMistake(mistake);
   }
 
 });
-saveState();
 
 /* ==========================================
    MISTAKE VAULT
