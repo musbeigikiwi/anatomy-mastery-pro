@@ -3365,7 +3365,264 @@ window.AM_MASTER_BANK = {
     "Transverse/horizontal",
     "Superior/inferior"
   ]
+},
+
+,
+{
+  id: 41,
+  chapter: 2,
+  marks: 3,
+  question: "Define an atom and name its three main subatomic particles.",
+  modelAnswer: "An atom is the smallest unit of an element that retains the properties of that element. The three main subatomic particles are protons, neutrons and electrons.",
+  markingPoints: [
+    "Smallest unit of an element",
+    "Proton",
+    "Neutron",
+    "Electron"
+  ]
+},
+{
+  id: 42,
+  chapter: 2,
+  marks: 3,
+  question: "State the electrical charge of a proton, neutron and electron.",
+  modelAnswer: "A proton has a positive charge, a neutron has no electrical charge, and an electron has a negative charge.",
+  markingPoints: [
+    "Proton = positive",
+    "Neutron = neutral",
+    "Electron = negative"
+  ]
+},
+{
+  id: 43,
+  chapter: 2,
+  marks: 4,
+  question: "Describe the location of protons, neutrons and electrons within an atom.",
+  modelAnswer: "Protons and neutrons are located in the nucleus of the atom. Electrons occupy the electron shells or energy levels surrounding the nucleus.",
+  markingPoints: [
+    "Protons in nucleus",
+    "Neutrons in nucleus",
+    "Electrons outside nucleus",
+    "Electrons occupy shells/energy levels"
+  ]
+},
+{
+  id: 44,
+  chapter: 2,
+  marks: 3,
+  question: "What is the atomic number and what does it tell you about an atom?",
+  modelAnswer: "The atomic number is the number of protons in the nucleus of an atom. It identifies the element.",
+  markingPoints: [
+    "Number of protons",
+    "Located in nucleus",
+    "Identifies the element"
+  ]
+},
+{
+  id: 45,
+  chapter: 2,
+  marks: 3,
+  question: "What is the mass number of an atom and how is it calculated?",
+  modelAnswer: "The mass number is the total number of protons and neutrons in the nucleus. It is calculated by adding the number of protons and neutrons.",
+  markingPoints: [
+    "Protons",
+    "Neutrons",
+    "Protons + neutrons"
+  ]
+},
+{
+  id: 46,
+  chapter: 2,
+  marks: 4,
+  question: "Differentiate between an atom, ion and molecule.",
+  modelAnswer: "An atom is the smallest unit of an element. An ion is an atom or group of atoms with an electrical charge caused by gaining or losing electrons. A molecule consists of two or more atoms chemically joined together.",
+  markingPoints: [
+    "Atom defined",
+    "Ion defined",
+    "Ion involves gain/loss of electrons",
+    "Molecule defined"
+  ]
+},
+{
+  id: 47,
+  chapter: 2,
+  marks: 4,
+  question: "Explain the difference between a cation and an anion.",
+  modelAnswer: "A cation is a positively charged ion formed when an atom loses one or more electrons. An anion is a negatively charged ion formed when an atom gains one or more electrons.",
+  markingPoints: [
+    "Cation = positive",
+    "Cation loses electrons",
+    "Anion = negative",
+    "Anion gains electrons"
+  ]
+},
+{
+  id: 48,
+  chapter: 2,
+  marks: 3,
+  question: "What are valence electrons and why are they important?",
+  modelAnswer: "Valence electrons are electrons in the outermost electron shell. They are important because they determine how an atom interacts and forms chemical bonds with other atoms.",
+  markingPoints: [
+    "Outermost shell",
+    "Involved in chemical reactions",
+    "Important for bonding"
+  ]
+},
+{
+  id: 49,
+  chapter: 2,
+  marks: 4,
+  question: "Differentiate between ionic and covalent bonds.",
+  modelAnswer: "An ionic bond forms when electrons are transferred from one atom to another, producing oppositely charged ions that attract. A covalent bond forms when atoms share electrons.",
+  markingPoints: [
+    "Ionic = electron transfer",
+    "Ionic = attraction between ions",
+    "Covalent = electron sharing",
+    "Both are chemical bonds"
+  ]
+},
+{
+  id: 50,
+  chapter: 2,
+  marks: 3,
+  question: "What is a hydrogen bond?",
+  modelAnswer: "A hydrogen bond is a weak attraction between a slightly positive hydrogen atom and a slightly negative atom in another molecule or another part of a molecule.",
+  markingPoints: [
+    "Weak attraction",
+    "Involves hydrogen",
+    "Occurs between partial charges"
+  ]
+},
+{
+  id: 51,
+  chapter: 2,
+  marks: 4,
+  question: "Define a solution, solute and solvent and give an example.",
+  modelAnswer: "A solution is a mixture in which one or more solutes are dissolved in a solvent. The solute is the substance being dissolved and the solvent is the substance that dissolves it. For example, in salt water, salt is the solute and water is the solvent.",
+  markingPoints: [
+    "Solution defined",
+    "Solute defined",
+    "Solvent defined",
+    "Correct example"
+  ]
+},
+{
+  id: 52,
+  chapter: 2,
+  marks: 3,
+  question: "Differentiate between a concentrated solution and a dilute solution.",
+  modelAnswer: "A concentrated solution contains a relatively large amount of solute compared with the solvent, while a dilute solution contains a relatively small amount of solute compared with the solvent.",
+  markingPoints: [
+    "Concentrated = more solute",
+    "Dilute = less solute",
+    "Comparison is relative to solvent"
+  ]
+},
+{
+  id: 53,
+  chapter: 2,
+  marks: 4,
+  question: "Differentiate between an acid and a base using hydrogen ions and pH.",
+  modelAnswer: "An acid increases the concentration of hydrogen ions and has a pH below 7. A base decreases hydrogen ion concentration or accepts hydrogen ions and has a pH above 7.",
+  markingPoints: [
+    "Acid associated with H+",
+    "Acid pH below 7",
+    "Base reduces/accepts H+",
+    "Base pH above 7"
+  ]
+},
+{
+  id: 54,
+  chapter: 2,
+  marks: 3,
+  question: "What does the pH scale measure and what pH is considered neutral?",
+  modelAnswer: "The pH scale indicates the hydrogen ion concentration of a solution and therefore how acidic or basic it is. A pH of 7 is neutral.",
+  markingPoints: [
+    "Related to hydrogen ion concentration",
+    "Measures acidity/basicity",
+    "pH 7 = neutral"
+  ]
+},
+{
+  id: 55,
+  chapter: 2,
+  marks: 4,
+  question: "Explain why buffers are important in the human body.",
+  modelAnswer: "Buffers help resist sudden changes in pH by binding or releasing hydrogen ions. This helps maintain a stable internal environment so cells and enzymes can function normally.",
+  markingPoints: [
+    "Resist pH changes",
+    "Can bind/release H+",
+    "Maintain stable internal environment",
+    "Important for normal cell/enzyme function"
+  ]
+},
+{
+  id: 56,
+  chapter: 2,
+  marks: 4,
+  question: "Name the four major groups of organic compounds found in the human body.",
+  modelAnswer: "The four major groups are carbohydrates, lipids, proteins and nucleic acids.",
+  markingPoints: [
+    "Carbohydrates",
+    "Lipids",
+    "Proteins",
+    "Nucleic acids"
+  ]
+},
+{
+  id: 57,
+  chapter: 2,
+  marks: 4,
+  question: "State two important functions of carbohydrates in the body.",
+  modelAnswer: "Carbohydrates are an important source of energy for cells and can also provide short-term energy storage, particularly as glycogen.",
+  markingPoints: [
+    "Energy source",
+    "Glucose may be used for cellular energy",
+    "Short-term energy storage",
+    "Glycogen"
+  ]
+},
+{
+  id: 58,
+  chapter: 2,
+  marks: 4,
+  question: "State important functions of lipids in the human body.",
+  modelAnswer: "Lipids provide long-term energy storage, insulation and protection, form an important part of cell membranes, and some lipids are used to produce hormones.",
+  markingPoints: [
+    "Long-term energy storage",
+    "Insulation/protection",
+    "Cell membranes",
+    "Hormone production"
+  ]
+},
+{
+  id: 59,
+  chapter: 2,
+  marks: 4,
+  question: "Describe the main roles of proteins in the human body.",
+  modelAnswer: "Proteins have many roles including forming body structures, acting as enzymes, transporting substances, contributing to movement, defence and cell signalling.",
+  markingPoints: [
+    "Structural role",
+    "Enzymes",
+    "Transport",
+    "Defence/signalling/movement"
+  ]
+},
+{
+  id: 60,
+  chapter: 2,
+  marks: 5,
+  question: "What is ATP and why is it important to cells?",
+  modelAnswer: "ATP stands for adenosine triphosphate. It is the main immediately usable energy-carrying molecule of cells. Energy released from ATP can be used for cellular processes such as active transport, synthesis and movement.",
+  markingPoints: [
+    "Adenosine triphosphate",
+    "Energy-carrying molecule",
+    "Provides usable cellular energy",
+    "Active transport",
+    "Synthesis/movement"
+  ]
 }
+    
 
 ]
 };
