@@ -3482,35 +3482,402 @@ function saveMockShortAnswer(questionId, value) {
 }
 
 
-state.mcqs.forEach((q) => {
+function saveMockMistake(mistake) {
 
-  const selected = Number(state.mcqAnswers[q.id]);
-  const correct = Number(q.correct);
+  const exists = state.mistakes.some(
+    (item) => item.id === mistake.id
+  );
 
-  if (selected === correct) {
-
-    mcqCorrect++;
-
-  } else {
-
-    const mistake = {
-      id: `mock-${state.mock.id}-${q.id}`,
-      source: "Mock Exam",
-      title: state.mock.title,
-      question: q.question,
-      options: q.options,
-      selected: Number.isInteger(selected)
-        ? selected
-        : null,
-      correct: correct,
-      explanation: q.explanation || "",
-      chapter: q.chapter || null
-    };
-
-    saveMockMistake(mistake);
+  if (!exists) {
+    state.mistakes.push(mistake);
   }
 
-});
+  save();
+}
+
+
+function submitFullMockExam() {
+
+  const exam = fullMockState;
+
+  if (!exam) {
+    return;
+  }
+
+  let mcqCorrect = 0;
+  let mcqAnswered = 0;
+
+
+  exam.mcqs.forEach((q) => {
+
+    const rawSelected =
+      exam.mcqAnswers[q.id];
+
+    const hasAnswer =
+      rawSelected !== undefined &&
+      rawSelected !== null &&
+      rawSelected !== "";
+
+    const selected =
+      hasAnswer
+        ? Number(rawSelected)
+        : null;
+
+    const correct =
+      Number(q.correct);
+
+
+    if (hasAnswer) {
+      mcqAnswered++;
+      state.answered++;
+    }
+
+
+    if (
+      hasAnswer &&
+      selected === correct
+    ) {
+
+      mcqCorrect++;
+      state.correct++;
+
+    } else {
+
+      const correctText =
+        Array.isArray(q.options)
+          ? q.options[correct]
+          : "";
+
+
+      const selectedText =
+        hasAnswer &&
+        Array.isArray(q.options)
+          ? q.options[selected]
+          : "Not answered";
+
+
+      saveMockMistake({
+
+        id:
+          `mock-${exam.mock.id}-${q.id}`,
+
+        source:
+          "Mock Exam",
+
+        title:
+          exam.mock.title,
+
+        chapter:
+          q.chapter || "1–4",
+
+        question:
+          q.question,
+
+        selected:
+          selectedText,
+
+        correct:
+          correctText,
+
+        explanation:
+          q.explanation || ""
+
+      });
+
+    }
+
+  });
+
+
+  const mcqPercent =
+    exam.mcqs.length
+      ? Math.round(
+          (
+            mcqCorrect /
+            exam.mcqs.length
+          ) * 100
+        )
+      : 0;
+
+
+  const seconds =
+    Math.round(
+      (
+        Date.now() -
+        exam.startedAt
+      ) / 1000
+    );
+
+
+  state.attempts.push({
+
+    title:
+      exam.mock.title,
+
+    date:
+      new Date().toISOString(),
+
+    source:
+      "mocks",
+
+    seconds,
+
+    correct:
+      mcqCorrect,
+
+    answered:
+      mcqAnswered,
+
+    total:
+      exam.mcqs.length,
+
+    score:
+      mcqPercent
+
+  });
+
+
+  exam.submitted = true;
+
+  save();
+
+  renderStats();
+
+
+  app.innerHTML =
+
+    heading(
+
+      "MOCK EXAM COMPLETE",
+
+      exam.mock.title,
+
+      "MCQs are automatically marked. Compare your written answers with the model answers below."
+
+    )
+
+    +
+
+    `
+
+    <article class="result glass">
+
+      <div class="resultScore">
+        ${mcqPercent}%
+      </div>
+
+
+      <div class="resultGrid">
+
+        <div>
+          MCQ Correct
+          <br>
+          <b>
+            ${mcqCorrect}/${exam.mcqs.length}
+          </b>
+        </div>
+
+
+        <div>
+          Incorrect
+          <br>
+          <b>
+            ${exam.mcqs.length - mcqCorrect}
+          </b>
+        </div>
+
+
+        <div>
+          MCQ Answered
+          <br>
+          <b>
+            ${mcqAnswered}/${exam.mcqs.length}
+          </b>
+        </div>
+
+
+        <div>
+          Short Answers
+          <br>
+          <b>
+            ${exam.shortAnswers.length}
+          </b>
+        </div>
+
+
+        <div>
+          Total Time
+          <br>
+          <b>
+            ${formatTime(seconds)}
+          </b>
+        </div>
+
+      </div>
+
+
+      <h3 style="margin-top:32px;">
+        PART A — MCQ Review
+      </h3>
+
+
+      ${exam.mcqs.map((q, index) => {
+
+        const rawSelected =
+          exam.mcqAnswers[q.id];
+
+        const hasAnswer =
+          rawSelected !== undefined &&
+          rawSelected !== null &&
+          rawSelected !== "";
+
+        const selected =
+          hasAnswer
+            ? Number(rawSelected)
+            : null;
+
+        const correct =
+          Number(q.correct);
+
+        const isCorrect =
+          hasAnswer &&
+          selected === correct;
+
+
+        return `
+
+          <div
+            class="
+              review
+              ${isCorrect ? "ok" : "bad"}
+            "
+          >
+
+            <b>
+              Question ${index + 1}.
+              ${escapeHtml(q.question)}
+            </b>
+
+            <p>
+
+              Your answer:
+
+              ${
+                hasAnswer
+                  ? escapeHtml(
+                      q.options[selected] || ""
+                    )
+                  : "Not answered"
+              }
+
+              <br>
+
+              Correct:
+
+              ${escapeHtml(
+                q.options[correct] || ""
+              )}
+
+              <br>
+
+              ${escapeHtml(
+                q.explanation || ""
+              )}
+
+            </p>
+
+          </div>
+
+        `;
+
+      }).join("")}
+
+
+      <h3 style="margin-top:32px;">
+        PART B — Short Answer Review
+      </h3>
+
+
+      ${exam.shortAnswers.map((q, index) => {
+
+        const studentAnswer =
+          exam.shortResponses[q.id] || "";
+
+        return `
+
+          <div class="review">
+
+            <small>
+              QUESTION ${index + 21}
+              • ${q.marks || ""} MARKS
+            </small>
+
+            <h4>
+              ${escapeHtml(q.question)}
+            </h4>
+
+
+            <p>
+
+              <b>Your answer:</b>
+
+              <br>
+
+              ${
+                studentAnswer.trim()
+                  ? escapeHtml(studentAnswer)
+                  : "Not answered"
+              }
+
+            </p>
+
+
+            <p>
+
+              <b>Model answer:</b>
+
+              <br>
+
+              ${escapeHtml(
+                q.modelAnswer || ""
+              )}
+
+            </p>
+
+          </div>
+
+        `;
+
+      }).join("")}
+
+
+      <div
+        class="actions"
+        style="margin-top:30px;"
+      >
+
+        <button
+          class="primary"
+          onclick="renderMocks()"
+        >
+          Back to Mock Exams
+        </button>
+
+
+        <button
+          class="secondary"
+          onclick="renderMistakes()"
+        >
+          Review Mistakes
+        </button>
+
+      </div>
+
+    </article>
+
+    `;
+
+}
 
 /* ==========================================
    MISTAKE VAULT
