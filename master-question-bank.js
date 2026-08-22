@@ -3063,7 +3063,309 @@ window.AM_MASTER_BANK = {
       "Organelles",
       "Inclusions/stored materials"
     ]
-  }
+  },
+    {
+  id: 21,
+  chapter: 3,
+  marks: 7,
+  question: "State the functions of rough ER, smooth ER, ribosomes, Golgi apparatus, lysosomes, mitochondria and centrioles.",
+  modelAnswer: "Rough ER helps with protein processing and transport. Smooth ER is involved in lipid synthesis and detoxification. Ribosomes synthesise proteins. The Golgi apparatus modifies, sorts and packages products. Lysosomes carry out intracellular digestion. Mitochondria produce ATP. Centrioles assist cell division.",
+  markingPoints: [
+    "Rough ER — protein processing/transport",
+    "Smooth ER — lipid synthesis/detoxification",
+    "Ribosomes — protein synthesis",
+    "Golgi apparatus — modifies/sorts/packages",
+    "Lysosomes — intracellular digestion",
+    "Mitochondria — ATP production",
+    "Centrioles — assist cell division"
+  ]
+},
+
+{
+  id: 22,
+  chapter: 3,
+  marks: 6,
+  question: "Describe the basic structure and key functions of the cell membrane.",
+  modelAnswer: "The cell membrane is a phospholipid bilayer with hydrophilic heads, hydrophobic tails, proteins and carbohydrates. It acts as a selective barrier, controls transport, helps protect the cell and maintain homeostasis, and supports cell communication.",
+  markingPoints: [
+    "Phospholipid bilayer",
+    "Hydrophilic heads",
+    "Hydrophobic tails",
+    "Contains proteins/carbohydrates",
+    "Selective barrier/transport control",
+    "Protection/homeostasis/communication"
+  ]
+},
+
+{
+  id: 23,
+  chapter: 3,
+  marks: 6,
+  question: "Give three examples of specialised cells and link structure to function.",
+  modelAnswer: "A red blood cell has a flattened disc shape that helps it move through capillaries and transport gases. A neuron can be very long so it can transmit signals over distance. A macrophage has pseudopods that help it move and carry out phagocytosis.",
+  markingPoints: [
+    "Red blood cell example",
+    "RBC structure linked to function",
+    "Neuron example",
+    "Neuron structure linked to function",
+    "Macrophage example",
+    "Macrophage structure linked to function"
+  ]
+},
+
+{
+  id: 24,
+  chapter: 3,
+  marks: 5,
+  question: "Why do cells divide, what happens before mitosis, and what is the result?",
+  modelAnswer: "Cells divide for growth, repair and replacement. Before mitosis, DNA is replicated. Mitosis produces two genetically identical daughter cells with the same chromosome number as the parent cell.",
+  markingPoints: [
+    "Growth",
+    "Repair/replacement",
+    "DNA replicates before mitosis",
+    "Two daughter cells",
+    "Genetically identical/same chromosome number"
+  ]
+},
+
+{
+  id: 25,
+  chapter: 3,
+  marks: 4,
+  question: "Write the formula for total microscope magnification and calculate totals for 4×, 10× and 40× objectives with a 10× eyepiece.",
+  modelAnswer: "Total magnification = eyepiece magnification × objective magnification. With a 10× eyepiece: 4× objective = 40× total; 10× objective = 100× total; 40× objective = 400× total.",
+  markingPoints: [
+    "Formula correct",
+    "4× objective = 40×",
+    "10× objective = 100×",
+    "40× objective = 400×"
+  ]
+},
+
+{
+  id: 26,
+  chapter: 3,
+  marks: 5,
+  question: "Describe a safe/basic sequence for focusing a microscope.",
+  modelAnswer: "Carry the microscope correctly, set the eyepieces and light, lower the stage or use coarse focus appropriately, begin with the 4× objective and focus the specimen, then move to 10× and 40× and refine the focus.",
+  markingPoints: [
+    "Carry microscope correctly",
+    "Set eyepieces/light",
+    "Prepare stage/coarse focus safely",
+    "Start with 4× objective",
+    "Move to higher objectives and refine focus"
+  ]
+},
+
+{
+  id: 27,
+  chapter: 4,
+  marks: 4,
+  question: "Differentiate passive and active transport.",
+  modelAnswer: "Passive transport does not require ATP and usually moves substances from high to low concentration. Active transport requires cellular energy or ATP and can move substances from low to high concentration against the gradient.",
+  markingPoints: [
+    "Passive = no ATP",
+    "Passive usually high to low",
+    "Active requires ATP/energy",
+    "Active can move low to high against gradient"
+  ]
+},
+
+{
+  id: 28,
+  chapter: 4,
+  marks: 5,
+  question: "Define simple diffusion and explain movement of oxygen and carbon dioxide.",
+  modelAnswer: "Simple diffusion is direct movement through the membrane from high to low concentration without ATP. Oxygen moves toward cells where its concentration is lower. Carbon dioxide moves away from producing cells toward areas of lower concentration.",
+  markingPoints: [
+    "Direct membrane movement",
+    "High to low",
+    "No ATP",
+    "Oxygen movement explained",
+    "Carbon dioxide movement explained"
+  ]
+},
+
+{
+  id: 29,
+  chapter: 4,
+  marks: 4,
+  question: "Define facilitated diffusion and explain glucose movement.",
+  modelAnswer: "Facilitated diffusion is passive movement from high to low concentration using a channel or carrier protein and no ATP. Glucose crosses the membrane using carrier proteins.",
+  markingPoints: [
+    "Passive process",
+    "High to low",
+    "Uses channel/carrier protein",
+    "Glucose uses membrane carrier proteins"
+  ]
+},
+
+{
+  id: 30,
+  chapter: 4,
+  marks: 4,
+  question: "Define osmosis and explain what determines water movement.",
+  modelAnswer: "Osmosis is the movement of water across a semipermeable membrane toward the side with the higher solute concentration. The relative water and solute concentrations determine the direction of water movement.",
+  markingPoints: [
+    "Movement of water",
+    "Across semipermeable membrane",
+    "Toward higher solute concentration",
+    "Relative water/solute concentrations determine direction"
+  ]
+},
+
+{
+  id: 31,
+  chapter: 4,
+  marks: 6,
+  question: "Predict RBC response in hypertonic, hypotonic and isotonic solutions.",
+  modelAnswer: "In a hypertonic solution, water leaves the red blood cell and it shrinks or crenates. In a hypotonic solution, water enters and the cell swells and may haemolyse. In an isotonic solution, there is no net water movement and the cell keeps its normal size.",
+  markingPoints: [
+    "Hypertonic — water out",
+    "Hypertonic — shrink/crenate",
+    "Hypotonic — water in",
+    "Hypotonic — swell/possible haemolysis",
+    "Isotonic — no net movement",
+    "Isotonic — normal size"
+  ]
+},
+
+{
+  id: 32,
+  chapter: 4,
+  marks: 5,
+  question: "Explain active transport and give three examples from the supplied material.",
+  modelAnswer: "Active transport uses ATP or cellular energy and often moves substances against a concentration gradient. Examples include membrane pumps such as the sodium-potassium pump, endocytosis and exocytosis.",
+  markingPoints: [
+    "Uses ATP/energy",
+    "Can move against gradient",
+    "Membrane pump example",
+    "Endocytosis",
+    "Exocytosis"
+  ]
+},
+
+{
+  id: 33,
+  chapter: 4,
+  marks: 6,
+  question: "Differentiate endocytosis, phagocytosis, pinocytosis and exocytosis.",
+  modelAnswer: "Endocytosis brings material into the cell using vesicles. Phagocytosis is uptake of solid particles. Pinocytosis is uptake of fluid. Exocytosis releases material out of the cell.",
+  markingPoints: [
+    "Endocytosis = material into cell",
+    "Endocytosis uses vesicles",
+    "Phagocytosis = solids",
+    "Pinocytosis = fluid",
+    "Exocytosis = material out",
+    "Clear distinction between processes"
+  ]
+},
+
+{
+  id: 34,
+  chapter: 4,
+  marks: 4,
+  question: "An egg gains mass in water. State the observation and explain why.",
+  modelAnswer: "The egg increases in mass. The external solution has relatively more water and lower solute concentration, so water enters the egg across the membrane by osmosis.",
+  markingPoints: [
+    "Mass increases",
+    "Outside has relatively more water",
+    "Outside has lower solute concentration",
+    "Water enters by osmosis"
+  ]
+},
+
+{
+  id: 35,
+  chapter: 4,
+  marks: 4,
+  question: "An egg loses mass in golden syrup. State the observation and explain why.",
+  modelAnswer: "The egg decreases in mass. Golden syrup has relatively high solute concentration and low water concentration, so water leaves the egg by osmosis.",
+  markingPoints: [
+    "Mass decreases",
+    "Syrup has high solute concentration",
+    "Syrup has lower water concentration",
+    "Water leaves by osmosis"
+  ]
+},
+
+{
+  id: 36,
+  chapter: 1,
+  marks: 4,
+  question: "Compare and explain anatomy and physiology and give one example of each.",
+  modelAnswer: "Anatomy is the study of body structure; for example, the heart has four chambers. Physiology is the study of body function; for example, the heart pumps blood.",
+  markingPoints: [
+    "Anatomy definition",
+    "Anatomy example",
+    "Physiology definition",
+    "Physiology example"
+  ]
+},
+
+{
+  id: 37,
+  chapter: 1,
+  marks: 7,
+  question: "Exam scenario: Write the full levels of organisation from simplest to most complex and give one example of each.",
+  modelAnswer: "Chemical (water) → organelle (mitochondrion) → cell (muscle cell) → tissue (muscle tissue) → organ (heart) → organ system (cardiovascular system) → organism (human).",
+  markingPoints: [
+    "Chemical",
+    "Organelle",
+    "Cell",
+    "Tissue",
+    "Organ",
+    "Organ system",
+    "Organism"
+  ]
+},
+
+{
+  id: 38,
+  chapter: 1,
+  marks: 5,
+  question: "Without using a list of choices, state the five features of anatomical position.",
+  modelAnswer: "Standing upright, facing forward, arms at the sides, palms facing forward, and feet flat and facing forward.",
+  markingPoints: [
+    "Standing upright",
+    "Facing forward",
+    "Arms at sides",
+    "Palms forward",
+    "Feet flat/facing forward"
+  ]
+},
+
+{
+  id: 39,
+  chapter: 1,
+  marks: 6,
+  question: "Compare and explain superior, inferior, medial, lateral, proximal and distal.",
+  modelAnswer: "Superior means above; inferior means below; medial means toward the midline; lateral means away from the midline; proximal means nearer the trunk or point of attachment; distal means farther from the trunk or point of attachment.",
+  markingPoints: [
+    "Superior",
+    "Inferior",
+    "Medial",
+    "Lateral",
+    "Proximal",
+    "Distal"
+  ]
+},
+
+{
+  id: 40,
+  chapter: 1,
+  marks: 6,
+  question: "Exam scenario: Name the three major body planes and state what each divides.",
+  modelAnswer: "Sagittal divides left and right. Frontal or coronal divides anterior and posterior. Transverse or horizontal divides superior and inferior.",
+  markingPoints: [
+    "Sagittal",
+    "Left/right",
+    "Frontal/coronal",
+    "Anterior/posterior",
+    "Transverse/horizontal",
+    "Superior/inferior"
+  ]
+}
 
 ]
 };
