@@ -3882,6 +3882,299 @@ window.AM_MASTER_BANK = {
     "Use coarse focus initially",
     "Higher power followed by fine focus"
   ]
+},
+    ,
+{
+  id: 81,
+  chapter: 4,
+  marks: 5,
+  question: "Define cell transport and semi-permeable, then compare passive and active transport.",
+  modelAnswer: "Cell transport is the movement of substances across the cell membrane. A semi-permeable membrane allows some substances to cross more easily than others. Passive transport does not require ATP and generally moves substances down a concentration gradient. Active transport requires cellular energy and can move substances against a concentration gradient.",
+  markingPoints: [
+    "Cell transport defined",
+    "Semi-permeable defined",
+    "Passive transport = no ATP",
+    "Passive usually moves down gradient",
+    "Active transport uses energy and can move against gradient"
+  ]
+},
+
+{
+  id: 82,
+  chapter: 4,
+  marks: 5,
+  question: "Define simple diffusion and explain how oxygen and carbon dioxide cross the cell membrane.",
+  modelAnswer: "Simple diffusion is the movement of small molecules directly through the cell membrane from an area of high concentration to an area of low concentration without ATP. Oxygen and carbon dioxide can cross the phospholipid bilayer by simple diffusion.",
+  markingPoints: [
+    "High to low concentration",
+    "No ATP required",
+    "Direct movement through membrane",
+    "Oxygen example",
+    "Carbon dioxide example"
+  ]
+},
+
+{
+  id: 83,
+  chapter: 4,
+  marks: 4,
+  question: "Explain the directions of oxygen and carbon dioxide diffusion between blood and an exercising muscle cell.",
+  modelAnswer: "In exercising muscle, oxygen is more concentrated in the blood than in the muscle cell, so oxygen diffuses from blood into the cell. Carbon dioxide is produced by the muscle cell, so it diffuses from the cell into the blood.",
+  markingPoints: [
+    "Oxygen moves blood to cell",
+    "Oxygen moves down concentration gradient",
+    "Carbon dioxide moves cell to blood",
+    "Carbon dioxide moves down concentration gradient"
+  ]
+},
+
+{
+  id: 84,
+  chapter: 4,
+  marks: 5,
+  question: "Define facilitated diffusion and explain how glucose enters a busy body cell.",
+  modelAnswer: "Facilitated diffusion is passive transport in which a substance moves from high to low concentration through a membrane channel or carrier protein without ATP. Glucose enters cells using carrier proteins when its concentration is higher outside than inside.",
+  markingPoints: [
+    "Passive transport",
+    "High to low concentration",
+    "Uses channel/carrier protein",
+    "No ATP",
+    "Glucose example"
+  ]
+},
+
+{
+  id: 85,
+  chapter: 4,
+  marks: 5,
+  question: "Compare simple diffusion and facilitated diffusion.",
+  modelAnswer: "Both simple diffusion and facilitated diffusion are passive processes, move substances down their concentration gradient and do not require ATP. Simple diffusion occurs directly through the phospholipid bilayer, while facilitated diffusion requires a channel or carrier protein.",
+  markingPoints: [
+    "Both passive",
+    "Both move high to low",
+    "Neither requires ATP",
+    "Simple diffusion crosses bilayer directly",
+    "Facilitated diffusion uses protein"
+  ]
+},
+
+{
+  id: 86,
+  chapter: 4,
+  marks: 4,
+  question: "Define osmosis and give two equivalent rules for predicting water movement.",
+  modelAnswer: "Osmosis is the movement of water across a semi-permeable membrane. Water moves from an area of higher water concentration to lower water concentration, which is equivalent to saying water moves toward the side with the higher solute concentration.",
+  markingPoints: [
+    "Movement of water",
+    "Across semi-permeable membrane",
+    "Higher water to lower water concentration",
+    "Toward higher solute concentration"
+  ]
+},
+
+{
+  id: 87,
+  chapter: 4,
+  marks: 6,
+  question: "Compare isotonic, hypertonic and hypotonic solutions and their effects on an animal cell.",
+  modelAnswer: "In an isotonic solution there is no net water movement and the animal cell remains about the same size. In a hypertonic solution, water leaves the cell and it shrinks. In a hypotonic solution, water enters the cell and it swells and may burst.",
+  markingPoints: [
+    "Isotonic = no net water movement",
+    "Isotonic = normal cell size",
+    "Hypertonic = water leaves",
+    "Hypertonic = cell shrinks",
+    "Hypotonic = water enters",
+    "Hypotonic = cell swells/may burst"
+  ]
+},
+
+{
+  id: 88,
+  chapter: 4,
+  marks: 4,
+  question: "Explain what happens to a red blood cell in a hypertonic solution.",
+  modelAnswer: "A hypertonic solution has a higher solute concentration than the red blood cell. Water moves out of the cell by osmosis, causing the cell to shrink or crenate.",
+  markingPoints: [
+    "Outside has higher solute concentration",
+    "Water moves out",
+    "Movement is osmosis",
+    "RBC shrinks/crenates"
+  ]
+},
+
+{
+  id: 89,
+  chapter: 4,
+  marks: 4,
+  question: "Explain what happens to a red blood cell in a hypotonic solution.",
+  modelAnswer: "A hypotonic solution has a lower solute concentration than the red blood cell. Water moves into the cell by osmosis, causing it to swell and possibly haemolyse.",
+  markingPoints: [
+    "Outside has lower solute concentration",
+    "Water moves in",
+    "Movement is osmosis",
+    "RBC swells/may haemolyse"
+  ]
+},
+
+{
+  id: 90,
+  chapter: 4,
+  marks: 3,
+  question: "Explain what happens to a red blood cell in an isotonic solution.",
+  modelAnswer: "In an isotonic solution, the solute concentration outside the cell is effectively balanced with the cell. Water continues to move in both directions, but there is no net movement, so the red blood cell maintains its normal size.",
+  markingPoints: [
+    "Balanced concentrations",
+    "Water moves both directions",
+    "No net movement",
+    "Normal cell size"
+  ]
+},
+
+{
+  id: 91,
+  chapter: 4,
+  marks: 5,
+  question: "Explain active transport pumps and use potassium as an example.",
+  modelAnswer: "Active transport pumps are membrane proteins that use ATP to move substances against their concentration gradient. For example, a membrane pump can move potassium into a cell even when potassium is already more concentrated inside.",
+  markingPoints: [
+    "Membrane protein/pump",
+    "Uses ATP",
+    "Moves against gradient",
+    "Low to high possible",
+    "Potassium example"
+  ]
+},
+
+{
+  id: 92,
+  chapter: 4,
+  marks: 5,
+  question: "Define endocytosis and distinguish pinocytosis from phagocytosis.",
+  modelAnswer: "Endocytosis brings material into the cell by surrounding it with the cell membrane and forming a vesicle. Pinocytosis takes in extracellular fluid or droplets, while phagocytosis takes in large solid particles such as bacteria.",
+  markingPoints: [
+    "Endocytosis brings material into cell",
+    "Uses vesicle",
+    "Pinocytosis = fluid",
+    "Phagocytosis = solid particles",
+    "Bacteria example"
+  ]
+},
+
+{
+  id: 93,
+  chapter: 4,
+  marks: 4,
+  question: "Explain the role of lysosomes after a white blood cell engulfs a bacterium by phagocytosis.",
+  modelAnswer: "After the bacterium has been engulfed into a vesicle, lysosomes provide digestive enzymes that help break down the bacterium inside the cell.",
+  markingPoints: [
+    "Bacterium is engulfed",
+    "Vesicle forms",
+    "Lysosome involved",
+    "Digestive enzymes break bacterium down"
+  ]
+},
+
+{
+  id: 94,
+  chapter: 4,
+  marks: 4,
+  question: "Define exocytosis and explain how it differs from endocytosis.",
+  modelAnswer: "Exocytosis releases substances from the cell when a vesicle fuses with the cell membrane and releases its contents outside. Endocytosis does the opposite by bringing material into the cell using vesicles.",
+  markingPoints: [
+    "Exocytosis releases material",
+    "Vesicle fuses with membrane",
+    "Contents move outside",
+    "Endocytosis brings material inside"
+  ]
+},
+
+{
+  id: 95,
+  chapter: 4,
+  marks: 5,
+  question: "Describe the pathway for a protein that is produced for export from a cell.",
+  modelAnswer: "A protein for export is produced on the rough endoplasmic reticulum. It is then modified and packaged by the Golgi apparatus. A secretory vesicle buds from the Golgi, moves to the cell membrane, fuses with it and releases the protein by exocytosis.",
+  markingPoints: [
+    "Rough ER",
+    "Golgi apparatus",
+    "Secretory vesicle",
+    "Vesicle fuses with membrane",
+    "Protein released by exocytosis"
+  ]
+},
+
+{
+  id: 96,
+  chapter: 4,
+  marks: 5,
+  question: "An egg gains mass after being placed in water. Explain the result using osmosis.",
+  modelAnswer: "The surrounding water has a lower solute concentration and relatively higher water concentration than the inside of the egg. Water therefore moves into the egg across the membrane by osmosis, increasing its mass.",
+  markingPoints: [
+    "Outside lower solute concentration",
+    "Outside higher water concentration",
+    "Water moves into egg",
+    "Movement across membrane",
+    "Mass increases"
+  ]
+},
+
+{
+  id: 97,
+  chapter: 4,
+  marks: 5,
+  question: "An egg loses mass after being placed in concentrated golden syrup. Explain the result using osmosis.",
+  modelAnswer: "Golden syrup has a higher solute concentration and lower water concentration than the inside of the egg. Water therefore moves out of the egg by osmosis, causing the egg to lose mass.",
+  markingPoints: [
+    "Syrup higher solute concentration",
+    "Syrup lower water concentration",
+    "Water moves out",
+    "Movement is osmosis",
+    "Mass decreases"
+  ]
+},
+
+{
+  id: 98,
+  chapter: 4,
+  marks: 4,
+  question: "A dilute solution is separated from a concentrated solution by a membrane that water can cross but salt cannot. Predict the direction of water movement.",
+  modelAnswer: "Water moves from the dilute side toward the concentrated side. The concentrated side has the higher solute concentration, so water moves toward it by osmosis.",
+  markingPoints: [
+    "Water moves from dilute side",
+    "Water moves toward concentrated side",
+    "Higher solute concentration attracts net water movement",
+    "Process is osmosis"
+  ]
+},
+
+{
+  id: 99,
+  chapter: 4,
+  marks: 4,
+  question: "Glucose is more concentrated outside a cell and crosses through a carrier protein without ATP. Identify and explain the transport process.",
+  modelAnswer: "The process is facilitated diffusion. Glucose moves from high concentration outside the cell to lower concentration inside through a carrier protein, and no ATP is required.",
+  markingPoints: [
+    "Facilitated diffusion",
+    "High to low concentration",
+    "Carrier protein",
+    "No ATP"
+  ]
+},
+
+{
+  id: 100,
+  chapter: 4,
+  marks: 6,
+  question: "Classify simple diffusion, facilitated diffusion, osmosis, active pumps, endocytosis and exocytosis as passive or active transport.",
+  modelAnswer: "Simple diffusion, facilitated diffusion and osmosis are passive transport processes because they do not require ATP. Active transport pumps, endocytosis and exocytosis are active processes because they require cellular energy.",
+  markingPoints: [
+    "Simple diffusion = passive",
+    "Facilitated diffusion = passive",
+    "Osmosis = passive",
+    "Active pumps = active",
+    "Endocytosis = active",
+    "Exocytosis = active"
+  ]
 }
     
 
