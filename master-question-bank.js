@@ -3621,6 +3621,267 @@ window.AM_MASTER_BANK = {
     "Active transport",
     "Synthesis/movement"
   ]
+},
+    ,
+{
+  id: 61,
+  chapter: 3,
+  marks: 4,
+  question: "Define a cell and explain why cells are considered the basic structural and functional units of the human body.",
+  modelAnswer: "A cell is the smallest living unit of the body. Cells are structural units because tissues and organs are made from cells, and they are functional units because essential life processes occur within cells.",
+  markingPoints: [
+    "Smallest living unit",
+    "Basic structural unit",
+    "Tissues/organs are made of cells",
+    "Basic functional unit"
+  ]
+},
+{
+  id: 62,
+  chapter: 3,
+  marks: 4,
+  question: "Describe the location and two functions of the cell membrane.",
+  modelAnswer: "The cell membrane forms the outer boundary of the cell. It protects the cell and selectively controls the movement of substances into and out of the cell.",
+  markingPoints: [
+    "Outer boundary of cell",
+    "Surrounds cell contents",
+    "Protection",
+    "Controls entry and exit"
+  ]
+},
+{
+  id: 63,
+  chapter: 3,
+  marks: 5,
+  question: "Describe the structure of the phospholipid bilayer.",
+  modelAnswer: "The cell membrane consists mainly of a phospholipid bilayer. Each phospholipid has a hydrophilic phosphate head that faces the watery environments and hydrophobic fatty-acid tails that face inward away from water.",
+  markingPoints: [
+    "Phospholipid bilayer",
+    "Hydrophilic heads",
+    "Heads face water",
+    "Hydrophobic tails",
+    "Tails face inward"
+  ]
+},
+{
+  id: 64,
+  chapter: 3,
+  marks: 4,
+  question: "What does selectively permeable mean when describing the cell membrane?",
+  modelAnswer: "Selectively permeable means the cell membrane allows some substances to cross more easily than others. This enables the cell to regulate what enters and leaves and helps maintain a stable internal environment.",
+  markingPoints: [
+    "Allows some substances through",
+    "Restricts other substances",
+    "Controls entry and exit",
+    "Helps maintain homeostasis"
+  ]
+},
+{
+  id: 65,
+  chapter: 3,
+  marks: 4,
+  question: "Define cytoplasm, cytosol, organelles and inclusions.",
+  modelAnswer: "Cytoplasm is the material between the cell membrane and nucleus. Cytosol is its fluid portion. Organelles are specialised structures that perform cellular functions, while inclusions are stored materials such as nutrients or pigments.",
+  markingPoints: [
+    "Cytoplasm defined",
+    "Cytosol defined",
+    "Organelles defined",
+    "Inclusions defined"
+  ]
+},
+{
+  id: 66,
+  chapter: 3,
+  marks: 4,
+  question: "Describe the location and function of the nucleus.",
+  modelAnswer: "The nucleus is located within the cell and is surrounded by the nuclear membrane or envelope. It contains the cell's DNA and helps control cellular activities.",
+  markingPoints: [
+    "Located inside cell",
+    "Surrounded by nuclear membrane",
+    "Contains DNA",
+    "Controls cell activities"
+  ]
+},
+{
+  id: 67,
+  chapter: 3,
+  marks: 4,
+  question: "Describe the nuclear membrane and nuclear pores.",
+  modelAnswer: "The nuclear membrane, or nuclear envelope, surrounds and separates the nucleus from the cytoplasm. Nuclear pores within the membrane regulate the movement of substances between the nucleus and cytoplasm.",
+  markingPoints: [
+    "Surrounds nucleus",
+    "Separates nucleus from cytoplasm",
+    "Contains nuclear pores",
+    "Pores regulate movement"
+  ]
+},
+{
+  id: 68,
+  chapter: 3,
+  marks: 3,
+  question: "What is the main function of mitochondria and why are they important?",
+  modelAnswer: "Mitochondria produce most of the ATP used by cells. ATP provides immediately usable energy for many cellular activities.",
+  markingPoints: [
+    "Produce ATP",
+    "ATP provides cellular energy",
+    "Important for cellular activities"
+  ]
+},
+{
+  id: 69,
+  chapter: 3,
+  marks: 3,
+  question: "State the main function of ribosomes and where they may be found in a cell.",
+  modelAnswer: "Ribosomes synthesise proteins. They may be free in the cytoplasm or attached to the rough endoplasmic reticulum.",
+  markingPoints: [
+    "Protein synthesis",
+    "Free in cytoplasm",
+    "Attached to rough ER"
+  ]
+},
+{
+  id: 70,
+  chapter: 3,
+  marks: 4,
+  question: "Compare rough endoplasmic reticulum and smooth endoplasmic reticulum.",
+  modelAnswer: "Rough ER has ribosomes attached to its surface and is involved mainly in protein processing and transport. Smooth ER has no attached ribosomes and is involved in lipid synthesis and detoxification.",
+  markingPoints: [
+    "Rough ER has ribosomes",
+    "Rough ER involved with proteins",
+    "Smooth ER lacks ribosomes",
+    "Smooth ER involved in lipids/detoxification"
+  ]
+},
+{
+  id: 71,
+  chapter: 3,
+  marks: 4,
+  question: "Describe the function of the Golgi apparatus.",
+  modelAnswer: "The Golgi apparatus receives cellular products, modifies them, sorts them and packages them into vesicles for transport to other locations or secretion from the cell.",
+  markingPoints: [
+    "Receives products",
+    "Modifies products",
+    "Sorts products",
+    "Packages into vesicles"
+  ]
+},
+{
+  id: 72,
+  chapter: 3,
+  marks: 3,
+  question: "What are lysosomes and what is their function?",
+  modelAnswer: "Lysosomes are membrane-bound organelles containing digestive enzymes. They break down unwanted materials, damaged cell components and substances taken into the cell.",
+  markingPoints: [
+    "Membrane-bound organelles",
+    "Contain digestive enzymes",
+    "Intracellular digestion"
+  ]
+},
+{
+  id: 73,
+  chapter: 3,
+  marks: 3,
+  question: "What is the role of centrioles in a human cell?",
+  modelAnswer: "Centrioles help organise structures involved in cell division, particularly the spindle that assists chromosome movement during mitosis.",
+  markingPoints: [
+    "Associated with cell division",
+    "Help organise spindle",
+    "Assist chromosome movement"
+  ]
+},
+{
+  id: 74,
+  chapter: 3,
+  marks: 5,
+  question: "Explain why red blood cells are specialised for their function.",
+  modelAnswer: "Red blood cells are specialised to transport respiratory gases. Their biconcave shape provides a large surface area for gas exchange, they contain haemoglobin for oxygen transport, and mature red blood cells lack a nucleus, providing more space for haemoglobin.",
+  markingPoints: [
+    "Transport respiratory gases",
+    "Biconcave shape",
+    "Large surface area",
+    "Contain haemoglobin",
+    "Mature RBC lacks nucleus"
+  ]
+},
+{
+  id: 75,
+  chapter: 3,
+  marks: 4,
+  question: "Explain how the structure of a neuron is related to its function.",
+  modelAnswer: "A neuron is specialised for communication. Its long processes allow electrical signals to travel over distances, while branching structures allow communication with other cells.",
+  markingPoints: [
+    "Specialised for communication",
+    "Long processes",
+    "Signals travel over distance",
+    "Branches communicate with other cells"
+  ]
+},
+{
+  id: 76,
+  chapter: 3,
+  marks: 4,
+  question: "Explain how a macrophage is specialised for its function.",
+  modelAnswer: "A macrophage is specialised for defence. It can change shape and form pseudopods that surround and engulf microorganisms, damaged cells and other particles by phagocytosis.",
+  markingPoints: [
+    "Defence function",
+    "Can change shape",
+    "Forms pseudopods",
+    "Performs phagocytosis"
+  ]
+},
+{
+  id: 77,
+  chapter: 3,
+  marks: 5,
+  question: "State three reasons why cells divide and describe what happens to DNA before mitosis.",
+  modelAnswer: "Cells divide for growth, repair and replacement of damaged or old cells. Before mitosis begins, the DNA is replicated so each daughter cell can receive a complete copy.",
+  markingPoints: [
+    "Growth",
+    "Repair",
+    "Replacement",
+    "DNA replicates",
+    "Each daughter cell receives DNA"
+  ]
+},
+{
+  id: 78,
+  chapter: 3,
+  marks: 4,
+  question: "What is the result of mitosis in a human body cell?",
+  modelAnswer: "Mitosis produces two daughter cells that are genetically identical to the parent cell and to each other, with the same chromosome number.",
+  markingPoints: [
+    "Two daughter cells",
+    "Genetically identical",
+    "Same as parent cell",
+    "Same chromosome number"
+  ]
+},
+{
+  id: 79,
+  chapter: 3,
+  marks: 4,
+  question: "Calculate total microscope magnification when using a 10× eyepiece with 4×, 10× and 40× objective lenses.",
+  modelAnswer: "Total magnification equals eyepiece magnification multiplied by objective magnification. Therefore, 10× × 4× = 40×, 10× × 10× = 100×, and 10× × 40× = 400×.",
+  markingPoints: [
+    "Correct formula",
+    "4× objective = 40× total",
+    "10× objective = 100× total",
+    "40× objective = 400× total"
+  ]
+},
+{
+  id: 80,
+  chapter: 3,
+  marks: 5,
+  question: "Describe the correct basic sequence for focusing a specimen using a light microscope.",
+  modelAnswer: "Place the specimen on the stage and begin with the lowest-power objective, usually 4×. Centre the specimen and use the coarse focus to obtain an image. Adjust the light if necessary, then move to higher-power objectives and use fine focus to sharpen the image.",
+  markingPoints: [
+    "Place specimen on stage",
+    "Begin with 4× objective",
+    "Centre specimen",
+    "Use coarse focus initially",
+    "Higher power followed by fine focus"
+  ]
 }
     
 
