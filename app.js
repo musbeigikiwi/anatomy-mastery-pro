@@ -3482,18 +3482,50 @@ function saveMockShortAnswer(questionId, value) {
 }
 
 
-function saveMockMistake(mistake) {
+saveMockMistake({
 
-  const exists = state.mistakes.some(
-    (item) => item.id === mistake.id
-  );
+  id:
+    `mock-${exam.mock.id}-${q.id}`,
 
-  if (!exists) {
-    state.mistakes.push(mistake);
-  }
+  originalId:
+    q.id,
 
-  save();
-}
+  source:
+    "Mock Exam",
+
+  title:
+    exam.mock.title,
+
+  chapter:
+    q.chapter || "1–4",
+
+  question:
+    q.question,
+
+  options:
+    Array.isArray(q.options)
+      ? [...q.options]
+      : [],
+
+  selected:
+    selectedText,
+
+  selectedIndex:
+    selected,
+
+  correct:
+    correctText,
+
+  correctIndex:
+    correct,
+
+  explanation:
+    q.explanation || "",
+
+  level:
+    q.level || "MOCK REVIEW"
+
+});
 
 
 function submitFullMockExam() {
