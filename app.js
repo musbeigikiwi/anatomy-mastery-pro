@@ -3527,7 +3527,6 @@ saveMockMistake({
 
 });
 
-
 function submitFullMockExam() {
 
   const exam = fullMockState;
