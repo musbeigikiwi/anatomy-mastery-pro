@@ -1374,5 +1374,349 @@ window.AM_MOCKS = [
 
   ]
 }
+  ,
+{
+  id: "m5",
+  title: "GEDU404B Test 1 — Mock Exam Version 5: Final Simulation",
+  minutes: 30,
+
+  mcqs: [
+
+    {
+      id: 1,
+      question: "Which statement is primarily a physiological description?",
+      options: [
+        "The stomach lies inferior to the diaphragm.",
+        "The heart pumps blood through blood vessels.",
+        "The brain occupies the cranial cavity.",
+        "The skin is superficial to skeletal muscle."
+      ],
+      correct: 1,
+      explanation: "Function/how it works = physiology. Pumping blood describes what the heart does."
+    },
+
+    {
+      id: 2,
+      question: "Which statement is NOT correct in standard anatomical position?",
+      options: [
+        "The body is upright.",
+        "The face is forward.",
+        "The arms are at the sides.",
+        "The palms face posteriorly."
+      ],
+      correct: 3,
+      explanation: "In anatomical position, the palms face forward or anteriorly."
+    },
+
+    {
+      id: 3,
+      question: "Which relationship is correct?",
+      options: [
+        "The wrist is proximal to the elbow.",
+        "The nose is lateral to the eyes.",
+        "The skin is superficial to muscle.",
+        "The chest is superior to the head."
+      ],
+      correct: 2,
+      explanation: "The skin is closer to the body surface than muscle, so it is superficial to muscle."
+    },
+
+    {
+      id: 4,
+      question: "Which order correctly moves from simpler to more complex?",
+      options: [
+        "chemical → organelle → cell → tissue",
+        "cell → organelle → chemical → tissue",
+        "tissue → cell → organ → organelle",
+        "organ → tissue → organ system → cell"
+      ],
+      correct: 0,
+      explanation: "The correct hierarchy is chemical → organelle → cell → tissue."
+    },
+
+    {
+      id: 5,
+      question: "A section separates the body into left and right portions but does NOT necessarily create equal halves. It is a:",
+      options: [
+        "sagittal section",
+        "frontal section",
+        "transverse section",
+        "coronal section"
+      ],
+      correct: 0,
+      explanation: "A sagittal plane divides the body into left and right portions. Midsagittal specifically creates equal halves."
+    },
+
+    {
+      id: 6,
+      question: "Which pairing is FALSE?",
+      options: [
+        "cranial cavity — brain",
+        "spinal cavity — spinal cord",
+        "thoracic cavity — lungs",
+        "pelvic cavity — brain"
+      ],
+      correct: 3,
+      explanation: "The brain is located in the cranial cavity, not the pelvic cavity."
+    },
+
+    {
+      id: 7,
+      question: "Which system-function pair is BEST matched?",
+      options: [
+        "endocrine — hormone regulation",
+        "respiratory — production of urine",
+        "urinary — gas exchange",
+        "skeletal — digestion and absorption"
+      ],
+      correct: 0,
+      explanation: "The endocrine system uses hormones for regulation."
+    },
+
+    {
+      id: 8,
+      question: "An atom becomes negatively charged after a chemical change. Which event MOST likely occurred?",
+      options: [
+        "It lost electrons.",
+        "It gained electrons.",
+        "It lost all protons.",
+        "It gained neutrons only."
+      ],
+      correct: 1,
+      explanation: "Electrons are negatively charged. Gaining electrons makes an atom negatively charged."
+    },
+
+    {
+      id: 9,
+      question: "Which statement is correct?",
+      options: [
+        "Ionic bonding is defined by sharing electrons.",
+        "Covalent bonding involves sharing electrons.",
+        "A cation forms by gaining electrons.",
+        "An anion is positively charged."
+      ],
+      correct: 1,
+      explanation: "Covalent bonds involve sharing electrons."
+    },
+
+    {
+      id: 10,
+      question: "Which item is NOT in the same carbohydrate classification group as the others?",
+      options: [
+        "monosaccharide",
+        "disaccharide",
+        "polysaccharide",
+        "amino acid"
+      ],
+      correct: 3,
+      explanation: "Amino acids are building blocks of proteins, while the other three are carbohydrate classifications."
+    },
+
+    {
+      id: 11,
+      question: "A solution at pH 5 is treated and becomes pH 7. Which description is BEST?",
+      options: [
+        "It moved toward neutral.",
+        "It became more acidic.",
+        "It became strongly alkaline.",
+        "It underwent mitosis."
+      ],
+      correct: 0,
+      explanation: "pH 7 is neutral, so changing from pH 5 to pH 7 means moving toward neutrality."
+    },
+
+    {
+      id: 12,
+      question: "Which organelle-function pairing is INCORRECT?",
+      options: [
+        "mitochondrion — ATP production",
+        "ribosome — protein synthesis",
+        "Golgi apparatus — modification and packaging",
+        "lysosome — storage of genetic information"
+      ],
+      correct: 3,
+      explanation: "Genetic information is primarily stored in the nucleus. Lysosomes digest intracellular material."
+    },
+
+    {
+      id: 13,
+      question: "Which statement about the plasma membrane is FALSE?",
+      options: [
+        "It contains a phospholipid bilayer.",
+        "It is selectively permeable.",
+        "Its proteins can help transport substances.",
+        "Its hydrophilic heads are buried away from watery environments."
+      ],
+      correct: 3,
+      explanation: "Hydrophilic phospholipid heads face watery environments rather than being buried away from them."
+    },
+
+    {
+      id: 14,
+      question: "A 10× eyepiece is used with a 4× objective. The total magnification is:",
+      options: [
+        "14×",
+        "40×",
+        "100×",
+        "400×"
+      ],
+      correct: 1,
+      explanation: "Total magnification = eyepiece × objective. 10× × 4× = 40×."
+    },
+
+    {
+      id: 15,
+      question: "Which statement BEST describes the result of mitosis in ordinary body-cell growth/repair?",
+      options: [
+        "Two genetically identical daughter cells with the same chromosome number",
+        "Four genetically different cells",
+        "Two cells with half the chromosome number",
+        "One cell with no nucleus"
+      ],
+      correct: 0,
+      explanation: "Mitosis normally produces two genetically identical daughter cells and maintains chromosome number."
+    },
+
+    {
+      id: 16,
+      question: "Oxygen crosses directly through the cell membrane from an area of higher concentration to lower concentration. No ATP is used. This is:",
+      options: [
+        "simple diffusion",
+        "facilitated diffusion",
+        "active transport",
+        "endocytosis"
+      ],
+      correct: 0,
+      explanation: "Direct movement from high to low concentration through the membrane without ATP is simple diffusion."
+    },
+
+    {
+      id: 17,
+      question: "A solute moves down its concentration gradient through a carrier protein without ATP. Which process is occurring?",
+      options: [
+        "osmosis",
+        "facilitated diffusion",
+        "active transport",
+        "phagocytosis"
+      ],
+      correct: 1,
+      explanation: "Facilitated diffusion moves substances down their concentration gradient using a channel or carrier without ATP."
+    },
+
+    {
+      id: 18,
+      question: "Which statement about osmosis is NOT correct?",
+      options: [
+        "It is a passive process.",
+        "It concerns water movement.",
+        "A selectively permeable membrane is involved.",
+        "Water is pumped against its gradient using ATP."
+      ],
+      correct: 3,
+      explanation: "Osmosis is passive water movement and does not require ATP."
+    },
+
+    {
+      id: 19,
+      question: "A red blood cell loses water and shrinks. The surrounding solution is MOST likely:",
+      options: [
+        "hypotonic",
+        "hypertonic",
+        "isotonic",
+        "a solution in which no water can move"
+      ],
+      correct: 1,
+      explanation: "In a hypertonic solution, water moves out of the red blood cell and the cell shrinks."
+    },
+
+    {
+      id: 20,
+      question: "Which process is correctly matched?",
+      options: [
+        "phagocytosis — uptake of a large solid particle",
+        "pinocytosis — release of material outside the cell",
+        "exocytosis — water diffusion through a membrane",
+        "active transport — always high to low without ATP"
+      ],
+      correct: 0,
+      explanation: "Phagocytosis is the uptake or engulfment of large solid particles."
+    }
+
+  ],
+
+  shortAnswers: [
+
+    {
+      id: 21,
+      marks: 4,
+      question: "Define anatomy and physiology. Then classify this statement: “The kidneys filter blood.”",
+      modelAnswer: "Anatomy is the study of structure; physiology is the study of function. “The kidneys filter blood” is physiology because it describes what the kidneys do."
+    },
+
+    {
+      id: 22,
+      marks: 7,
+      question: "Describe anatomical position and give TWO correct directional relationships using body structures.",
+      modelAnswer: "Anatomical position: upright, facing forward, head and eyes forward, arms at the sides, palms forward and feet forward. Examples: the head is superior to the chest; the elbow is proximal to the wrist; the nose is medial to the eyes; the skin is superficial to muscle."
+    },
+
+    {
+      id: 23,
+      marks: 7,
+      question: "Name the three major anatomical planes and state how each divides the body. Then name the plane that creates equal left and right halves.",
+      modelAnswer: "Sagittal divides left and right; frontal/coronal divides anterior and posterior; transverse divides superior and inferior. The midsagittal plane creates equal left and right halves."
+    },
+
+    {
+      id: 24,
+      marks: 8,
+      question: "Explain the difference between ionic and covalent bonding, then define cation and anion.",
+      modelAnswer: "Ionic bonding involves electron transfer and attraction of oppositely charged ions; covalent bonding involves sharing electrons. A cation is a positive ion formed by losing electron(s); an anion is a negative ion formed by gaining electron(s)."
+    },
+
+    {
+      id: 25,
+      marks: 5,
+      question: "Explain the pH scale using acidic, neutral and basic, and state the normal blood pH range from the course material.",
+      modelAnswer: "pH below 7 is acidic; pH 7 is neutral; pH above 7 is basic or alkaline. Normal blood pH is approximately 7.35–7.45."
+    },
+
+    {
+      id: 26,
+      marks: 6,
+      question: "State the functions of ribosomes, rough ER, smooth ER, Golgi apparatus, lysosomes and mitochondria.",
+      modelAnswer: "Ribosomes synthesise proteins; rough ER processes and transports proteins; smooth ER synthesises lipids and participates in detoxification; Golgi apparatus modifies, sorts and packages; lysosomes digest intracellular material; mitochondria produce ATP."
+    },
+
+    {
+      id: 27,
+      marks: 5,
+      question: "A microscope has a 10× eyepiece. Calculate total magnification at 4×, 10× and 40× objectives. State the objective normally used first and why.",
+      modelAnswer: "The total magnifications are 40×, 100× and 400×. Start with the 4× objective because low power makes the specimen easier to locate and initially focus."
+    },
+
+    {
+      id: 28,
+      marks: 7,
+      question: "Compare simple diffusion, facilitated diffusion and active transport in terms of direction, membrane proteins and ATP.",
+      modelAnswer: "Simple diffusion: high to low concentration, directly through the membrane, no ATP. Facilitated diffusion: high to low through a channel or carrier, no ATP. Active transport: moves against the concentration gradient or low to high using a pump or carrier and requires ATP."
+    },
+
+    {
+      id: 29,
+      marks: 9,
+      question: "Explain what happens to red blood cells in hypertonic, hypotonic and isotonic solutions. Include water direction and cell outcome.",
+      modelAnswer: "Hypertonic: water leaves by osmosis and the cell shrinks or crenates. Hypotonic: water enters and the cell swells and may lyse or haemolyse. Isotonic: water moves both directions with no net movement, so the cell remains approximately the same size."
+    },
+
+    {
+      id: 30,
+      marks: 8,
+      question: "In the egg experiment, Egg A gains mass in water and Egg B loses mass in concentrated golden syrup. Explain both results fully using relative solute concentration, water concentration, selectively permeable membrane and osmosis.",
+      modelAnswer: "In water, the outside has relatively lower solute and higher water concentration, so water moves through the selectively permeable membrane into the egg by osmosis, increasing its mass. In concentrated syrup, the outside has higher solute and lower water concentration, so water moves out of the egg by osmosis, decreasing its mass."
+    }
+
+  ]
+}
 
 ];
