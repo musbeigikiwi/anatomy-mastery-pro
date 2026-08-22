@@ -2664,6 +2664,15 @@ function finishQuiz() {
    SHORT ANSWERS
 ========================================== */
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function renderShortAnswers() {
   const shortAnswers =
     window.AM_MASTER_BANK &&
