@@ -815,6 +815,311 @@ window.AM_QUIZZES = [
     }
 
   ]
+},
+  ,
+{
+  id: "q6",
+  title: "Wintec Test 1 Revision — 23 MCQs",
+  chapter: 0,
+  mode: "revision",
+  questions: [
+
+    {
+      id: 1,
+      question: "Physiology is the study of ..............................",
+      options: [
+        "biochemistry",
+        "physics",
+        "structure",
+        "function"
+      ],
+      correct: 3,
+      explanation: "Physiology studies how the body and its parts work (function). Anatomy mainly studies structure."
+    },
+
+    {
+      id: 2,
+      question: "The transverse plane divides the body into ................",
+      options: [
+        "Superior and Inferior",
+        "transparent pieces",
+        "Anterior and Posterior",
+        "Left and Right"
+      ],
+      correct: 0,
+      explanation: "A transverse plane divides the body into superior (upper) and inferior (lower) portions."
+    },
+
+    {
+      id: 3,
+      question: "The lateral side of this man's left leg is",
+      options: [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      correct: 3,
+      explanation: "Lateral means farther away from the body's midline. In the original diagram, label 4 indicates the lateral side of the left leg."
+    },
+
+    {
+      id: 4,
+      question: "In which body cavity would you find the heart?",
+      options: [
+        "Thoracic",
+        "Abdominal"
+      ],
+      correct: 0,
+      explanation: "The heart is located in the thoracic cavity."
+    },
+
+    {
+      id: 5,
+      question: "The most distal point on my arm is my",
+      options: [
+        "shoulder",
+        "radius",
+        "fingers",
+        "elbow"
+      ],
+      correct: 2,
+      explanation: "Distal means farther from the point of attachment. The fingers are farthest from the shoulder."
+    },
+
+    {
+      id: 6,
+      question: "Read all the answers! pH scale..........",
+      options: [
+        "Measures concentration of Hydrogen ions",
+        "Measures how acidic or basic a solution is",
+        "Ranges from 0 to 14",
+        "All of these answers"
+      ],
+      correct: 3,
+      explanation: "All three statements are correct. pH relates to hydrogen ion concentration, indicates acidity or basicity, and commonly ranges from 0 to 14."
+    },
+
+    {
+      id: 7,
+      question: "Bonding which involves atoms sharing electrons is called.......................",
+      options: [
+        "covalent",
+        "ionic"
+      ],
+      correct: 0,
+      explanation: "Covalent bonds form when atoms share electrons. Ionic bonding involves electron transfer."
+    },
+
+    {
+      id: 8,
+      question: "Glucose is a",
+      options: [
+        "monosaccharide",
+        "trisaccharide",
+        "protein",
+        "lipid"
+      ],
+      correct: 0,
+      explanation: "Glucose is a single sugar unit, so it is a monosaccharide."
+    },
+
+    {
+      id: 9,
+      question: "Anions",
+      options: [
+        "have the electrons in the nucleus",
+        "have more neutrons in their nucleus",
+        "make you cry when you cut them",
+        "have more electrons than protons"
+      ],
+      correct: 3,
+      explanation: "An anion has a negative charge because it has more electrons than protons."
+    },
+
+    {
+      id: 10,
+      question: "Which is most acidic?",
+      options: [
+        "pH = 3.6",
+        "pH = 5.1",
+        "pH = 2.4",
+        "pH = 6.2"
+      ],
+      correct: 2,
+      explanation: "The lower the pH, the more acidic the solution. Therefore pH 2.4 is the most acidic."
+    },
+
+    {
+      id: 11,
+      question: "The universal indicator",
+      options: [
+        "shows how much gas is in a solution",
+        "is outrageously expensive",
+        "needs electricity to read the result",
+        "has a limited range of pH 4-11"
+      ],
+      correct: 3,
+      explanation: "For this course quiz, the expected answer is that the universal indicator used has a limited pH colour range of 4–11."
+    },
+
+    {
+      id: 12,
+      question: "Which of the following statements is FALSE?",
+      options: [
+        "Lysosomes breakdown/recycle",
+        "DNA is found in the nucleus",
+        "Proteins are produced on ribosomes",
+        "Centrioles make ATP"
+      ],
+      correct: 3,
+      explanation: "Centrioles do not make ATP. They are involved in cell division. Mitochondria produce most cellular ATP."
+    },
+
+    {
+      id: 13,
+      question: "Which of these is found outside the cell?",
+      options: [
+        "intracellular fluid",
+        "cytosol",
+        "cytoplasm",
+        "extracellular fluid"
+      ],
+      correct: 3,
+      explanation: "Extracellular fluid is located outside cells. Intracellular fluid, cytosol and cytoplasm are inside cells."
+    },
+
+    {
+      id: 14,
+      question: "The cell membrane",
+      options: [
+        "separates organelles from cytosol",
+        "is missing from adipocytes",
+        "is mostly made of cholesterol",
+        "contains transport proteins"
+      ],
+      correct: 3,
+      explanation: "The cell membrane contains transport proteins that function as channels, carriers and pumps."
+    },
+
+    {
+      id: 15,
+      question: "Cells specialised to transmit messages in the body are",
+      options: [
+        "neurons",
+        "transmittercytes",
+        "leukocytes",
+        "adipocytes"
+      ],
+      correct: 0,
+      explanation: "Neurons are specialised to receive, process and transmit electrical and chemical signals."
+    },
+
+    {
+      id: 16,
+      question: "Which of these cell types have many nuclei in each cell?",
+      options: [
+        "neurons",
+        "skeletal muscle",
+        "adipocytes",
+        "erythrocytes"
+      ],
+      correct: 1,
+      explanation: "Skeletal muscle fibres are multinucleated and therefore contain many nuclei."
+    },
+
+    {
+      id: 17,
+      question: "Erythrocytes are BEST described as",
+      options: [
+        "donuts",
+        "triconvex",
+        "biconcave",
+        "having a nucleus"
+      ],
+      correct: 2,
+      explanation: "Mature erythrocytes are biconcave discs. This shape increases surface area and flexibility."
+    },
+
+    {
+      id: 18,
+      question: "Osmosis",
+      options: [
+        "results in 2 cells",
+        "is the movement of solutes",
+        "occurs to repair tissues",
+        "requires a semi-permeable membrane"
+      ],
+      correct: 3,
+      explanation: "Osmosis is the passive movement of water across a selectively or semi-permeable membrane."
+    },
+
+    {
+      id: 19,
+      question: "Select the FALSE statement: Facilitated diffusion",
+      options: [
+        "moves molecules from high concentration to low concentration",
+        "is how oxygen gets into cells",
+        "uses transport proteins or channels to move molecules into the cell",
+        "is a passive process"
+      ],
+      correct: 1,
+      explanation: "Oxygen normally crosses the cell membrane by simple diffusion. Facilitated diffusion uses membrane proteins and is passive."
+    },
+
+    {
+      id: 20,
+      question: "Mitosis",
+      options: [
+        "makes non-identical cells",
+        "results in 2 human cells each with 4 chromosomes",
+        "makes eggs swell in water",
+        "doesn't occur in adult cardiac muscle"
+      ],
+      correct: 3,
+      explanation: "For this course context, the expected answer is that mitosis doesn't occur in mature adult cardiac muscle. Mitosis normally produces two genetically identical daughter cells."
+    },
+
+    {
+      id: 21,
+      question: "3.2 kg is the same as",
+      options: [
+        "320 g",
+        "320 mg",
+        "3200 g",
+        "32 mg"
+      ],
+      correct: 2,
+      explanation: "1 kg = 1000 g. Therefore, 3.2 kg = 3200 g."
+    },
+
+    {
+      id: 22,
+      question: "4000 mg is the same as",
+      options: [
+        "400 g",
+        "4 g",
+        "4 kg",
+        "40 g"
+      ],
+      correct: 1,
+      explanation: "1000 mg = 1 g. Therefore, 4000 mg = 4 g."
+    },
+
+    {
+      id: 23,
+      question: "2.5 L is the same as",
+      options: [
+        "2500 mL",
+        "2.5 mL",
+        "250 mL",
+        "25 mL"
+      ],
+      correct: 0,
+      explanation: "1 L = 1000 mL. Therefore, 2.5 L = 2500 mL."
+    }
+
+  ]
 }
 
 ];
