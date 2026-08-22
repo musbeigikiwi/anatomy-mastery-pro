@@ -3493,26 +3493,26 @@ state.mcqs.forEach((q) => {
 
   } else {
 
-    if (typeof saveMistake === "function") {
+    const mistake = {
+      id: `mock-${state.mock.id}-${q.id}`,
+      source: "Mock Exam",
+      title: state.mock.title,
+      question: q.question,
+      options: q.options,
+      selected: Number.isInteger(selected)
+        ? selected
+        : null,
+      correct: correct,
+      explanation: q.explanation || "",
+      chapter: q.chapter || null
+    };
 
-      saveMistake({
-        id: `mock-${state.mock.id}-${q.id}`,
-        source: "Mock Exam",
-        mockTitle: state.mock.title,
-        question: q.question,
-        options: q.options,
-        selectedAnswer:
-          Number.isInteger(selected) && q.options[selected]
-            ? q.options[selected]
-            : "Not answered",
-        correctAnswer:
-          q.options[correct] || "",
-        explanation:
-          q.explanation || "",
-        chapter:
-          q.chapter || null
-      });
+    const alreadyExists = state.mistakes.some(
+      (item) => item.id === mistake.id
+    );
 
+    if (!alreadyExists) {
+      state.mistakes.push(mistake);
     }
 
   }
