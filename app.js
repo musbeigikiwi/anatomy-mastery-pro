@@ -4045,10 +4045,7 @@ function retryMistakes() {
     state.mistakes.length === 0
   ) {
 
-    alert(
-      "There are no mistakes to retry."
-    );
-
+    alert("There are no mistakes to retry.");
     return;
 
   }
@@ -4058,18 +4055,50 @@ function retryMistakes() {
     getAllQuestions();
 
 
+  const mockQuestions = [];
+
+  if (Array.isArray(window.AM_MOCKS)) {
+
+    window.AM_MOCKS.forEach((mock) => {
+
+      if (!Array.isArray(mock.mcqs)) {
+        return;
+      }
+
+
+      mock.mcqs.forEach((q) => {
+
+        mockQuestions.push({
+
+          mockId:
+            mock.id,
+
+          mockTitle:
+            mock.title,
+
+          question:
+            q
+
+        });
+
+      });
+
+    });
+
+  }
+
+
   const retryQuestions =
     state.mistakes
       .map((mistake) => {
 
-        /* =====================================
-           NORMAL QUESTION BANK / QUIZ MISTAKE
-        ===================================== */
+
+        /* NORMAL QUESTION BANK / QUIZ */
 
         const normalQuestion =
           masterQuestions.find(
-            (question) =>
-              question.id === mistake.id
+            (q) =>
+              q.id === mistake.id
           );
 
 
@@ -4093,9 +4122,7 @@ function retryMistakes() {
               [...normalQuestion.options],
 
             correct:
-              Number(
-                normalQuestion.correct
-              ),
+              Number(normalQuestion.correct),
 
             explanation:
               normalQuestion.explanation || "",
@@ -4106,6 +4133,152 @@ function retryMistakes() {
           };
 
         }
+
+
+
+        /* NEW MOCK MISTAKE FORMAT */
+
+        if (
+          mistake.source === "Mock Exam" &&
+          Array.isArray(mistake.options) &&
+          mistake.options.length > 1 &&
+          Number.isInteger(
+            Number(mistake.correctIndex)
+          )
+        ) {
+
+          return {
+
+            id:
+              mistake.id,
+
+            chapter:
+              mistake.chapter || "1–4",
+
+            chapterTitle:
+              mistake.title || "Mock Exam",
+
+            question:
+              mistake.question,
+
+            options:
+              [...mistake.options],
+
+            correct:
+              Number(mistake.correctIndex),
+
+            explanation:
+              mistake.explanation || "",
+
+            level:
+              "MOCK MISTAKE REVIEW"
+
+          };
+
+        }
+
+
+
+        /* OLD MOCK MISTAKE FORMAT */
+
+        if (
+          mistake.source === "Mock Exam"
+        ) {
+
+          const original =
+            mockQuestions.find(
+              (item) => {
+
+                const generatedId =
+                  `mock-${item.mockId}-${item.question.id}`;
+
+
+                return (
+                  generatedId === mistake.id
+                  ||
+                  item.question.question ===
+                    mistake.question
+                );
+
+              }
+            );
+
+
+          if (
+            original &&
+            Array.isArray(
+              original.question.options
+            )
+          ) {
+
+            return {
+
+              id:
+                mistake.id,
+
+              chapter:
+                original.question.chapter ||
+                mistake.chapter ||
+                "1–4",
+
+              chapterTitle:
+                original.mockTitle,
+
+              question:
+                original.question.question,
+
+              options:
+                [...original.question.options],
+
+              correct:
+                Number(
+                  original.question.correct
+                ),
+
+              explanation:
+                original.question.explanation || "",
+
+              level:
+                "MOCK MISTAKE REVIEW"
+
+            };
+
+          }
+
+        }
+
+
+        return null;
+
+      })
+
+      .filter(Boolean);
+
+
+  if (!retryQuestions.length) {
+
+    alert(
+      "No retryable questions were found."
+    );
+
+    return;
+
+  }
+
+
+  startQuiz(
+
+    retryQuestions,
+
+    "Retry All Mistakes",
+
+    true,
+
+    "mistakes"
+
+  );
+
+}
 
 
         /* =====================================
