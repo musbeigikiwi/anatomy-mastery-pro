@@ -4119,7 +4119,7 @@ function retryMistakes() {
       =============================== */
 
       if (
-        mistake.source === "Mock Exam" &&
+        
         Array.isArray(mistake.options) &&
         mistake.options.length > 1 &&
         Number.isInteger(Number(mistake.correctIndex))
