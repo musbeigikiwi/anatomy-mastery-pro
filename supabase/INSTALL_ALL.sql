@@ -49,7 +49,7 @@ create or replace function public.is_moderator_or_admin() returns boolean langua
   select exists(select 1 from public.profiles where id=auth.uid() and role in ('moderator','admin') and status='active')
 $$;
 create policy "read own profile" on public.profiles for select using (id=auth.uid() or public.is_moderator_or_admin());
-create policy "update safe own profile" on public.profiles for update using (id=auth.uid()) with check (id=auth.uid());
+-- Profile role/status changes are deliberately server/admin-only. No self-update policy is granted.
 create policy "admin manages profiles" on public.profiles for all using (public.is_admin()) with check (public.is_admin());
 create policy "admins read security events" on public.security_events for select using (public.is_admin());
 create policy "admins read admin actions" on public.admin_actions for select using (public.is_admin());
