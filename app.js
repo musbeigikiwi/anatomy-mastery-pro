@@ -787,7 +787,7 @@ function openNote(id) {
           ${chapterItem.id}
 
         </button>
-
+ 
 
       `
         )
