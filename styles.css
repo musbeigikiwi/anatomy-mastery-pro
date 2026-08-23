@@ -1742,3 +1742,7 @@ footer {
   background: #07111d;
   padding-bottom: calc(30px + env(safe-area-inset-bottom));
 }
+
+
+/* Secure identity entry */
+.account-access{display:flex;align-items:center;gap:9px;padding:9px 12px;border:1px solid rgba(94,230,196,.24);border-radius:14px;color:var(--text);text-decoration:none;background:rgba(94,230,196,.055);transition:.2s}.account-access:hover{transform:translateY(-1px);border-color:rgba(94,230,196,.55)}.account-shield{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;color:#07110e;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:950}.account-access b,.account-access small{display:block}.account-access b{font-size:.72rem}.account-access small{color:var(--muted);font-size:.6rem;margin-top:2px}@media(max-width:800px){.live{display:none}.account-access span:last-child{display:none}.account-access{padding:7px}}
