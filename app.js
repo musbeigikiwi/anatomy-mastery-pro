@@ -2055,26 +2055,56 @@ function chooseAnswer(
 
       state.mistakes.push({
 
-        id:
-          question.id,
+  id:
+    question.id,
 
-        chapter:
-          question.chapter,
+  source:
+    currentQuiz.source || "quiz",
 
-        question:
-          question.question,
+  title:
+    currentQuiz.title || "Quiz",
 
-        correct:
-          question
-            .shuffledOptions[
-              question.correctIndex
-            ]
-            .text,
+  chapter:
+    question.chapter,
 
-        explanation:
-          question.explanation
+  chapterTitle:
+    question.chapterTitle || "",
 
-      });
+  question:
+    question.question,
+
+  options:
+    question.shuffledOptions.map(
+      (option) => option.text
+    ),
+
+  correctIndex:
+    question.correctIndex,
+
+  correct:
+    question
+      .shuffledOptions[
+        question.correctIndex
+      ]
+      .text,
+
+  selectedIndex:
+    choice,
+
+  selected:
+    question
+      .shuffledOptions[
+        choice
+      ]
+      .text,
+
+  explanation:
+    question.explanation || "",
+
+  level:
+    question.level || "REVIEW"
+
+});
 
     }
 
