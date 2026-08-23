@@ -3556,31 +3556,48 @@ function submitFullMockExam() {
 
       saveMockMistake({
 
-        id:
-          `mock-${exam.mock.id}-${q.id}`,
+  id:
+    `mock-${exam.mock.id}-${q.id}`,
 
-        source:
-          "Mock Exam",
+  originalId:
+    q.id,
 
-        title:
-          exam.mock.title,
+  source:
+    "Mock Exam",
 
-        chapter:
-          q.chapter || "1–4",
+  title:
+    exam.mock.title,
 
-        question:
-          q.question,
+  chapter:
+    q.chapter || "1–4",
 
-        selected:
-          selectedText,
+  question:
+    q.question,
 
-        correct:
-          correctText,
+  options:
+    Array.isArray(q.options)
+      ? [...q.options]
+      : [],
 
-        explanation:
-          q.explanation || ""
+  selected:
+    selectedText,
 
-      });
+  selectedIndex:
+    selected,
+
+  correct:
+    correctText,
+
+  correctIndex:
+    correct,
+
+  explanation:
+    q.explanation || "",
+
+  level:
+    q.level || "MOCK REVIEW"
+
+});
 
     }
 
