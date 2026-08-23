@@ -1,7 +1,8 @@
-// Public client configuration only. Never place service_role keys or secrets here.
+// Public browser configuration. This file must never contain secret/service-role keys.
 window.AMPRO_CONFIG = {
-  supabaseUrl: "https://YOUR_PROJECT.supabase.co",
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
-  redirectUrl: window.location.origin + window.location.pathname.replace(/auth\.html$/, "index.html"),
+  supabaseUrl: "https://syolnieoripjheyeycmm.supabase.co",
+  supabaseAnonKey: "sb_publishable_ZraOwRcGSLDxZAmt7hUJNg_YWaOnBQa",
+  siteUrl: "https://musbeigikiwi.github.io/anatomy-mastery-pro/index.html",
+  authUrl: "https://musbeigikiwi.github.io/anatomy-mastery-pro/auth.html",
   environment: "production"
 };
