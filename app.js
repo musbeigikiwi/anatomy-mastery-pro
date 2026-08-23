@@ -7,7 +7,7 @@ const TASKSTORE =
 
 const DEFAULT_STATE = {
 
-  todayKey: "",
+  todayKey: "", 
 
   todaySec: 0,
 
