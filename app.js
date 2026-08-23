@@ -2047,7 +2047,7 @@ function chooseAnswer(
           (mistake) =>
             mistake.id
             ===
-            question.id
+            question.id 
         );
 
 
