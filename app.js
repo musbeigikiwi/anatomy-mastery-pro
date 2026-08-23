@@ -4011,16 +4011,11 @@ function retryMistakes() {
     !Array.isArray(state.mistakes) ||
     state.mistakes.length === 0
   ) {
-
     alert("There are no mistakes to retry.");
     return;
-
   }
 
-
-  const masterQuestions =
-    getAllQuestions();
-
+  const masterQuestions = getAllQuestions();
 
   const mockQuestions = [];
 
@@ -4032,20 +4027,12 @@ function retryMistakes() {
         return;
       }
 
-
       mock.mcqs.forEach((q) => {
 
         mockQuestions.push({
-
-          mockId:
-            mock.id,
-
-          mockTitle:
-            mock.title,
-
-          question:
-            q
-
+          mockId: mock.id,
+          mockTitle: mock.title,
+          question: q
         });
 
       });
@@ -4054,173 +4041,113 @@ function retryMistakes() {
 
   }
 
+  const retryQuestions = state.mistakes
+    .map((mistake) => {
 
-  const retryQuestions =
-    state.mistakes
-      .map((mistake) => {
+      /* ===============================
+         NORMAL QUESTION BANK / QUIZ
+      =============================== */
 
+      const normalQuestion = masterQuestions.find(
+        (q) => q.id === mistake.id
+      );
 
-        /* NORMAL QUESTION BANK / QUIZ */
+      if (normalQuestion) {
 
-        const normalQuestion =
-          masterQuestions.find(
-            (q) =>
-              q.id === mistake.id
+        return {
+          id: normalQuestion.id,
+          chapter: normalQuestion.chapter,
+          chapterTitle: normalQuestion.chapterTitle,
+          question: normalQuestion.question,
+          options: [...normalQuestion.options],
+          correct: Number(normalQuestion.correct),
+          explanation: normalQuestion.explanation || "",
+          level: normalQuestion.level || "REVIEW"
+        };
+
+      }
+
+      /* ===============================
+         MOCK MISTAKE WITH SAVED OPTIONS
+      =============================== */
+
+      if (
+        mistake.source === "Mock Exam" &&
+        Array.isArray(mistake.options) &&
+        mistake.options.length > 1 &&
+        Number.isInteger(Number(mistake.correctIndex))
+      ) {
+
+        return {
+          id: mistake.id,
+          chapter: mistake.chapter || "1–4",
+          chapterTitle: mistake.title || "Mock Exam",
+          question: mistake.question,
+          options: [...mistake.options],
+          correct: Number(mistake.correctIndex),
+          explanation: mistake.explanation || "",
+          level: mistake.level || "MOCK MISTAKE REVIEW"
+        };
+
+      }
+
+      /* ===============================
+         OLD MOCK MISTAKE FORMAT
+      =============================== */
+
+      if (mistake.source === "Mock Exam") {
+
+        const original = mockQuestions.find((item) => {
+
+          const generatedId =
+            `mock-${item.mockId}-${item.question.id}`;
+
+          return (
+            generatedId === mistake.id ||
+            item.question.question === mistake.question
           );
 
-
-        if (normalQuestion) {
-
-          return {
-
-            id:
-              normalQuestion.id,
-
-            chapter:
-              normalQuestion.chapter,
-
-            chapterTitle:
-              normalQuestion.chapterTitle,
-
-            question:
-              normalQuestion.question,
-
-            options:
-              [...normalQuestion.options],
-
-            correct:
-              Number(normalQuestion.correct),
-
-            explanation:
-              normalQuestion.explanation || "",
-
-            level:
-              normalQuestion.level || "REVIEW"
-
-          };
-
-        }
-
-
-
-        /* NEW MOCK MISTAKE FORMAT */
+        });
 
         if (
-          mistake.source === "Mock Exam" &&
-          Array.isArray(mistake.options) &&
-          mistake.options.length > 1 &&
-          Number.isInteger(
-            Number(mistake.correctIndex)
-          )
+          original &&
+          Array.isArray(original.question.options)
         ) {
 
           return {
-
-            id:
-              mistake.id,
-
+            id: mistake.id,
             chapter:
-              mistake.chapter || "1–4",
+              original.question.chapter ||
+              mistake.chapter ||
+              "1–4",
 
             chapterTitle:
-              mistake.title || "Mock Exam",
+              original.mockTitle,
 
             question:
-              mistake.question,
+              original.question.question,
 
             options:
-              [...mistake.options],
+              [...original.question.options],
 
             correct:
-              Number(mistake.correctIndex),
+              Number(original.question.correct),
 
             explanation:
-              mistake.explanation || "",
+              original.question.explanation || "",
 
             level:
               "MOCK MISTAKE REVIEW"
-
           };
 
         }
 
+      }
 
+      return null;
 
-        /* OLD MOCK MISTAKE FORMAT */
-
-        if (
-          mistake.source === "Mock Exam"
-        ) {
-
-          const original =
-            mockQuestions.find(
-              (item) => {
-
-                const generatedId =
-                  `mock-${item.mockId}-${item.question.id}`;
-
-
-                return (
-                  generatedId === mistake.id
-                  ||
-                  item.question.question ===
-                    mistake.question
-                );
-
-              }
-            );
-
-
-          if (
-            original &&
-            Array.isArray(
-              original.question.options
-            )
-          ) {
-
-            return {
-
-              id:
-                mistake.id,
-
-              chapter:
-                original.question.chapter ||
-                mistake.chapter ||
-                "1–4",
-
-              chapterTitle:
-                original.mockTitle,
-
-              question:
-                original.question.question,
-
-              options:
-                [...original.question.options],
-
-              correct:
-                Number(
-                  original.question.correct
-                ),
-
-              explanation:
-                original.question.explanation || "",
-
-              level:
-                "MOCK MISTAKE REVIEW"
-
-            };
-
-          }
-
-        }
-
-
-        return null;
-
-      })
-
-      .filter(Boolean);
-
+    })
+    .filter(Boolean);
 
   if (!retryQuestions.length) {
 
@@ -4232,21 +4159,14 @@ function retryMistakes() {
 
   }
 
-
   startQuiz(
-
     retryQuestions,
-
     "Retry All Mistakes",
-
     true,
-
     "mistakes"
-
   );
 
 }
-
 
         /* =====================================
            MOCK EXAM MISTAKE
