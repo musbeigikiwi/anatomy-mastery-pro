@@ -1708,3 +1708,37 @@ footer a {
   }
 
 }
+/* ==========================================
+   FIX IPAD / SAFARI WHITE BOTTOM OVERSCROLL
+========================================== */
+
+html {
+  background: #07111d;
+  min-height: 100%;
+}
+
+body {
+  background: #07111d;
+  min-height: 100vh;
+  margin: 0;
+  overscroll-behavior-y: none;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: env(safe-area-inset-bottom, 0px);
+  background: #07111d;
+}
+
+main,
+.page,
+.site-wrapper,
+.app-shell {
+  min-height: 100vh;
+}
+
+footer {
+  background: #07111d;
+  padding-bottom: calc(30px + env(safe-area-inset-bottom));
+}
