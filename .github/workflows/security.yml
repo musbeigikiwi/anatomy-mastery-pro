@@ -1,0 +1,21 @@
+name: Security checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject obvious committed secrets
+        run: |
+          if grep -RInE '(service_role|SUPABASE_SERVICE_ROLE_KEY|RISK_PROVIDER_KEY)[[:space:]]*[:=][[:space:]]*["'\''"]?[A-Za-z0-9_-]{20,}' --exclude='.env.example' --exclude='*.md' .; then
+            echo "Potential secret committed"; exit 1
+          fi
+      - name: Validate JavaScript syntax
+        run: |
+          node --check auth.js
+          node --check app.js
