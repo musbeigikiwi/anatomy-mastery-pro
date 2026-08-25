@@ -9,14 +9,22 @@
     const ua=navigator.userAgent||"";
     const device=/android/i.test(ua)?"Android":/iphone|ipad|ipod/i.test(ua)?"Apple mobile":/windows/i.test(ua)?"Windows PC":/macintosh|mac os x/i.test(ua)?"Mac":"Unknown device";
     const browser=/edg\//i.test(ua)?"Edge":/chrome\//i.test(ua)?"Chrome":/safari\//i.test(ua)&&!/chrome\//i.test(ua)?"Safari":/firefox\//i.test(ua)?"Firefox":"Other browser";
+    const version=(ua.match(/(?:Edg|Chrome|Firefox)\/(\d+)/i)||ua.match(/Version\/(\d+).*Safari/i)||[])[1]||"unknown";
     const os=/android/i.test(ua)?"Android":/iphone|ipad|ipod/i.test(ua)?"iOS/iPadOS":/windows/i.test(ua)?"Windows":/mac os x|macintosh/i.test(ua)?"macOS":"Other OS";
+    const legacyBrowser=/MSIE|Trident\//i.test(ua);
     const raw=[navigator.platform,screen.width,screen.height,navigator.language,ua].join("|");
     const fp=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(raw));
     const hash=Array.from(new Uint8Array(fp)).map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,48);
-    return {ua,device,browser,os,hash};
+    return {ua,device,browser,version,os,legacyBrowser,hash};
   };
   const touch=id=>client.rpc("touch_my_session",{p_session_id:id}).catch(()=>{});
   const startHeartbeat=id=>{if(heartbeat)clearInterval(heartbeat);heartbeat=setInterval(()=>touch(id),30000)};
+  async function runRisk(id,i){
+    try{
+      const {data:{session}}=await client.auth.getSession();if(!session)return;
+      await fetch(cfg.supabaseUrl+"/functions/v1/risk-evaluate",{method:"POST",headers:{Authorization:"Bearer "+session.access_token,apikey:cfg.supabaseAnonKey,"Content-Type":"application/json"},body:JSON.stringify({sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version})});
+    }catch{}
+  }
   async function ensure(){
     if(starting)return sessionStorage.getItem(KEY);
     const current=sessionStorage.getItem(KEY);
@@ -27,7 +35,7 @@
       const i=await info();
       const {data,error}=await client.rpc("start_my_session",{p_device_hash:i.hash,p_device_label:i.device,p_browser_label:i.browser,p_os_label:i.os,p_user_agent:i.ua});
       if(error)throw error;
-      if(data){sessionStorage.setItem(KEY,data);startHeartbeat(data);return data}
+      if(data){sessionStorage.setItem(KEY,data);startHeartbeat(data);runRisk(data,i);return data}
     }catch(e){console.warn("Session audit unavailable",e?.message||e)}finally{starting=false}
     return null;
   }
@@ -39,11 +47,7 @@
   async function logFailure(method="password"){
     try{const i=await info();await client.rpc("log_login_failure",{p_device_label:i.device,p_browser_label:i.browser,p_os_label:i.os,p_user_agent:i.ua,p_method:method})}catch{}
   }
-  async function markIfStillSignedOut(method){
-    await new Promise(r=>setTimeout(r,1800));
-    const {data:{session}}=await client.auth.getSession();
-    if(!session)logFailure(method);
-  }
+  async function markIfStillSignedOut(method){await new Promise(r=>setTimeout(r,1800));const {data:{session}}=await client.auth.getSession();if(!session)logFailure(method)}
   client.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_IN"&&session)ensure();if(event==="SIGNED_OUT")end()});
   client.auth.getSession().then(({data})=>{if(data.session)ensure()}).catch(()=>{});
   const loginForm=document.getElementById("loginForm");if(loginForm)loginForm.addEventListener("submit",()=>markIfStillSignedOut("password"),true);
