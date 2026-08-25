@@ -12,8 +12,7 @@
       await client.auth.signOut();location.replace(fallback+"?status=pending");return
     }
     window.AMPRO_AUTH={client,session,profile};
-    if(window.AMPRO_SESSION_TRACKER)await window.AMPRO_SESSION_TRACKER.ensure();
-    fetch(cfg.supabaseUrl+"/functions/v1/risk-evaluate",{method:"POST",headers:{Authorization:"Bearer "+session.access_token,apikey:cfg.supabaseAnonKey,"Content-Type":"application/json"},body:JSON.stringify({newDevice:false,newCountry:false,vpn:false,tor:false,failedAttempts:0})}).catch(()=>{});
+    if(window.AMPRO_SESSION_TRACKER)await window.AMPRO_SESSION_TRACKER.ensure(profile.role);
     const access=document.querySelector(".account-access");
     if(access){access.href=profile.role==="admin"?"admin.html":"#";access.innerHTML='<span class="account-shield">✓</span><span><b>'+escapeHtml(profile.full_name||session.user.email)+'</b><small>'+escapeHtml(profile.role)+' account</small></span>';if(profile.role!=="admin")access.addEventListener("click",e=>e.preventDefault())}
     const logout=document.createElement("button");logout.className="secure-logout";logout.type="button";logout.textContent="Sign out";
