@@ -40,6 +40,8 @@
     location.replace("auth.html?blocked="+r);
   }
 
+  const explicitBlockReasons=new Set(["outside_new_zealand","vpn_not_allowed","proxy_not_allowed","tor_not_allowed","unsafe_browser_context","inactive_account"]);
+
   async function runRisk(id,i,roleHint){
     const role=await resolveRole(roleHint);
     try{
@@ -51,17 +53,20 @@
         let detail=null;
         try{if(error.context&&typeof error.context.json==="function")detail=await error.context.json()}catch{}
         const reason=detail?.reason||detail?.blockReason||detail?.error||"security_check_unavailable";
-        if(role!=="admin")await blockAccess(id,reason);
-        return null;
+        lastRisk={allowed:true,decision:"allow",reason:"risk_service_degraded",detail:reason};
+        if(role!=="admin"&&explicitBlockReasons.has(reason))await blockAccess(id,reason);
+        else console.warn("Risk service unavailable; allowing active verified account",reason);
+        return lastRisk;
       }
       const result=data||{};
       lastRisk=result;
-      if(result?.decision==="block"||result?.allowed===false){await blockAccess(id,result.reason||result.blockReason||"network_policy")}
+      const reason=result.reason||result.blockReason||"network_policy";
+      if((result?.decision==="block"||result?.allowed===false)&&role!=="admin"&&explicitBlockReasons.has(reason))await blockAccess(id,reason);
       return result;
     }catch(e){
       console.warn("Network security check unavailable",e?.message||e);
-      if(role!=="admin")await blockAccess(id,"security_check_unavailable");
-      return null;
+      lastRisk={allowed:true,decision:"allow",reason:"risk_service_degraded"};
+      return lastRisk;
     }
   }
 
@@ -96,8 +101,7 @@
       return id;
     }catch(e){
       console.warn("Session audit unavailable",e?.message||e);
-      const role=await resolveRole(roleHint);
-      if(role!=="admin")await blockAccess(sessionStorage.getItem(KEY),"session_security_unavailable");
+      return null;
     }finally{starting=false}
     return null;
   }
@@ -119,8 +123,6 @@
     if(!session)logFailure(method);
   }
 
-  // Do not start the risk engine from the public auth page. It runs after
-  // auth-guard has verified both the Supabase session and active profile.
   const onProtectedPage=()=>!/(^|\/)auth\.html$/i.test(location.pathname);
   if(onProtectedPage()){
     client.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_IN"&&session)ensure();if(event==="SIGNED_OUT")end()});
