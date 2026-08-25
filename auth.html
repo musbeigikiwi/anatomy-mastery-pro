@@ -13,70 +13,45 @@
   <main class="auth-shell">
     <section class="identity-panel">
       <a class="brandmark" href="index.html" aria-label="Anatomy Mastery Pro home"><span>AM</span><div><strong>ANATOMY MASTERY</strong><small>PRO • IDENTITY SECURITY</small></div></a>
-      <div class="identity-copy">
-        <p class="kicker"><i></i> Clinical-grade learning access</p>
-        <h1>Knowledge protected.<br><em>Progress preserved.</em></h1>
-        <p>Secure identity, verified membership and privacy-first study access—built for serious learners.</p>
-      </div>
-      <div class="trust-grid">
-        <div><span>01</span><strong>Verified identity</strong><small>Email confirmation and admin approval</small></div>
-        <div><span>02</span><strong>Adaptive access</strong><small>Device, session and risk awareness</small></div>
-        <div><span>03</span><strong>Private by design</strong><small>No passwords or tokens in audit logs</small></div>
-      </div>
+      <div class="identity-copy"><p class="kicker"><i></i> Clinical-grade learning access</p><h1>Knowledge protected.<br><em>Progress preserved.</em></h1><p>Secure identity, verified membership and privacy-first study access—built for serious learners.</p></div>
+      <div class="trust-grid"><div><span>01</span><strong>Verified identity</strong><small>Email confirmation and admin approval</small></div><div><span>02</span><strong>Adaptive access</strong><small>Device, session and risk awareness</small></div><div><span>03</span><strong>Private by design</strong><small>No passwords or tokens in audit logs</small></div></div>
       <div class="security-foot"><span class="shield">✓</span><div><strong>Protected connection</strong><small>Secure authentication • Privacy-first logging</small></div></div>
     </section>
-
     <section class="auth-panel">
       <div class="mobile-brand">ANATOMY MASTERY <b>PRO</b></div>
       <div class="auth-card">
         <div class="status-row"><span class="secure-pill">● SECURITY ACTIVE</span><button id="backHome" class="text-btn" type="button">Return home</button></div>
-        <div class="tabs" role="tablist">
-          <button class="tab active" data-mode="login" type="button">Sign in</button>
-          <button class="tab" data-mode="register" type="button">Create account</button>
-        </div>
-
+        <div class="tabs" role="tablist"><button class="tab active" data-mode="login" type="button">Sign in</button><button class="tab" data-mode="register" type="button">Create account</button></div>
         <div id="notice" class="notice" aria-live="polite"></div>
-
         <form id="loginForm" class="form active" autocomplete="on">
           <header><p>Welcome back</p><h2>Secure sign in</h2><span>Continue to your personalised learning space.</span></header>
           <button id="googleLogin" class="social-btn" type="button"><span class="google-g">G</span> Continue with Google</button>
           <div class="divider"><span>or use your registered email</span></div>
           <label>Email address<input id="loginEmail" type="email" autocomplete="email" placeholder="name@example.com" required></label>
-          <label class="password-label">Password <button class="inline-link" id="showRecovery" type="button">Forgot password?</button>
-            <div class="input-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="10" required><button class="reveal" data-target="loginPassword" type="button" aria-label="Show password">Show</button></div>
-          </label>
+          <label class="password-label">Password <button class="inline-link" id="showRecovery" type="button">Forgot password?</button><div class="input-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="10" required><button class="reveal" data-target="loginPassword" type="button" aria-label="Show password">Show</button></div></label>
           <label class="remember"><input id="rememberDevice" type="checkbox"><span>Remember this trusted device</span></label>
           <button class="primary-btn" type="submit">Sign in securely <span>→</span></button>
-          <button id="passkeyLogin" class="passkey-btn" type="button">◉ Sign in with a passkey <small>READY</small></button>
+          <button id="passkeyLogin" class="passkey-btn" type="button">◉ Sign in with a passkey <small>WEBAUTHN</small></button>
           <p class="legal">By continuing, you agree to responsible use and our privacy controls.</p>
         </form>
-
         <form id="registerForm" class="form" autocomplete="on">
           <header><p>Join the platform</p><h2>Create verified access</h2><span>Your account will require email verification and admin approval.</span></header>
           <label>Full name<input id="fullName" type="text" autocomplete="name" placeholder="Your full name" minlength="2" maxlength="80" required></label>
           <label>Email address<input id="registerEmail" type="email" autocomplete="email" placeholder="name@example.com" required></label>
-          <label>Password
-            <div class="input-wrap"><input id="registerPassword" type="password" autocomplete="new-password" placeholder="At least 12 characters" minlength="12" required><button class="reveal" data-target="registerPassword" type="button">Show</button></div>
-          </label>
+          <label>Password<div class="input-wrap"><input id="registerPassword" type="password" autocomplete="new-password" placeholder="At least 12 characters" minlength="12" required><button class="reveal" data-target="registerPassword" type="button">Show</button></div></label>
           <div class="strength"><div><span id="strengthBar"></span></div><small id="strengthText">Use 12+ characters, mixed case, a number and a symbol.</small></div>
           <label>Personal anti-phishing phrase <input id="phishingPhrase" type="text" placeholder="Example: Silver Kiwi 27" minlength="6" maxlength="40" required><small>We can display this phrase in genuine security emails so you can recognise us.</small></label>
           <label class="remember"><input id="terms" type="checkbox" required><span>I agree to the privacy and acceptable-use terms.</span></label>
           <button class="primary-btn" type="submit">Create secure account <span>→</span></button>
         </form>
-
-        <form id="recoveryForm" class="form">
-          <header><p>Account recovery</p><h2>Reset your password</h2><span>We will send a short-lived recovery link only to your registered email.</span></header>
-          <label>Registered email<input id="recoveryEmail" type="email" autocomplete="email" placeholder="name@example.com" required></label>
-          <button class="primary-btn" type="submit">Send secure reset link <span>→</span></button>
-          <button id="backLogin" class="secondary-btn" type="button">Back to sign in</button>
-        </form>
+        <form id="recoveryForm" class="form"><header><p>Account recovery</p><h2>Reset your password</h2><span>We will send a short-lived recovery link only to your registered email.</span></header><label>Registered email<input id="recoveryEmail" type="email" autocomplete="email" placeholder="name@example.com" required></label><button class="primary-btn" type="submit">Send secure reset link <span>→</span></button><button id="backLogin" class="secondary-btn" type="button">Back to sign in</button></form>
       </div>
       <p class="soc-note">Monitored by Anatomy Mastery Security • Events are recorded without passwords or tokens.</p>
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js?v=6"></script>
-  <script src="auth-direct.js?v=6"></script>
+  <script src="auth-direct.js?v=7"></script>
   <script src="recovery-client.js?v=6"></script>
 </body>
 </html>
