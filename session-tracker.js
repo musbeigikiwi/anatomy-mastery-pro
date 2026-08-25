@@ -39,7 +39,14 @@
   async function logFailure(method="password"){
     try{const i=await info();await client.rpc("log_login_failure",{p_device_label:i.device,p_browser_label:i.browser,p_os_label:i.os,p_user_agent:i.ua,p_method:method})}catch{}
   }
+  async function markIfStillSignedOut(method){
+    await new Promise(r=>setTimeout(r,1800));
+    const {data:{session}}=await client.auth.getSession();
+    if(!session)logFailure(method);
+  }
   client.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_IN"&&session)ensure();if(event==="SIGNED_OUT")end()});
   client.auth.getSession().then(({data})=>{if(data.session)ensure()}).catch(()=>{});
+  const loginForm=document.getElementById("loginForm");if(loginForm)loginForm.addEventListener("submit",()=>markIfStillSignedOut("password"),true);
+  const passkey=document.getElementById("passkeyLogin");if(passkey)passkey.addEventListener("click",()=>markIfStillSignedOut("passkey"),true);
   window.AMPRO_SESSION_TRACKER={ensure,end,logFailure,key:KEY,client};
 })();
