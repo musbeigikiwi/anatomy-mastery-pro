@@ -10,21 +10,30 @@ function busy(f,on){f.querySelectorAll("button,input").forEach(x=>x.disabled=on)
 async function request(path,options={}){const r=await fetch(api+path,{...options,headers:{apikey:key,"Content-Type":"application/json",...(options.headers||{})},cache:"no-store"});let d={};try{d=await r.json()}catch{}if(!r.ok)throw new Error(d.msg||d.message||d.error_description||d.error||"Secure request failed");return d}
 function storeSession(s){const ref=new URL(api).hostname.split(".")[0];localStorage.setItem("sb-"+ref+"-auth-token",JSON.stringify(s))}
 async function profileFor(session){const p=await request("/rest/v1/profiles?id=eq."+encodeURIComponent(session.user.id)+"&select=status,role",{headers:{Authorization:"Bearer "+session.access_token}});return Array.isArray(p)?p[0]:null}
-async function offerPasskeyEnrollment(){
- if(!client||!window.PublicKeyCredential)return;
+function supportsPasskeyEnrollment(user){
+ const ids=Array.isArray(user?.identities)?user.identities:[];
+ if(ids.some(i=>i.provider==="email"))return true;
+ return user?.app_metadata?.provider==="email";
+}
+async function offerPasskeyEnrollment(session){
+ if(!client||!window.PublicKeyCredential||!session?.user)return;
+ if(!supportsPasskeyEnrollment(session.user))return;
  try{
    const {data:list,error:listError}=await client.auth.passkey.list();
    if(listError)throw listError;
    if(Array.isArray(list)&&list.length)return;
    if(!confirm("Create a passkey for faster, phishing-resistant sign-in with Face ID, Touch ID, device PIN or a security key?"))return;
    notice("Create your passkey using Face ID, Touch ID, device PIN or your security key…","info");
-   const {data,error}=await client.auth.registerPasskey();
+   const {error}=await client.auth.registerPasskey();
    if(error)throw error;
    notice("Passkey created successfully. You can use “Sign in with a passkey” next time.","success");
    await new Promise(r=>setTimeout(r,900));
- }catch(e){notice(e.message||"Passkey setup was not completed. You can try again later.","error");await new Promise(r=>setTimeout(r,900))}
+ }catch(e){
+   const msg=e?.name==="NotAllowedError"?"Passkey setup was cancelled or not allowed on this device.":(e.message||"Passkey setup was not completed. You can try again later.");
+   notice(msg,"error");await new Promise(r=>setTimeout(r,900));
+ }
 }
-async function routeApprovedSession(session,{offerPasskey=true}={}){if(!session?.user)throw new Error("A secure session could not be created.");const profile=await profileFor(session);if(!profile)throw new Error("Your security profile was not found.");if(profile.status!=="active"){if(client)await client.auth.signOut();throw new Error("Your account is pending administrator approval.");}if(offerPasskey)await offerPasskeyEnrollment();notice("Identity verified. Opening secure workspace…","success");setTimeout(()=>location.replace(profile.role==="admin"?"admin.html":(cfg.siteUrl||"index.html")),350)}
+async function routeApprovedSession(session,{offerPasskey=true}={}){if(!session?.user)throw new Error("A secure session could not be created.");const profile=await profileFor(session);if(!profile)throw new Error("Your security profile was not found.");if(profile.status!=="active"){if(client)await client.auth.signOut();throw new Error("Your account is pending administrator approval.");}if(offerPasskey)await offerPasskeyEnrollment(session);notice("Identity verified. Opening secure workspace…","success");setTimeout(()=>location.replace(profile.role==="admin"?"admin.html":(cfg.siteUrl||"index.html")),350)}
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>show(t.dataset.mode));
 document.querySelectorAll(".reveal").forEach(b=>b.onclick=()=>{const i=$(b.dataset.target);i.type=i.type==="password"?"text":"password";b.textContent=i.type==="password"?"Show":"Hide"});
 $("backHome").onclick=()=>location.href="index.html";$("showRecovery").onclick=()=>show("recovery");$("backLogin").onclick=()=>show("login");
@@ -40,6 +49,6 @@ if(recoveryHash.get("type")==="recovery"&&recoveryHash.get("access_token")){
   forms.recovery.onsubmit=async e=>{e.preventDefault();busy(e.currentTarget,true);try{const password=$("newRecoveryPassword").value;if(password.length<12||!/[A-Z]/.test(password)||!/[a-z]/.test(password)||!/[0-9]/.test(password)||!/[^A-Za-z0-9]/.test(password))throw new Error("Use 12+ characters, mixed case, a number and a symbol.");await request("/auth/v1/user",{method:"PUT",headers:{Authorization:"Bearer "+recoveryHash.get("access_token")},body:JSON.stringify({password})});location.hash="";notice("Password updated. Return to Sign in and use your new password.","success");setTimeout(()=>show("login"),1200)}catch(err){notice(err.message||"Password update failed.","error")}finally{busy(e.currentTarget,false)}};
 }
 $("googleLogin").onclick=async()=>{try{if(!client)throw new Error("Secure service configuration is unavailable.");$("googleLogin").disabled=true;const redirect=(cfg.authUrl||location.href.split("?")[0])+"?oauth=1";const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:redirect}});if(error)throw error}catch(err){$("googleLogin").disabled=false;notice(err.message||"Google sign-in failed.","error")}};
-$("passkeyLogin").onclick=async()=>{try{if(!client)throw new Error("Secure service configuration is unavailable.");if(!window.PublicKeyCredential)throw new Error("This browser or device does not support passkeys.");$("passkeyLogin").disabled=true;notice("Use Face ID, Touch ID, device PIN or your security key to continue…","info");const {data,error}=await client.auth.signInWithPasskey();if(error)throw error;await routeApprovedSession(data?.session,{offerPasskey:false})}catch(err){$("passkeyLogin").disabled=false;notice(err.message||"Passkey sign-in failed.","error")}};
+$("passkeyLogin").onclick=async()=>{try{if(!client)throw new Error("Secure service configuration is unavailable.");if(!window.PublicKeyCredential)throw new Error("This browser or device does not support passkeys.");$("passkeyLogin").disabled=true;notice("Use Face ID, Touch ID, device PIN or your security key to continue…","info");const {data,error}=await client.auth.signInWithPasskey();if(error)throw error;await routeApprovedSession(data?.session,{offerPasskey:false})}catch(err){$("passkeyLogin").disabled=false;const msg=err?.name==="NotAllowedError"?"No passkey is available on this device for Anatomy Mastery Pro. First sign in with your registered email and password to create one.":(err.message||"Passkey sign-in failed.");notice(msg,"error")}};
 const qs=new URLSearchParams(location.search);if(qs.get("status")==="pending")notice("Your account is verified but still waiting for administrator approval.","info");if(qs.get("error")==="auth")notice("Authentication could not be completed. Please sign in again.","error");
-(async()=>{if(qs.get("oauth")==="1"&&client){try{notice("Completing Google sign-in…","info");const {data:{session}}=await client.auth.getSession();if(session)await routeApprovedSession(session,{offerPasskey:true})}catch(e){notice(e.message||"Google sign-in could not be completed.","error")}}})();
+(async()=>{if(qs.get("oauth")==="1"&&client){try{notice("Completing Google sign-in…","info");const {data:{session}}=await client.auth.getSession();if(session){if(!supportsPasskeyEnrollment(session.user))notice("Google sign-in is ready. Passkey enrollment currently requires an email/password account.","info");await routeApprovedSession(session,{offerPasskey:true})}}catch(e){notice(e.message||"Google sign-in could not be completed.","error")}}})();
