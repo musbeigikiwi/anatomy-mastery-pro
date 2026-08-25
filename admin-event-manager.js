@@ -1,13 +1,93 @@
 "use strict";
 (()=>{
- const cfg=window.AMPRO_CONFIG||{}; if(!window.supabase||!cfg.supabaseUrl||!cfg.supabaseAnonKey)return;
- const c=window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey),esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
- let selected=new Set(),busy=false,ignoreMutation=false;
- const toolbar=()=>`<div class="event-tools"><div class="event-tools-left"><label class="select-all"><input id="eventSelectAll" type="checkbox"><span>Select all</span></label><span id="selectedEventCount">0 selected</span></div><div class="event-tools-actions"><button id="deleteSelectedEvents" class="event-delete" disabled>Delete selected</button><button id="deleteAllEvents" class="event-delete event-delete-all">Delete all shown</button></div></div>`;
- async function refreshEvents(){if(busy)return;busy=true;try{const since24=new Date(Date.now()-86400000).toISOString();const {data,error}=await c.from("security_events").select("id,user_id,event_type,risk_score,decision,country_code,user_agent_summary,metadata,created_at,profiles(full_name)").gte("created_at",since24).order("created_at",{ascending:false}).limit(200);if(error)throw error;const rows=data||[],ids=[...new Set(rows.map(r=>r.user_id).filter(Boolean))],emailMap=new Map();await Promise.all(ids.map(async id=>{const {data}=await c.from("profiles").select("id,full_name").eq("id",id).maybeSingle();if(data)emailMap.set(id,data.full_name||"")}));const host=document.getElementById("events");if(!host)return;selected=new Set([...selected].filter(id=>rows.some(r=>String(r.id)===String(id))));ignoreMutation=true;host.innerHTML=toolbar()+(rows.length?rows.map(e=>{const name=e.profiles?.full_name||emailMap.get(e.user_id)||"Unknown member",meta=e.metadata||{},method=meta.method?` • ${esc(meta.method)}`:"",device=[meta.device,meta.browser,meta.os].filter(Boolean).join(" • ");return `<div class="row event-row" data-event-id="${esc(e.id)}"><label class="event-check"><input class="event-selector" type="checkbox" value="${esc(e.id)}" ${selected.has(String(e.id))?"checked":""}><span></span></label><div class="event-main"><strong>${esc(name)} • ${esc(String(e.event_type||"").replaceAll("_"," "))}</strong><small>${new Date(e.created_at).toLocaleString()} • ${esc(e.country_code||"Location unavailable")}${method}</small>${device?`<small>${esc(device)}</small>`:""}</div><div><span class="badge ${Number(e.risk_score||0)>=45?"danger":""}">${esc(e.decision||"review")} • ${Number(e.risk_score||0)}</span></div></div>`}).join(""):'<div class="row"><small>No events in the last 24 hours.</small></div>');bind(rows);setTimeout(()=>ignoreMutation=false,0)}catch(e){console.warn("Event manager unavailable",e?.message||e)}finally{busy=false}}
- function updateTools(rows){const count=document.getElementById("selectedEventCount"),del=document.getElementById("deleteSelectedEvents"),all=document.getElementById("eventSelectAll");if(count)count.textContent=`${selected.size} selected`;if(del)del.disabled=!selected.size;if(all){all.checked=rows.length>0&&rows.every(r=>selected.has(String(r.id)));all.indeterminate=selected.size>0&&!all.checked}}
- function bind(rows){document.querySelectorAll(".event-selector").forEach(ch=>ch.onchange=()=>{ch.checked?selected.add(ch.value):selected.delete(ch.value);updateTools(rows)});const all=document.getElementById("eventSelectAll");if(all)all.onchange=()=>{if(all.checked)rows.forEach(r=>selected.add(String(r.id)));else rows.forEach(r=>selected.delete(String(r.id)));document.querySelectorAll(".event-selector").forEach(ch=>ch.checked=all.checked);updateTools(rows)};document.getElementById("deleteSelectedEvents")?.addEventListener("click",()=>remove([...selected],"selected event(s)"));document.getElementById("deleteAllEvents")?.addEventListener("click",()=>remove(rows.map(r=>String(r.id)),"all shown event(s)"));updateTools(rows)}
- async function remove(ids,label){if(!ids.length||!confirm(`Delete ${ids.length} ${label}? This cannot be undone.`))return;document.querySelectorAll(".event-delete").forEach(b=>b.disabled=true);try{const rpc=await c.rpc("admin_delete_security_events",{event_ids:ids.map(Number)});if(rpc.error)throw rpc.error;ids.forEach(id=>selected.delete(String(id)));await refreshEvents();document.getElementById("refresh")?.click()}catch(e){alert("Delete failed: "+(e?.message||"Unknown error"))}}
- function observe(){const host=document.getElementById("events");if(!host)return;new MutationObserver(()=>{if(!ignoreMutation&&!busy&&!document.getElementById("eventSelectAll"))setTimeout(refreshEvents,50)}).observe(host,{childList:true,subtree:false})}
- const start=()=>{refreshEvents();observe();setInterval(refreshEvents,15000)};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",start):start();
+  const cfg=window.AMPRO_CONFIG||{};
+  if(!window.supabase||!cfg.supabaseUrl||!cfg.supabaseAnonKey)return;
+  const c=window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey);
+  const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  let selected=new Set(),busy=false,rendering=false,lastRows=[];
+
+  function ensureToolbar(){
+    const host=document.getElementById("events");
+    if(!host)return null;
+    let tools=document.getElementById("eventPersistentTools");
+    if(!tools){
+      tools=document.createElement("div");
+      tools.id="eventPersistentTools";
+      tools.className="event-tools";
+      tools.innerHTML=`<div class="event-tools-left"><label class="select-all"><input id="eventSelectAll" type="checkbox"><span>Select all</span></label><span id="selectedEventCount">0 selected</span></div><div class="event-tools-actions"><button id="deleteSelectedEvents" class="event-delete" disabled>Delete selected</button><button id="deleteAllEvents" class="event-delete event-delete-all">Delete all shown</button></div>`;
+      host.parentElement.insertBefore(tools,host);
+    }
+    return tools;
+  }
+
+  function updateTools(){
+    ensureToolbar();
+    const all=document.getElementById("eventSelectAll"),count=document.getElementById("selectedEventCount"),del=document.getElementById("deleteSelectedEvents");
+    if(count)count.textContent=`${selected.size} selected`;
+    if(del)del.disabled=!selected.size;
+    if(all){all.checked=lastRows.length>0&&lastRows.every(r=>selected.has(String(r.id)));all.indeterminate=selected.size>0&&!all.checked;}
+  }
+
+  async function loadRows(){
+    if(busy)return;
+    busy=true;
+    try{
+      const since24=new Date(Date.now()-86400000).toISOString();
+      const {data,error}=await c.from("security_events").select("id,user_id,event_type,risk_score,decision,country_code,user_agent_summary,metadata,created_at,profiles(full_name)").gte("created_at",since24).order("created_at",{ascending:false}).limit(200);
+      if(error)throw error;
+      lastRows=data||[];
+      selected=new Set([...selected].filter(id=>lastRows.some(r=>String(r.id)===String(id))));
+      render();
+    }catch(e){console.warn("Event manager unavailable",e?.message||e)}
+    finally{busy=false;}
+  }
+
+  function render(){
+    const host=document.getElementById("events");
+    if(!host)return;
+    ensureToolbar();
+    rendering=true;
+    host.innerHTML=lastRows.length?lastRows.map(e=>{
+      const name=e.profiles?.full_name||"Unknown member";
+      const meta=e.metadata||{};
+      const device=[meta.device,meta.browser,meta.os].filter(Boolean).join(" • ");
+      const eventLabel=String(e.event_type||"").replaceAll("_"," ");
+      return `<div class="row event-row" data-event-id="${esc(e.id)}"><label class="event-check"><input class="event-selector" type="checkbox" value="${esc(e.id)}" ${selected.has(String(e.id))?"checked":""}><span></span></label><div class="event-main"><strong>${esc(name)} • ${esc(eventLabel)}</strong><small>${new Date(e.created_at).toLocaleString()} • ${esc(e.country_code||"Location unavailable")}</small>${device?`<small>${esc(device)}</small>`:""}</div><div><span class="badge ${Number(e.risk_score||0)>=45?"danger":""}">${esc(e.decision||"review")} • ${Number(e.risk_score||0)}</span></div></div>`;
+    }).join(""):'<div class="row"><small>No events in the last 24 hours.</small></div>';
+    bind();
+    updateTools();
+    setTimeout(()=>rendering=false,0);
+  }
+
+  function bind(){
+    document.querySelectorAll(".event-selector").forEach(ch=>ch.onchange=()=>{ch.checked?selected.add(ch.value):selected.delete(ch.value);updateTools();});
+    const all=document.getElementById("eventSelectAll");
+    if(all)all.onchange=()=>{if(all.checked)lastRows.forEach(r=>selected.add(String(r.id)));else selected.clear();document.querySelectorAll(".event-selector").forEach(ch=>ch.checked=all.checked);updateTools();};
+    const del=document.getElementById("deleteSelectedEvents");
+    if(del)del.onclick=()=>remove([...selected]);
+    const delAll=document.getElementById("deleteAllEvents");
+    if(delAll)delAll.onclick=()=>remove(lastRows.map(r=>String(r.id)));
+  }
+
+  async function remove(ids){
+    if(!ids.length)return;
+    if(!confirm(`Delete ${ids.length} security event(s)? This cannot be undone.`))return;
+    document.querySelectorAll(".event-delete").forEach(b=>b.disabled=true);
+    try{
+      const {error}=await c.rpc("admin_delete_security_events",{event_ids:ids.map(Number)});
+      if(error)throw error;
+      ids.forEach(id=>selected.delete(String(id)));
+      await loadRows();
+      document.getElementById("refresh")?.click();
+    }catch(e){alert("Delete failed: "+(e?.message||"Unknown error"));updateTools();}
+  }
+
+  function observe(){
+    const host=document.getElementById("events");
+    if(!host)return;
+    new MutationObserver(()=>{if(rendering||busy)return;setTimeout(render,0);}).observe(host,{childList:true});
+  }
+
+  function start(){ensureToolbar();loadRows();observe();setInterval(loadRows,10000);}
+  document.readyState==="loading"?document.addEventListener("DOMContentLoaded",start,{once:true}):start();
 })();
