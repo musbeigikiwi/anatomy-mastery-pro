@@ -19,11 +19,28 @@
   };
   const touch=id=>client.rpc("touch_my_session",{p_session_id:id}).catch(()=>{});
   const startHeartbeat=id=>{if(heartbeat)clearInterval(heartbeat);heartbeat=setInterval(()=>touch(id),30000)};
+  async function blockAccess(id,reason){
+    if(heartbeat)clearInterval(heartbeat);
+    try{if(id)await client.rpc("end_my_session",{p_session_id:id})}catch{}
+    sessionStorage.removeItem(KEY);
+    try{await client.auth.signOut()}catch{}
+    const r=encodeURIComponent(reason||"network_policy");
+    if(!location.pathname.endsWith("auth.html"))location.replace("auth.html?blocked="+r);
+    else location.replace("auth.html?blocked="+r);
+  }
   async function runRisk(id,i){
     try{
-      const {data:{session}}=await client.auth.getSession();if(!session)return;
-      await fetch(cfg.supabaseUrl+"/functions/v1/risk-evaluate",{method:"POST",headers:{Authorization:"Bearer "+session.access_token,apikey:cfg.supabaseAnonKey,"Content-Type":"application/json"},body:JSON.stringify({sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version})});
-    }catch{}
+      const {data:{session}}=await client.auth.getSession();if(!session)return null;
+      const res=await fetch(cfg.supabaseUrl+"/functions/v1/risk-evaluate",{method:"POST",headers:{Authorization:"Bearer "+session.access_token,apikey:cfg.supabaseAnonKey,"Content-Type":"application/json"},body:JSON.stringify({sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version})});
+      if(!res.ok)throw new Error("Network security check failed");
+      const result=await res.json();
+      if(result?.decision==="block"){await blockAccess(id,result.blockReason||"network_policy");return result}
+      return result;
+    }catch(e){
+      // Fail closed for students is enforced server-side when the function responds.
+      // A transient function outage is logged locally but does not expose secrets.
+      console.warn("Network security check unavailable",e?.message||e);return null;
+    }
   }
   async function ensure(){
     if(starting)return sessionStorage.getItem(KEY);
@@ -35,7 +52,7 @@
       const i=await info();
       const {data,error}=await client.rpc("start_my_session",{p_device_hash:i.hash,p_device_label:i.device,p_browser_label:i.browser,p_os_label:i.os,p_user_agent:i.ua});
       if(error)throw error;
-      if(data){sessionStorage.setItem(KEY,data);startHeartbeat(data);runRisk(data,i);return data}
+      if(data){sessionStorage.setItem(KEY,data);startHeartbeat(data);await runRisk(data,i);return data}
     }catch(e){console.warn("Session audit unavailable",e?.message||e)}finally{starting=false}
     return null;
   }
