@@ -45,15 +45,18 @@
     try{
       const {data:{session}}=await client.auth.getSession();
       if(!session)return null;
-      const res=await fetch(cfg.supabaseUrl+"/functions/v1/risk-evaluate",{
-        method:"POST",
-        headers:{Authorization:"Bearer "+session.access_token,apikey:cfg.supabaseAnonKey,"Content-Type":"application/json"},
-        body:JSON.stringify({sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version})
-      });
-      if(!res.ok)throw new Error("Network security check failed");
-      const result=await res.json();
+      const payload={sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version};
+      const {data,error}=await client.functions.invoke("risk-evaluate",{body:payload});
+      if(error){
+        let detail=null;
+        try{if(error.context&&typeof error.context.json==="function")detail=await error.context.json()}catch{}
+        const reason=detail?.reason||detail?.blockReason||detail?.error||"security_check_unavailable";
+        if(role!=="admin")await blockAccess(id,reason);
+        return null;
+      }
+      const result=data||{};
       lastRisk=result;
-      if(result?.decision==="block"||result?.allowed===false){await blockAccess(id,result.blockReason||"network_policy")}
+      if(result?.decision==="block"||result?.allowed===false){await blockAccess(id,result.reason||result.blockReason||"network_policy")}
       return result;
     }catch(e){
       console.warn("Network security check unavailable",e?.message||e);
