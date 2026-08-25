@@ -40,7 +40,10 @@
     location.replace("auth.html?blocked="+r);
   }
 
-  const explicitBlockReasons=new Set(["outside_new_zealand","vpn_not_allowed","proxy_not_allowed","tor_not_allowed","unsafe_browser_context","inactive_account"]);
+  // Account approval is already enforced by auth-guard. The risk tracker only
+  // performs network/browser enforcement, preventing false blocks caused by a
+  // duplicate profile lookup inside the Edge Function.
+  const explicitBlockReasons=new Set(["outside_new_zealand","vpn_not_allowed","proxy_not_allowed","tor_not_allowed","unsafe_browser_context"]);
 
   async function runRisk(id,i,roleHint){
     const role=await resolveRole(roleHint);
@@ -55,7 +58,7 @@
         const reason=detail?.reason||detail?.blockReason||detail?.error||"security_check_unavailable";
         lastRisk={allowed:true,decision:"allow",reason:"risk_service_degraded",detail:reason};
         if(role!=="admin"&&explicitBlockReasons.has(reason))await blockAccess(id,reason);
-        else console.warn("Risk service unavailable; allowing active verified account",reason);
+        else console.warn("Risk service unavailable; verified account remains signed in",reason);
         return lastRisk;
       }
       const result=data||{};
