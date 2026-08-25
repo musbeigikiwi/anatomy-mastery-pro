@@ -26,7 +26,16 @@ async function load(){
  $("approvals").innerHTML=approvals.length?approvals.map(a=>'<div class="row"><div><strong>'+esc(a.full_name)+'</strong><small>'+esc(a.user_id)+' • '+new Date(a.created_at).toLocaleString()+(a.source==="profile"?' • recovered pending profile':'')+'</small></div><button class="approve" data-user="'+esc(a.user_id)+'">Approve</button></div>').join(""):'<div class="row"><small>No pending approvals.</small></div>';
  $("events").innerHTML=events.length?events.map(e=>'<div class="row"><div><strong>'+esc(e.event_type)+'</strong><small>'+new Date(e.created_at).toLocaleString()+' • '+esc(e.country_code||"Unknown country")+'</small></div><div><span class="badge '+(e.risk_score>=45?"danger":"")+'">'+esc(e.decision)+' • '+e.risk_score+'</span></div></div>').join(""):'<div class="row"><small>No events in the last 24 hours.</small></div>';
  $("lastRefresh").textContent="Last secure refresh: "+new Date().toLocaleTimeString();
- document.querySelectorAll(".approve").forEach(b=>b.onclick=()=>approve(b.dataset.user,session.access_token));
+ document.querySelectorAll(".approve").forEach(b=>b.onclick=()=>approve(b.dataset.user));
 }
-async function approve(userId,token){if(!confirm("Approve this member as a student?"))return;const r=await fetch(cfg.supabaseUrl+"/functions/v1/admin-approve",{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({userId,role:"student"})});const d=await r.json();if(!r.ok)return alert(d.error||"Approval failed");await load()}
+async function approve(userId){
+ if(!confirm("Approve this member as a student?"))return;
+ const btn=document.querySelector('.approve[data-user="'+CSS.escape(userId)+'"]');
+ if(btn){btn.disabled=true;btn.textContent="Approving…"}
+ try{
+   const {error}=await c.rpc("approve_member",{target:userId,new_role:"student"});
+   if(error)throw error;
+   await load();
+ }catch(e){alert(e.message||"Approval failed");if(btn){btn.disabled=false;btn.textContent="Approve"}}
+}
 $("refresh").onclick=load;$("logout").onclick=async()=>{if(c)await c.auth.signOut();location.href="auth.html"};load();
