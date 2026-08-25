@@ -46,7 +46,7 @@
       const {data:{session}}=await client.auth.getSession();
       if(!session)return null;
       const payload={sessionId:id,deviceHash:i.hash,newDevice:false,newCountry:false,secureContext:window.isSecureContext,legacyBrowser:i.legacyBrowser,webdriver:!!navigator.webdriver,browserName:i.browser,browserVersion:i.version};
-      const {data,error}=await client.functions.invoke("risk-evaluate",{body:payload});
+      const {data,error}=await client.functions.invoke("risk-evaluate",{body:payload,headers:{Authorization:"Bearer "+session.access_token}});
       if(error){
         let detail=null;
         try{if(error.context&&typeof error.context.json==="function")detail=await error.context.json()}catch{}
@@ -119,8 +119,13 @@
     if(!session)logFailure(method);
   }
 
-  client.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_IN"&&session)ensure();if(event==="SIGNED_OUT")end()});
-  client.auth.getSession().then(({data})=>{if(data.session)ensure()}).catch(()=>{});
+  // Do not start the risk engine from the public auth page. It runs after
+  // auth-guard has verified both the Supabase session and active profile.
+  const onProtectedPage=()=>!/(^|\/)auth\.html$/i.test(location.pathname);
+  if(onProtectedPage()){
+    client.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_IN"&&session)ensure();if(event==="SIGNED_OUT")end()});
+    client.auth.getSession().then(({data})=>{if(data.session)ensure()}).catch(()=>{});
+  }
   const loginForm=document.getElementById("loginForm");if(loginForm)loginForm.addEventListener("submit",()=>markIfStillSignedOut("password"),true);
   const passkey=document.getElementById("passkeyLogin");if(passkey)passkey.addEventListener("click",()=>markIfStillSignedOut("passkey"),true);
   window.AMPRO_SESSION_TRACKER={ensure,end,logFailure,key:KEY,client,getLastRisk:()=>lastRisk};
