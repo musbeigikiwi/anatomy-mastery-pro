@@ -1,5 +1,6 @@
 -- Anatomy Mastery Pro — Verified Q&A / Discussion system
--- Run once in Supabase SQL Editor after the Academic Bridge foundation migration.
+-- Safe for the CURRENT app_role enum: pending, student, moderator, admin.
+-- Lecturer/tutor roles will be introduced in a separate role migration later.
 
 create table if not exists public.qna_questions (
   id uuid primary key default gen_random_uuid(),
@@ -76,15 +77,15 @@ alter table public.qna_comments enable row level security;
 alter table public.qna_reports enable row level security;
 alter table public.user_reputation enable row level security;
 
+-- Current educator-equivalent role is moderator. Admin remains a separate verification level.
 create or replace function public.is_verified_educator() returns boolean
 language sql stable security definer set search_path=public as $$
   select exists(
     select 1 from public.profiles p
-    where p.id=auth.uid() and p.status='active' and p.role in ('lecturer','tutor','admin')
+    where p.id=auth.uid() and p.status='active' and p.role in ('moderator','admin')
   );
 $$;
 
--- Everyone signed in can read Q&A. Authors control their own content; admins retain moderation access.
 drop policy if exists "qna questions read" on public.qna_questions;
 create policy "qna questions read" on public.qna_questions for select to authenticated using(true);
 drop policy if exists "qna questions create" on public.qna_questions;
@@ -117,7 +118,6 @@ create policy "qna reports admin read" on public.qna_reports for select to authe
 drop policy if exists "reputation read" on public.user_reputation;
 create policy "reputation read" on public.user_reputation for select to authenticated using(true);
 
--- Atomic helpful toggle. One helpful vote per user per answer.
 create or replace function public.toggle_qna_helpful(target_answer uuid)
 returns table(active boolean, helpful_count integer)
 language plpgsql security definer set search_path=public as $$
@@ -138,17 +138,20 @@ $$;
 
 grant execute on function public.toggle_qna_helpful(uuid) to authenticated;
 
--- Verification is restricted to admin/tutor/lecturer. Admin and educator verification are visibly distinct.
 create or replace function public.verify_qna_answer(target_answer uuid, new_status text)
 returns void language plpgsql security definer set search_path=public as $$
 declare qid uuid; role_name text;
 begin
   if new_status not in ('verified_admin','verified_educator','needs_correction','unverified') then raise exception 'invalid_verification_status'; end if;
-  select role into role_name from public.profiles where id=auth.uid() and status='active';
-  if role_name not in ('admin','lecturer','tutor') then raise exception 'educator_or_admin_required'; end if;
+  select role::text into role_name from public.profiles where id=auth.uid() and status='active';
+  if role_name not in ('admin','moderator') then raise exception 'moderator_or_admin_required'; end if;
   if new_status='verified_admin' and role_name<>'admin' then raise exception 'admin_required'; end if;
   select question_id into qid from public.qna_answers where id=target_answer;
-  update public.qna_answers set verification_status=new_status, verified_by=case when new_status='unverified' then null else auth.uid() end, verified_at=case when new_status='unverified' then null else now() end where id=target_answer;
+  update public.qna_answers
+    set verification_status=new_status,
+        verified_by=case when new_status='unverified' then null else auth.uid() end,
+        verified_at=case when new_status='unverified' then null else now() end
+    where id=target_answer;
   if new_status in ('verified_admin','verified_educator') then
     update public.qna_questions set status='verified', accepted_answer_id=target_answer, updated_at=now() where id=qid;
   end if;
