@@ -3,6 +3,7 @@
 body{font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility;letter-spacing:-.008em}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 18% 10%,rgba(97,232,199,.08),transparent 28%),radial-gradient(circle at 83% 18%,rgba(139,124,255,.09),transparent 30%),radial-gradient(circle at 55% 88%,rgba(104,215,255,.05),transparent 26%)}
 .glass,.card,.panel,.result,.task,.priority,.stat{transition:transform .22s cubic-bezier(.2,.8,.2,1),border-color .22s ease,box-shadow .22s ease,background .22s ease}
+.topbar{padding:11px 16px;min-height:76px}.topbar .brand{min-width:270px}.topbar .live{padding:8px 12px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.025)}.account-access{border-radius:16px!important}
 .hero{overflow:hidden;position:relative;background:linear-gradient(135deg,rgba(12,29,44,.82),rgba(13,22,42,.72));border-color:rgba(255,255,255,.11)}
 .hero:after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;right:-110px;top:-170px;background:radial-gradient(circle,rgba(139,124,255,.18),transparent 68%);pointer-events:none}
 .hero h1{font-weight:850;text-wrap:balance}.hero-copy{font-size:clamp(.96rem,1.5vw,1.08rem)}
@@ -16,5 +17,26 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 .flash{background:linear-gradient(145deg,rgba(97,232,199,.06),rgba(139,124,255,.055),rgba(255,255,255,.025))}
 textarea:focus{outline:none;border-color:rgba(94,230,196,.55);box-shadow:0 0 0 3px rgba(94,230,196,.08)}
 ::selection{background:rgba(97,232,199,.28);color:var(--text)}
+
+/* Desktop / iPad landscape study workspace */
+@media(min-width:901px){
+  .shell{display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:16px;align-items:start}
+  .hero,.stats{grid-column:1/-1}
+  .hero{margin-top:16px}
+  .stats{margin:12px 0 16px}
+  .nav{grid-column:1;grid-row:3 / span 2;position:sticky;top:96px;display:flex;flex-direction:column;align-self:start;gap:5px;padding:10px;border-radius:22px;overflow:visible;max-height:calc(100vh - 112px)}
+  .nav button{width:100%;text-align:left;white-space:normal;padding:12px 13px;border-radius:13px;font-size:12px;line-height:1.2;position:relative}
+  .nav button.active{box-shadow:0 9px 24px rgba(94,230,196,.14)}
+  .nav button.active:after{content:"";position:absolute;right:10px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#07110e;opacity:.75}
+  .view{grid-column:2;grid-row:3;padding:4px 0 58px;min-width:0}
+  .hero{grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);padding:30px 34px}
+  .hero h1{font-size:clamp(52px,6.1vw,82px)}
+  .priority{min-height:240px}
+  .stats{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+
+@media(max-width:900px){
+  .topbar{min-height:0}.topbar .brand{min-width:0}.topbar .live{padding:0;border:0;background:transparent}
+}
 @media(max-width:650px){body{letter-spacing:0}.hero{border-radius:24px}.hero h1{line-height:.96}.stat{min-height:88px}.nav{top:70px}.card,.panel,.result,.task{border-radius:18px}}
 @media(prefers-reduced-motion:no-preference){.hero,.stats,.nav,.view{animation:ampEnter .55s both}.stats{animation-delay:.05s}.nav{animation-delay:.1s}.view{animation-delay:.14s}@keyframes ampEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
