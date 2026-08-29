@@ -5,6 +5,7 @@
  let client=null,userId=null,lastPayload="",syncing=false,hydrated=false;
  const parse=k=>{try{return JSON.parse(localStorage.getItem(k)||"{}")||{}}catch{return {}}};
  const payload=()=>({app_state:parse(STORE),task_state:parse(TASKSTORE)});
+ const hasLocalState=()=>{try{const raw=localStorage.getItem(STORE);if(!raw)return false;const s=JSON.parse(raw)||{};return Object.keys(s).length>0}catch{return false}};
  async function getAuth(){for(let i=0;i<120;i++){if(window.AMPRO_AUTH?.client&&window.AMPRO_AUTH?.session?.user?.id){client=window.AMPRO_AUTH.client;userId=window.AMPRO_AUTH.session.user.id;return}await sleep(100)}throw new Error("auth_not_ready")}
  async function hydrate(){
    await getAuth();
@@ -18,13 +19,15 @@
      lastPayload=JSON.stringify(local); hydrated=true; return;
    }
    const meta=(()=>{try{return JSON.parse(localStorage.getItem(META)||"{}")||{}}catch{return {}}})();
+   const localMissing=!hasLocalState();
    const cloudNewer=!meta.updated_at||meta.user_id!==userId||new Date(data.updated_at).getTime()>new Date(meta.updated_at||0).getTime();
-   if(cloudNewer){
+   if(cloudNewer||localMissing){
      localStorage.setItem(STORE,JSON.stringify(data.app_state||{}));
      localStorage.setItem(TASKSTORE,JSON.stringify(data.task_state||{}));
      localStorage.setItem(META,JSON.stringify({user_id:userId,updated_at:data.updated_at}));
      const key=`ampro_hydrated_${userId}`;
-     if(sessionStorage.getItem(key)!==data.updated_at){sessionStorage.setItem(key,data.updated_at);location.reload();return}
+     const stamp=`${data.updated_at}:${JSON.stringify(data.app_state||{}).length}`;
+     if(sessionStorage.getItem(key)!==stamp){sessionStorage.setItem(key,stamp);location.reload();return}
    }
    lastPayload=JSON.stringify(payload()); hydrated=true;
  }
@@ -38,7 +41,7 @@
      if(!error){lastPayload=raw;localStorage.setItem(META,JSON.stringify({user_id:userId,updated_at:now}))}
    }finally{syncing=false}
  }
- hydrate().catch(()=>{});
+ hydrate().catch(e=>console.warn("Cloud state restore unavailable",e?.message||e));
  setInterval(syncNow,4000);
  document.addEventListener("visibilitychange",()=>{if(document.hidden)syncNow()});
  window.addEventListener("pagehide",syncNow);
