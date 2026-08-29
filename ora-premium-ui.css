@@ -1,0 +1,121 @@
+/* ORA New Zealand — Premium UI refinement layer */
+:root{
+  --ora-ink:#070809;
+  --ora-surface:#0d0f10;
+  --ora-surface-2:#121416;
+  --ora-gold:#d6a12a;
+  --ora-gold-soft:#e8be61;
+  --ora-gold-bright:#f5da8c;
+  --ora-gold-deep:#8d5c0e;
+  --ora-line:rgba(229,181,63,.18);
+  --ora-line-strong:rgba(239,197,91,.34);
+  --ora-shadow:0 22px 60px rgba(0,0,0,.32);
+}
+
+/* Signature gold rail */
+body::after{height:3px!important;background:linear-gradient(90deg,transparent 0%,rgba(150,95,8,.28) 5%,#b87913 18%,#f4d581 43%,#fff0b0 50%,#e9ba51 66%,#a66c0d 84%,transparent 100%)!important;box-shadow:0 1px 0 rgba(255,242,192,.12),0 2px 18px rgba(224,166,42,.34)!important}
+
+/* Top navigation polish */
+.topbar{position:relative;overflow:hidden}
+.topbar::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(236,192,82,.32),transparent);pointer-events:none}
+.topbar .brand b{letter-spacing:.01em}
+.topbar .brand small{color:#a99a79!important;letter-spacing:.045em}
+.topbar .live{box-shadow:inset 0 1px rgba(255,239,187,.025)}
+.topbar .live strong{color:var(--ora-gold-bright)}
+
+/* Buttons — unified premium system */
+button,.primary,.secondary-btn,.answer-actions button,.verify-actions button,.reply-item button,.qna-inbox-stats button,.chip{
+  -webkit-tap-highlight-color:transparent;
+}
+.primary,.primary-btn,.nav button.active,.chip.active{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(115deg,#8f5b0b 0%,#c88d1d 22%,#f1ca66 48%,#d49b27 72%,#9b650f 100%)!important;
+  color:#100d07!important;
+  border:1px solid rgba(255,225,143,.42)!important;
+  box-shadow:inset 0 1px rgba(255,245,207,.36),inset 0 -1px rgba(72,38,0,.32),0 10px 26px rgba(174,113,11,.18)!important;
+  font-weight:850!important;
+  text-shadow:0 1px rgba(255,255,255,.16);
+}
+.primary::after,.primary-btn::after,.nav button.active::after,.chip.active::after{content:"";position:absolute;inset:-60% auto -60% -35%;width:26%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transition:left .55s ease;pointer-events:none}
+.primary:hover::after,.primary-btn:hover::after,.nav button.active:hover::after,.chip.active:hover::after{left:120%}
+.primary:hover,.primary-btn:hover{transform:translateY(-2px);filter:brightness(1.045);box-shadow:inset 0 1px rgba(255,245,207,.42),0 16px 34px rgba(174,113,11,.25)!important}
+
+button:not(.primary):not(.primary-btn):not(.active),.secondary-btn,.passkey-btn{
+  border-color:rgba(218,163,43,.16)!important;
+}
+button:not(.primary):not(.primary-btn):not(.active):hover,.secondary-btn:hover,.passkey-btn:hover{
+  border-color:rgba(239,197,91,.34)!important;
+  background:linear-gradient(135deg,rgba(218,163,43,.075),rgba(255,255,255,.03))!important;
+  color:#f3d986!important;
+}
+
+/* Sidebar */
+.nav{box-shadow:inset 0 1px rgba(255,236,179,.025),0 24px 60px rgba(0,0,0,.25)}
+.nav button{border:1px solid transparent!important;letter-spacing:.005em}
+.nav button:not(.active):hover{border-color:rgba(218,163,43,.12)!important;transform:translateX(2px)}
+.nav-group>small{position:relative;padding-left:15px}
+.nav-group>small::before{content:"";position:absolute;left:3px;top:50%;width:6px;height:1px;background:#c58c1d;box-shadow:0 0 8px rgba(229,177,62,.35)}
+
+/* Hero + premium gold light */
+.hero{isolation:isolate}
+.hero::before{z-index:-1;background:linear-gradient(108deg,transparent 0 53%,rgba(216,155,34,.025) 70%,rgba(240,196,86,.085) 100%)!important}
+.hero::after{z-index:-1;width:680px!important;height:480px!important;right:-255px!important;top:-205px!important;background:radial-gradient(ellipse,rgba(242,196,79,.16) 0%,rgba(201,137,19,.055) 37%,transparent 70%)!important;filter:blur(7px)!important}
+.hero h1{text-shadow:0 8px 36px rgba(0,0,0,.22)}
+.hero-copy{color:#aaa59a!important;line-height:1.72}
+.priority{box-shadow:inset 0 1px rgba(255,236,177,.035)}
+
+/* Cards + panels */
+.card,.panel,.result,.task,.priority,.stat,.bridge-card,.bridge-empty,.q-card,.answer-card,.qna-inbox,.qna-tools{
+  border-color:var(--ora-line)!important;
+  box-shadow:inset 0 1px rgba(255,243,201,.022);
+}
+.card:hover,.bridge-card:hover,.task:hover,.result:hover{
+  border-color:var(--ora-line-strong)!important;
+  box-shadow:var(--ora-shadow),0 0 0 1px rgba(214,154,31,.035),0 0 35px rgba(214,154,31,.04)!important;
+}
+.card h3,.panel h3,.bridge-card h3{letter-spacing:-.02em}
+.card small,.panel small,.bridge-card small{color:#9f9274}
+
+/* Stats — subtle individual glow */
+.stats{gap:10px!important}
+.stat{border-radius:18px!important;box-shadow:inset 0 1px rgba(255,239,191,.025),0 10px 28px rgba(0,0,0,.18)}
+.stat::after{content:"";position:absolute;right:-34px;bottom:-50px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(229,177,62,.08),transparent 67%);pointer-events:none}
+.stat small{color:#9e9278!important;text-transform:uppercase;letter-spacing:.08em;font-size:.68rem}
+.stat strong{color:#f3d67f!important;letter-spacing:-.03em}
+
+/* Forms + search controls throughout app */
+input,textarea,select{border-color:rgba(218,163,43,.16)!important;background:rgba(7,9,10,.78)!important}
+input:focus,textarea:focus,select:focus{outline:none!important;border-color:rgba(239,197,91,.48)!important;box-shadow:0 0 0 3px rgba(218,163,43,.07)!important}
+
+/* Q&A and academic bridge */
+.qna-head,.bridge-head{position:relative;overflow:hidden}
+.qna-head::after,.bridge-head::after{content:"";position:absolute;left:28px;right:28px;bottom:0;height:1px;background:linear-gradient(90deg,#d7a32b,rgba(215,163,43,.1),transparent)}
+.q-status.pending,.awaiting-badge,.correction-badge{color:#e8bb56!important}
+.answer-card.answer-verified{border-color:rgba(239,197,91,.35)!important;background:linear-gradient(135deg,rgba(218,163,43,.07),rgba(255,255,255,.018))!important}
+.verified-badge{background:rgba(218,163,43,.10)!important;border:1px solid rgba(218,163,43,.16)}
+
+/* Study tracker */
+.tracker-day{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.tracker-day:hover{transform:translateY(-1px);border-color:rgba(239,197,91,.34);box-shadow:0 8px 20px rgba(0,0,0,.22)}
+.tracker-day.level-4{box-shadow:inset 0 1px rgba(255,244,201,.35),0 8px 22px rgba(174,113,11,.15)}
+
+/* Footer */
+footer{border-top:1px solid rgba(218,163,43,.12)!important;color:#817a6c!important}
+footer strong,footer a{color:#dcb65f!important}
+
+/* Focus accessibility */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #e8bb56!important;outline-offset:3px}
+
+/* Light mode keeps ORA identity without becoming yellow-heavy */
+html[data-theme="light"] body{background:#f5f2ea!important}
+html[data-theme="light"] body::before{background:radial-gradient(ellipse at 88% 5%,rgba(190,133,21,.10),transparent 30%),linear-gradient(180deg,#f7f4ed,#f2eee5)!important}
+html[data-theme="light"] .topbar,html[data-theme="light"] .nav,html[data-theme="light"] .card,html[data-theme="light"] .panel,html[data-theme="light"] .stat,html[data-theme="light"] .priority{box-shadow:0 14px 34px rgba(72,54,23,.07)!important}
+
+@media(max-width:900px){
+  body::after{height:2px!important}
+  .nav button:not(.active):hover{transform:none}
+  .hero::after{right:-360px!important}
+}
+
+@media(prefers-reduced-motion:reduce){.primary::after,.primary-btn::after,.nav button.active::after,.chip.active::after{display:none}}
