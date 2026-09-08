@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ORA Chapter 5 MCQ Mastery</title>
+<style>
+:root{--bg:#07111f;--card:#0d1b2d;--card2:#12243a;--text:#eef6ff;--muted:#9eb2c9;--line:#24405d;--accent:#35a7ff;--ok:#22c55e;--bad:#ef4444;--gold:#f59e0b}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#06101d,#0a1728 45%,#08131f);color:var(--text);min-height:100vh}.wrap{max-width:920px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.brand{font-weight:900;font-size:20px}.sub{color:var(--muted);font-size:13px;margin-top:4px}.stats{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#0b1929;border-radius:12px;padding:8px 10px;font-size:13px}.card{background:rgba(13,27,45,.96);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}.menuGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.btn{min-height:48px;border-radius:13px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-weight:800;padding:10px 12px;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:#00111e}.btn:disabled{opacity:.4;cursor:not-allowed}.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.progress{height:9px;background:#102238;border-radius:999px;overflow:hidden;margin:12px 0 16px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#6bd5ff);transition:width .25s}.meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;margin-bottom:10px}.q{font-size:20px;line-height:1.35;font-weight:850;margin:6px 0 15px}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{min-height:54px;text-align:left;border:1px solid var(--line);background:#102238;color:var(--text);border-radius:14px;padding:12px 14px;font-size:15px;font-weight:700;cursor:pointer}.option:hover{border-color:#3b82b8}.option.correct{outline:2px solid var(--ok);background:#0b2a1c}.option.wrong{outline:2px solid var(--bad);background:#301419}.feedback{min-height:64px;margin-top:14px;border-radius:14px;padding:12px 14px;background:#0a1726;border:1px solid var(--line);color:var(--muted);line-height:1.45}.feedback b{color:var(--text)}.imageBox{display:none;background:#fff;border-radius:16px;overflow:hidden;margin:8px 0 15px;border:1px solid var(--line)}.imageBox img{display:block;width:100%;max-height:340px;object-fit:contain}.hidden{display:none!important}.result{text-align:center}.scoreBig{font-size:48px;font-weight:950}.topicGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.topicChip{font-size:12px;border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--muted);background:#0a1726}.footer{color:var(--muted);font-size:12px;text-align:center;padding:8px 0 24px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#12263d;color:#bfe6ff;font-size:11px;font-weight:800}.note{font-size:12px;color:var(--muted);margin-top:10px}@media(max-width:650px){.menuGrid{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}.topicGrid{grid-template-columns:1fr 1fr}.q{font-size:18px}.wrap{padding:12px}.card{padding:14px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <div><div class="brand">ORA • Chapter 5 Mastery</div><div class="sub">Tissues & Integumentary System • 640 generated exam-style questions</div></div>
+    <div class="stats"><span class="pill">✅ <b id="correctStat">0</b></span><span class="pill">❌ <b id="wrongStat">0</b></span><span class="pill">🔥 <b id="streakStat">0</b></span><span class="pill">📌 Review <b id="reviewStat">0</b></span></div>
+  </div>
+
+  <section id="menu" class="card">
+    <div class="tag">STUDY GAME</div>
+    <h1 style="margin:10px 0 6px;font-size:25px">Choose a quiz mode</h1>
+    <div class="sub">Wrong answers are saved on this device so you can review them later.</div>
+    <div class="menuGrid" style="margin-top:16px">
+      <button class="btn primary mode" data-mode="20">⚡ Random 20</button>
+      <button class="btn mode" data-mode="50">🎯 Random 50</button>
+      <button class="btn mode" data-mode="all">🏆 All 640</button>
+      <button class="btn mode" data-mode="image">🖼️ Image Quiz</button>
+      <button class="btn" id="reviewMenu">🔁 Wrong Answers</button>
+      <button class="btn" id="resetSaved">↻ Reset Saved</button>
+    </div>
+    <div class="topicGrid">
+      <div class="topicChip">Epithelial tissue</div><div class="topicChip">Connective tissue</div><div class="topicChip">Muscle & nervous</div><div class="topicChip">Skin & glands</div>
+    </div>
+    <div class="note">Tip: Use Random 20 every day, then finish with Wrong Answers. This gives faster active recall than rereading notes.</div>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div class="card">
+      <div class="meta"><span id="counter">Question 1</span><span id="topic">Topic</span></div>
+      <div id="imageBox" class="imageBox"><img id="qImage" alt="Chapter 5 anatomy study image"></div>
+      <div id="question" class="q"></div>
+      <div id="options" class="options"></div>
+      <div id="feedback" class="feedback">Choose an answer.</div>
+      <div class="btnRow"><button class="btn primary" id="next" disabled>Next →</button><button class="btn" id="reviewNow">🔁 Review mistakes</button><button class="btn" id="restart">↻ Restart</button><button class="btn" id="back">← Menu</button></div>
+    </div>
+    <div id="result" class="card result hidden"></div>
+  </section>
+  <div class="footer">ORA — Anatomy & Science Made Simple</div>
+</main>
+<script>
+const IMG={four:'https://cdn.creativeclaw.co/u/cc6f9906/images/cedd77e0-d709-4de9-9599-2cd366b446fb.png',epi:'https://cdn.creativeclaw.co/u/cc6f9906/images/53e1ace1-7510-43bd-b683-e53a7bab32bb.png',layers:'https://cdn.creativeclaw.co/u/cc6f9906/images/3c7f334e-72a5-4537-a5da-6d58b6568d9f.png',shapes:'https://cdn.creativeclaw.co/u/cc6f9906/images/96cf3bd8-29d5-4502-85fb-a652d36d3d7f.png',alveoli:'https://cdn.creativeclaw.co/u/cc6f9906/images/9edb5f41-06ab-4090-9646-19d1159be56d.png',kidney:'https://cdn.creativeclaw.co/u/cc6f9906/images/67779b3c-7e29-4d3a-8c15-c4e1a43b0e99.png',intestine:'https://cdn.creativeclaw.co/u/cc6f9906/images/41cd124e-9a62-48f5-a8ab-4bfad3d2e83e.png',ct:'https://cdn.creativeclaw.co/u/cc6f9906/images/cd1452f2-f2ca-45e3-8a3c-c96720645b39.png',nm:'https://cdn.creativeclaw.co/u/cc6f9906/images/176c57fe-d083-4c07-8ac8-f2bcc90922cf.png',skin:'https://cdn.creativeclaw.co/u/cc6f9906/images/bc1a79a0-039f-4584-a048-60a88e4d0820.png'};
+const F=[
+['Tissue basics','A group of similar or connected cells working together for a specific function is called a…','Tissue','Organ|Organ system|Cell membrane','Tissues are groups of cells working together. Tissues combine to form organs.',IMG.four],
+['Tissue basics','Which tissue mainly covers surfaces and lines organs and cavities?','Epithelial tissue','Connective tissue|Muscle tissue|Nervous tissue','Epithelial tissue covers body surfaces, lines cavities and organs, and forms glands.',IMG.four],
+['Tissue basics','Which tissue mainly supports, binds, protects, stores and transports?','Connective tissue','Epithelial tissue|Muscle tissue|Nervous tissue','Connective tissue provides structural support and includes adipose, cartilage, bone and blood.',IMG.four],
+['Tissue basics','Which tissue contracts to create movement?','Muscle tissue','Nervous tissue|Connective tissue|Epithelial tissue','Muscle tissue specializes in contraction and movement.',IMG.four],
+['Tissue basics','Which tissue receives and transmits electrical impulses?','Nervous tissue','Muscle tissue|Epithelial tissue|Connective tissue','Nervous tissue communicates using electrical signals.',IMG.four],
+['Epithelial functions','Which epithelial function prevents physical damage and abrasion?','Protection','Absorption|Secretion|Diffusion','Protection is especially important in multilayered epithelial surfaces.',IMG.epi],
+['Epithelial functions','Taking substances into the body across an epithelial surface is called…','Absorption','Secretion|Protection|Contraction','Absorption is important in places such as the intestine.',IMG.epi],
+['Epithelial functions','Releasing substances such as mucus or gland products is called…','Secretion','Filtration|Absorption|Contraction','Epithelial cells can produce and release substances.',IMG.epi],
+['Epithelial functions','Rapid movement of gases across a very thin epithelial surface is most closely associated with…','Diffusion','Protection|Storage|Contraction','Thin epithelium creates a short diffusion distance.',IMG.epi],
+['Epithelial features','What does avascular mean?','No blood vessels','No nerves|No cells|No basement membrane','Epithelial tissue is avascular: it contains no blood vessels.',IMG.epi],
+['Epithelial features','How does avascular epithelial tissue obtain oxygen and nutrients?','Diffusion from underlying connective tissue','From its own capillaries|Directly from air only|From muscle fibres','Nutrients diffuse from blood vessels in the connective tissue underneath.',IMG.epi],
+['Naming epithelium','In epithelial naming, simple means…','One cell layer','Many layers|Flat cells|Tall cells','Simple epithelium consists of one layer.',IMG.layers],
+['Naming epithelium','In epithelial naming, stratified means…','Two or more layers','One layer|Cube-shaped cells|No basement membrane','Stratified epithelium has multiple layers.',IMG.layers],
+['Naming epithelium','Pseudostratified epithelium is actually…','One layer in which all cells touch the basement membrane','Many true layers|A connective tissue|A muscle tissue','It looks multilayered because nuclei lie at different heights, but all cells contact the basement membrane.',IMG.layers],
+['Naming epithelium','What is the correct epithelial naming order?','Layers first, shape second','Shape first, layers second|Function first, location second|Nucleus first, membrane second','Exam rule: layers first → shape second → epithelium.',IMG.layers],
+['Naming epithelium','Stratified epithelium is named according to the shape of which cells?','Cells at the free or surface layer','Deepest cells only|Connective tissue cells|Blood cells','For stratified epithelium, inspect the top surface cells.',IMG.layers],
+['Cell shapes','Squamous epithelial cells are best described as…','Flat and thin','Cube-shaped|Tall and column-like|Spindle-shaped','Squamous cells are flattened and ideal for thin exchange surfaces.',IMG.shapes],
+['Cell shapes','Cuboidal epithelial cells are best described as…','Cube-like with a round central nucleus','Flat with a flattened nucleus|Tall with basal nuclei|Branched and striated','Cuboidal cells are roughly as tall as they are wide.',IMG.shapes],
+['Cell shapes','Columnar epithelial cells are best described as…','Tall cells with oval nuclei often near the base','Flat thin cells|Cube-like cells|Spindle-shaped cells','Columnar cells are tall and often specialized for absorption or secretion.',IMG.shapes],
+['Simple squamous','Which epithelium lines the alveoli of the lungs?','Simple squamous epithelium','Simple cuboidal epithelium|Simple columnar epithelium|Stratified squamous epithelium','Alveoli require a very thin surface for gas exchange.',IMG.alveoli],
+['Simple squamous','The lining of blood vessels is primarily…','Simple squamous epithelium','Stratified squamous epithelium|Simple cuboidal epithelium|Smooth muscle only','The thin lining allows efficient exchange and a smooth internal surface.',IMG.alveoli],
+['Simple squamous','Why is simple squamous epithelium suitable for diffusion?','It creates a very short diffusion distance','It has many protective layers|It contains large fat stores|It contracts strongly','Exam trick: thin = fast diffusion.',IMG.alveoli],
+['Simple cuboidal','Which epithelium is commonly found in kidney tubules?','Simple cuboidal epithelium','Simple squamous epithelium|Simple columnar epithelium|Stratified squamous epithelium','Kidney tubules commonly contain simple cuboidal cells.',IMG.kidney],
+['Simple cuboidal','The main functions associated with simple cuboidal epithelium are…','Absorption and secretion','Rapid gas diffusion only|Strong contraction|Electrical signalling','Cuboidal cells are suited to active transport, absorption and secretion.',IMG.kidney],
+['Simple columnar','Which epithelium commonly lines much of the digestive tract?','Simple columnar epithelium','Simple squamous epithelium|Simple cuboidal epithelium|Stratified squamous epithelium','Tall columnar cells are common in the digestive tract.',IMG.intestine],
+['Simple columnar','Microvilli on simple columnar cells mainly help by…','Increasing surface area for absorption','Reducing blood supply|Creating multiple layers|Producing muscle contraction','More surface area improves absorption efficiency.',IMG.intestine],
+['Stratified squamous','Which epithelium is characteristic of the epidermis?','Stratified squamous epithelium','Simple squamous epithelium|Simple cuboidal epithelium|Simple columnar epithelium','The epidermis needs many protective layers.',IMG.layers],
+['Stratified squamous','Why is stratified squamous epithelium suited to areas of friction?','Multiple layers protect against abrasion','It is only one cell thick|It contains plasma|It conducts impulses','Exam trick: many layers = protection.',IMG.layers],
+['Connective tissue','All connective tissues contain living cells plus…','Extracellular matrix','A free surface|A basement membrane only|Striations','A defining feature of connective tissue is cells embedded in extracellular matrix.',IMG.ct],
+['Connective tissue','Extracellular matrix mainly consists of…','Ground substance and protein fibres','Neurons and glia|Keratin and sebum only|Epidermis and dermis','ECM = ground substance + fibres.',IMG.ct],
+['Connective tissue','A tendon connects…','Muscle to bone','Bone to bone|Skin to muscle|Nerve to bone','Memory trick: tendon = muscle → bone.',IMG.ct],
+['Connective tissue','A ligament connects…','Bone to bone','Muscle to bone|Nerve to muscle|Skin to bone','Memory trick: ligament = bone → bone.',IMG.ct],
+['Connective tissue','Loose connective tissue is commonly found…','Under skin and around organs','Only inside the heart|Only in alveoli|Only in the epidermis','Loose connective tissue supports and binds structures.',IMG.ct],
+['Adipose tissue','A major function of adipose tissue is…','Energy storage','Gas diffusion|Electrical signalling|Producing sweat','Adipose stores energy as fat.',IMG.ct],
+['Adipose tissue','Adipose tissue also helps with…','Insulation and cushioning','Rapid diffusion|Voluntary movement|Impulse conduction','Fat helps reduce heat loss and protects organs.',IMG.ct],
+['Cartilage','Cartilage is commonly found in…','Joints, nose, ears and trachea','Alveoli only|Epidermis only|Brain ventricles only','Cartilage provides flexible support in several body regions.',IMG.ct],
+['Cartilage','At joints, cartilage mainly helps to…','Reduce friction and cushion surfaces','Produce sebum|Transmit impulses|Create blood cells only','Cartilage protects articulating bone surfaces.',IMG.ct],
+['Bone','Bone tissue is specialized for…','Rigid support and protection','Gas diffusion|Secretion of sweat|Absorption in intestine','Bone provides a hard supportive framework.',IMG.ct],
+['Blood','Why is blood classified as connective tissue?','Its cells are suspended in a fluid matrix called plasma','It forms the epidermis|It is striated|It lines alveoli','Blood has cells plus extracellular matrix; its matrix is plasma.',IMG.ct],
+['Blood','A key function of blood is to transport…','Gases, nutrients and wastes','Only keratin|Only sebum|Only electrical impulses','Blood transports many substances throughout the body.',IMG.ct],
+['Blood clotting','Which plasma protein can form fibres during clotting?','Fibrinogen','Albumin only|Keratin|Melanin','Fibrinogen is converted to fibrin during clot formation.',IMG.ct],
+['Nervous tissue','The main signalling cells of nervous tissue are…','Neurons','Adipocytes|Chondrocytes|Keratinocytes','Neurons receive and transmit electrical impulses.',IMG.nm],
+['Nervous tissue','Neuroglia mainly…','Support, protect and nourish neurons','Contract voluntarily|Produce sebum|Form the epidermis','Neuroglia support nervous tissue function.',IMG.nm],
+['Nervous tissue','Nervous tissue is found in the…','Brain, spinal cord and peripheral nerves','Only epidermis|Only tendons|Only kidney tubules','These structures contain neurons and supporting glial cells.',IMG.nm],
+['Skeletal muscle','Skeletal muscle is…','Voluntary and striated','Involuntary and non-striated|Involuntary and branching only|A connective tissue','Skeletal muscle is generally under conscious control and shows striations.',IMG.nm],
+['Skeletal muscle','Skeletal muscle fibres are typically…','Long, cylindrical and multinucleate','Flat and single-layered|Branched and single-nucleated only|Spindle-shaped and non-striated','These are key recognition features of skeletal muscle.',IMG.nm],
+['Cardiac muscle','Cardiac muscle is…','Involuntary, striated and found in the heart','Voluntary and non-striated|Found in kidney tubules|A type of epithelium','Cardiac muscle contracts automatically in the heart.',IMG.nm],
+['Cardiac muscle','A useful recognition clue for cardiac muscle is…','Branching cells','Flat cells|Cube-shaped cells|Large adipose droplets','Cardiac fibres branch and are striated.',IMG.nm],
+['Smooth muscle','Smooth muscle is…','Involuntary and non-striated','Voluntary and striated|Multilayered epithelium|A nervous tissue','Smooth muscle lacks visible striations and contracts involuntarily.',IMG.nm],
+['Smooth muscle','Smooth muscle cells are typically…','Spindle-shaped and found in hollow organs and vessels','Flat and found in alveoli|Cube-shaped in kidney tubules|Branched only in the heart','Shape + location are strong recognition clues.',IMG.nm],
+['Integumentary system','Which set belongs to the integumentary system?','Skin, hair, nails, sweat glands and sebaceous glands','Brain, spinal cord and nerves|Heart, arteries and veins only|Bones, tendons and ligaments only','The integumentary system includes the skin and its accessory structures.',IMG.skin],
+['Skin layers','The outermost skin layer is the…','Epidermis','Dermis|Hypodermis|Fascia','The epidermis forms the outer protective layer.',IMG.skin],
+['Skin layers','Which skin layer contains blood vessels, nerves, glands and hair follicles?','Dermis','Epidermis|Stratum corneum only|Nail plate','The dermis is vascular and contains many skin structures.',IMG.skin],
+['Skin layers','The hypodermis contains mainly…','Loose connective tissue and adipose tissue','Simple squamous epithelium only|Cardiac muscle|Nervous tissue only','The hypodermis supports insulation, cushioning and energy storage.',IMG.skin],
+['Skin functions','A major function of skin is…','Protection','Producing red blood cells only|Digesting proteins|Pumping blood','Skin forms a barrier against physical and environmental injury.',IMG.skin],
+['Skin functions','Sweating and changes in skin blood flow contribute to…','Thermoregulation','Blood clotting only|Bone growth|Gas exchange in alveoli','The skin helps regulate body temperature.',IMG.skin],
+['Skin functions','Skin contributes to sensation because it contains…','Sensory nerve endings','Only adipose cells|Only cartilage|No nerves','Sensory receptors detect touch, pressure, pain and temperature.',IMG.skin],
+['Skin functions','Exposure of skin to appropriate UV light contributes to synthesis of…','Vitamin D','Vitamin C|Insulin|Haemoglobin','The skin participates in vitamin D production.',IMG.skin],
+['Eccrine glands','Eccrine glands mainly produce…','Watery sweat for thermoregulation','Sebum|Milk|Earwax','Eccrine sweat helps cool the body.',IMG.skin],
+['Eccrine glands','Eccrine glands are especially common on the…','Palms, soles and forehead','Alveoli|Kidney tubules|Heart valves','These are classic locations for eccrine glands.',IMG.skin],
+['Apocrine glands','Apocrine glands are mainly associated with the…','Axillary and genital regions','Alveoli and lungs|Kidney cortex|Bone marrow only','Apocrine glands occur mainly in axillary and genital regions.',IMG.skin],
+['Apocrine glands','Apocrine secretion contains sweat plus more…','Fatty acids and proteins','Bone matrix|Keratin only|Red blood cells','Apocrine secretion is richer than eccrine sweat.',IMG.skin],
+['Sebaceous glands','Sebaceous glands produce…','Sebum','Watery sweat|Plasma|Fibrin','Sebum lubricates and protects skin and hair.',IMG.skin],
+['Sebaceous glands','Sebum helps…','Lubricate skin and hair and reduce water loss','Increase gas diffusion in alveoli|Create muscle striations|Transmit nerve impulses','Sebum also has antimicrobial properties.',IMG.skin]
+];
+const STEM=[f=>f[1],f=>`Choose the BEST answer: ${f[1]}`,f=>`Exam-style: ${f[1]}`,f=>`Rapid recall: ${f[1]}`,f=>`Which answer would earn the mark? ${f[1]}`,f=>`Select the most accurate answer: ${f[1]}`,f=>`Chapter 5 mastery check: ${f[1]}`,f=>`Do not overthink this: ${f[1]}`,f=>`Image-linked review: ${f[1]}`,f=>`Final-review version: ${f[1]}`];
+function sh(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const BANK=[];F.forEach((f,fi)=>{for(let v=0;v<10;v++){const wrong=f[3].split('|');BANK.push({id:fi*10+v,topic:f[0],q:STEM[v](f),ans:f[2],opts:sh([f[2],...wrong]),ex:f[4],img:(v===2||v===5||v===8)?f[5]:null})}});
+const $=id=>document.getElementById(id),menu=$('menu'),game=$('game'),q=$('question'),opts=$('options'),fb=$('feedback'),next=$('next'),result=$('result');
+let review=new Set(JSON.parse(localStorage.getItem('ora-ch5-wrong')||'[]')),queue=[],pos=0,correct=0,wrong=0,streak=0,answered=false,mode='20';
+function save(){localStorage.setItem('ora-ch5-wrong',JSON.stringify([...review]));$('reviewStat').textContent=review.size;$('reviewMenu').disabled=review.size===0;$('reviewNow').disabled=review.size===0}
+function stats(){$('correctStat').textContent=correct;$('wrongStat').textContent=wrong;$('streakStat').textContent=streak;save()}
+function start(m){mode=m;let p=[...BANK];if(m==='image')p=p.filter(x=>x.img);if(m==='review')p=p.filter(x=>review.has(x.id));p=sh(p);if(m==='20')p=p.slice(0,20);if(m==='50')p=p.slice(0,50);queue=p;pos=0;correct=0;wrong=0;streak=0;menu.classList.add('hidden');game.classList.remove('hidden');result.classList.add('hidden');render()}
+function render(){if(!queue.length){finish();return}answered=false;next.disabled=true;fb.textContent='Choose an answer.';const x=queue[pos];$('counter').textContent=`Question ${pos+1} of ${queue.length}`;$('topic').textContent=x.topic;$('bar').style.width=`${(pos/queue.length)*100}%`;q.textContent=x.q;const ib=$('imageBox');if(x.img){$('qImage').src=x.img;ib.style.display='block'}else ib.style.display='none';opts.innerHTML='';x.opts.forEach((o,i)=>{let b=document.createElement('button');b.className='option';b.textContent=`${String.fromCharCode(65+i)}) ${o}`;b.onclick=()=>choose(o,b);opts.appendChild(b)});stats()}
+function choose(o,b){if(answered)return;answered=true;const x=queue[pos];[...opts.children].forEach(z=>{z.disabled=true;if(z.textContent.endsWith(x.ans))z.classList.add('correct')});if(o===x.ans){correct++;streak++;if(mode==='review')review.delete(x.id);fb.innerHTML=`<b>✅ Correct</b><br>${x.ex}`}else{wrong++;streak=0;review.add(x.id);b.classList.add('wrong');fb.innerHTML=`<b>❌ Wrong</b><br>Correct answer: <b>${x.ans}</b><br>${x.ex}`}next.disabled=false;stats()}
+function finish(){$('bar').style.width='100%';q.textContent='Quiz complete 🎯';opts.innerHTML='';$('imageBox').style.display='none';next.disabled=true;let t=correct+wrong,p=t?Math.round(correct/t*100):0;result.classList.remove('hidden');result.innerHTML=`<div class="scoreBig">${p}%</div><div>${correct} correct • ${wrong} wrong • ${review.size} saved for review</div><p>${p>=90?'🏆 Excellent — strong mastery.':p>=75?'👍 Good. Review your mistakes once more.':'📚 Use Wrong Answers mode before moving on.'}</p>`;stats()}
+document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>start(b.dataset.mode));$('reviewMenu').onclick=()=>start('review');$('reviewNow').onclick=()=>start('review');next.onclick=()=>{if(!answered)return;pos++;pos>=queue.length?finish():render()};$('restart').onclick=()=>start(mode);$('back').onclick=()=>{game.classList.add('hidden');menu.classList.remove('hidden');stats()};$('resetSaved').onclick=()=>{if(confirm('Clear all saved wrong answers?')){review.clear();save()}};stats();
+</script>
+</body>
+</html>
